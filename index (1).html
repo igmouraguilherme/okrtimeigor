@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OKR 1 — Renovação de Faturamento Prioritário</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #F7F6F3; --surface: #FFFFFF; --border: #E5E3DE;
+      --text-primary: #1A1916; --text-secondary: #6B6A65; --text-muted: #9C9B96;
+      --hot: #C94A22; --hot-bg: #FDF1ED; --hot-border: #F2C4B0;
+      --warm: #A06000; --warm-bg: #FDF6E7; --warm-border: #F5D98A;
+      --cold: #1A5FA8; --cold-bg: #EEF5FD; --cold-border: #B3D0F0;
+      --danger: #C13333; --danger-bg: #FDF0F0; --danger-border: #F0B8B8;
+      --font-display: 'Inter Tight', sans-serif; --font-body: 'Inter', sans-serif;
+      --radius-sm: 6px; --radius-md: 10px; --radius-lg: 14px;
+    }
+    body { font-family: var(--font-body); background: var(--bg); color: var(--text-primary); font-size: 14px; line-height: 1.5; min-height: 100vh; padding: 0 0 60px; }
+    .header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 28px 40px 24px; }
+    .header-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
+    .header-title { font-family: var(--font-display); font-size: 26px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.02em; margin-bottom: 4px; }
+    .header-meta { font-size: 12px; color: var(--text-muted); display: flex; align-items: center; gap: 16px; }
+    .header-meta span { display: flex; align-items: center; gap: 5px; }
+    .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--text-muted); }
+    .container { max-width: 980px; margin: 0 auto; padding: 0 40px; }
+    .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 28px 0; }
+    .metric { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 16px 18px; }
+    .metric-label { font-size: 11px; font-weight: 500; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+    .metric-value { font-family: var(--font-display); font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: var(--text-primary); }
+    .metric-value.hot { color: var(--hot); }
+    .metric-value.danger { color: var(--danger); }
+    .metric-value.cold { color: var(--cold); }
+    .metric-sub { font-size: 11px; color: var(--text-muted); margin-top: 3px; }
+    .alert { background: var(--danger-bg); border: 1px solid var(--danger-border); border-radius: var(--radius-md); padding: 14px 18px; margin-bottom: 28px; display: flex; gap: 12px; align-items: flex-start; }
+    .alert-title { font-size: 12px; font-weight: 600; color: var(--danger); margin-bottom: 3px; }
+    .alert-text { font-size: 13px; color: #7A2020; line-height: 1.55; }
+    .cluster { margin-bottom: 28px; }
+    .cluster-header { display: flex; align-items: center; gap: 10px; padding: 10px 16px; border-radius: var(--radius-sm); margin-bottom: 10px; }
+    .cluster-header.hot { background: var(--hot-bg); border: 1px solid var(--hot-border); }
+    .cluster-header.warm { background: var(--warm-bg); border: 1px solid var(--warm-border); }
+    .cluster-header.cold { background: var(--cold-bg); border: 1px solid var(--cold-border); }
+    .temp-indicator { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .hot .temp-indicator { background: var(--hot); }
+    .warm .temp-indicator { background: var(--warm); }
+    .cold .temp-indicator { background: var(--cold); }
+    .cluster-label { font-size: 13px; font-weight: 600; }
+    .hot .cluster-label { color: var(--hot); }
+    .warm .cluster-label { color: var(--warm); }
+    .cold .cluster-label { color: var(--cold); }
+    .cluster-stats { margin-left: auto; font-size: 12px; font-weight: 500; display: flex; gap: 16px; }
+    .hot .cluster-stats { color: var(--hot); }
+    .warm .cluster-stats { color: var(--warm); }
+    .cold .cluster-stats { color: var(--cold); }
+    .table-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; }
+    table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+    thead th { padding: 9px 14px; text-align: left; font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; background: #FAFAF8; border-bottom: 1px solid var(--border); }
+    tbody tr { border-bottom: 1px solid var(--border); }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: #FAFAF8; }
+    tbody td { padding: 10px 14px; color: var(--text-primary); vertical-align: top; }
+    td.escola { font-weight: 500; max-width: 180px; line-height: 1.4; }
+    td.escola .uf { display: block; font-size: 11px; font-weight: 400; color: var(--text-muted); margin-top: 1px; }
+    td.acv { font-weight: 600; white-space: nowrap; font-variant-numeric: tabular-nums; }
+    td.acao { color: var(--text-secondary); line-height: 1.45; max-width: 220px; font-size: 12px; }
+    td.acao.risk { color: var(--danger); font-weight: 500; }
+    td.acao.warning { color: var(--warm); font-weight: 500; }
+    .badge { display: inline-block; font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 20px; white-space: nowrap; letter-spacing: 0.02em; }
+    .badge-neg { background: #EEF5FD; color: #1A5FA8; border: 1px solid #B3D0F0; }
+    .badge-elab { background: #F2EFFE; color: #4A38B0; border: 1px solid #C9C0F5; }
+    .badge-diag { background: #F1EFE8; color: #5F5E5A; border: 1px solid #D3D1C7; }
+    .badge-bloc { background: #FDF0F0; color: #C13333; border: 1px solid #F0B8B8; }
+    .resp { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 5px; }
+    .resp-chip { background: #F1EFE8; border-radius: 4px; padding: 2px 6px; font-size: 10px; font-weight: 400; color: #5F5E5A; white-space: nowrap; }
+    .resp-chip.warn { background: #FDF6E7; color: #A06000; }
+    .footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 11px; color: var(--text-muted); display: flex; justify-content: space-between; align-items: center; }
+    @media (max-width: 700px) {
+      .header { padding: 20px; }
+      .container { padding: 0 16px; }
+      .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+      td.acao { max-width: 120px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="container">
+      <div class="header-eyebrow">OKR 1 · Sucesso Pedagógico — Arco Educação</div>
+      <div class="header-title">Renovação de Faturamento Prioritário</div>
+      <div class="header-meta">
+        <span><div class="dot"></div> Atualizado em 15/06/2025</span>
+        <span><div class="dot"></div> 20 oportunidades monitoradas</span>
+        <span><div class="dot"></div> Semana 24</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="metrics-grid">
+      <div class="metric">
+        <div class="metric-label">ACV total monitorado</div>
+        <div class="metric-value">R$ 19,2M</div>
+        <div class="metric-sub">20 oportunidades</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Temperatura quente</div>
+        <div class="metric-value hot">R$ 6,8M</div>
+        <div class="metric-sub">6 oportunidades · 35% do total</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Bloqueadas / críticos</div>
+        <div class="metric-value danger">R$ 1,1M</div>
+        <div class="metric-sub">2 oportunidades travadas</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Visita presencial 19/06</div>
+        <div class="metric-value cold">R$ 4,1M</div>
+        <div class="metric-sub">2 escolas — RN</div>
+      </div>
+    </div>
+
+    <div class="alert">
+      <div>
+        <div class="alert-title">⚠ Risco principal desta semana</div>
+        <div class="alert-text">57% do ACV (R$ 10,9M) está em temperatura fria ou morna — com 2 casos críticos bloqueados, 1 cliente detrator em reunião na semana e 1 mantenedor em AL avaliando concorrência ativamente. Sem aceleração nas próximas 2 semanas, o fechamento no Q2 está comprometido.</div>
+      </div>
+    </div>
+
+    <!-- QUENTE -->
+    <div class="cluster">
+      <div class="cluster-header hot">
+        <div class="temp-indicator"></div>
+        <div class="cluster-label">Quente</div>
+        <div class="cluster-stats"><span>R$ 6,8M</span><span>6 oportunidades</span></div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Escola</th><th>ACV</th><th>Etapa</th><th>Status / próxima ação</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="escola">Colégio NSra das Neves<span class="uf">Natal · RN</span>
+                <div class="resp"><span class="resp-chip">Líder: Mayara G.</span><span class="resp-chip">CSE: Jessica Correa</span><span class="resp-chip">Consultor: Halyson</span></div>
+              </td>
+              <td class="acv">R$ 2,6M</td><td><span class="badge badge-neg">Negociação</span></td>
+              <td class="acao">Visita Igor + Halyson em 19/06 — fechar reajuste e ampliação infantil</td>
+            </tr>
+            <tr>
+              <td class="escola">Colégio Santa Doroteia<span class="uf">Belo Horizonte · MG</span>
+                <div class="resp"><span class="resp-chip">Líder: Mayara G.</span><span class="resp-chip">CSE: Bruna Peixoto</span><span class="resp-chip">Consultor: Assilon</span></div>
+              </td>
+              <td class="acv">R$ 3,6M</td><td><span class="badge badge-neg">Negociação</span></td>
+              <td class="acao">Retorno da escola previsto para 22/06; subir PIC preventivamente</td>
+            </tr>
+            <tr>
+              <td class="escola">Educandário NSra das Vitórias<span class="uf">Açu · RN</span>
+                <div class="resp"><span class="resp-chip">Líder: Mayara G.</span><span class="resp-chip">CSE: Jessica Correa</span><span class="resp-chip">Consultor: Halyson</span></div>
+              </td>
+              <td class="acv">R$ 1,4M</td><td><span class="badge badge-neg">Negociação</span></td>
+              <td class="acao">Visita Igor + Halyson em 19/06 — fechar reajuste e ampliação infantil</td>
+            </tr>
+            <tr>
+              <td class="escola">SS Sacramento · Bonfim<span class="uf">BA</span>
+                <div class="resp"><span class="resp-chip">Líder: Mayara G.</span><span class="resp-chip">CSE: Jessica Correa</span><span class="resp-chip">Consultor: Halyson</span></div>
+              </td>
+              <td class="acv">R$ 1,4M</td><td><span class="badge badge-neg">Negociação</span></td>
+              <td class="acao">Proposta aceita por 2 anos; confeccionar PIC</td>
+            </tr>
+            <tr>
+              <td class="escola">SS Sacramento · Salvador<span class="uf">BA</span>
+                <div class="resp"><span class="resp-chip">Líder: Mayara G.</span><span class="resp-chip">CSE: Jessica Correa</span><span class="resp-chip">Consultor: Halyson</span></div>
+              </td>
+              <td class="acv">R$ 603K</td><td><span class="badge badge-neg">Negociação</span></td>
+              <td class="acao">Aguardar retorno da escola até 15/06</td>
+            </tr>
+            <tr>
+              <td class="escola">Colégio Motiva<span class="uf">João Pessoa · PB</span>
+                <div class="resp"><span class="resp-chip">Líder: Lucas Faleiros</span><span class="resp-chip">CSE: Aline Tranquilli</span><span class="resp-chip">Consultor: Gilberto</span></div>
+              </td>
+              <td class="acv">R$ 112K</td><td><span class="badge badge-neg">Negociação</span></td>
+              <td class="acao">Fup com escola + criar PIC na semana de 15/06</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- MORNA -->
+    <div class="cluster">
+      <div class="cluster-header warm">
+        <div class="temp-indicator"></div>
+        <div class="cluster-label">Morna</div>
+        <div class="cluster-stats"><span>R$ 4,6M</span><span>5 oportunidades</span></div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Escola</th><th>ACV</th><th>Etapa</th><th>Status / próxima ação</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="escola">Sta Doroteia<span class="uf">Manaus · AM</span>
+                <div class="resp"><span class="resp-chip">Líder: Mayara G.</span><span class="resp-chip">CSE: Bruna Peixoto</span><span class="resp-chip">Consultor: Assilon</span></div>
+              </td>
+              <td class="acv">R$ 882K</td><td><span class="badge badge-neg">Negociação</span></td>
+              <td class="acao">Mantenedora rejeita reajuste acima de 6%; nova oferta enviada por e-mail</td>
+            </tr>
+            <tr>
+              <td class="escola">São Judas Tadeu<span class="uf">Maceió · AL</span>
+                <div class="resp"><span class="resp-chip">Líder: Ana Jessica</span><span class="resp-chip">CSE: Kamila Buriti</span><span class="resp-chip">Consultor: Luciano</span></div>
+              </td>
+              <td class="acv">R$ 930K</td><td><span class="badge badge-neg">Negociação</span></td>
+              <td class="acao warning">Ameaça concorrência + restrição de prazo; CSE ligar para aprofundamento</td>
+            </tr>
+            <tr>
+              <td class="escola">Batista Maranhense<span class="uf">São Luís · MA</span>
+                <div class="resp"><span class="resp-chip">Líder: Mayara G.</span><span class="resp-chip">CSE: Halyson Dantas</span><span class="resp-chip">Consultor: Erika</span></div>
+              </td>
+              <td class="acv">R$ 566K</td><td><span class="badge badge-neg">Negociação</span></td>
+              <td class="acao">Contraproposta (8%→3%); reunião de contraproposta em 15/06</td>
+            </tr>
+            <tr>
+              <td class="escola">Cristo Rei<span class="uf">Maceió · AL</span>
+                <div class="resp"><span class="resp-chip">Líder: Ana Jessica</span><span class="resp-chip">CSE: Kamila Buriti</span><span class="resp-chip">Consultor: Luciano</span></div>
+              </td>
+              <td class="acv">R$ 519K</td><td><span class="badge badge-elab">Elab. proposta</span></td>
+              <td class="acao">Mantenedor não responsivo; nova tentativa de contato</td>
+            </tr>
+            <tr>
+              <td class="escola">NSra de Lourdes<span class="uf">João Pessoa · PB</span>
+                <div class="resp"><span class="resp-chip">Líder: Mayara G.</span><span class="resp-chip">CSE: Tatiane Malheiros</span><span class="resp-chip">Consultor: Halyson</span></div>
+              </td>
+              <td class="acv">R$ 663K</td><td><span class="badge badge-elab">Elab. proposta</span></td>
+              <td class="acao">Proposta pronta; agendar reunião de apresentação com a escola</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- FRIA -->
+    <div class="cluster">
+      <div class="cluster-header cold">
+        <div class="temp-indicator"></div>
+        <div class="cluster-label">Fria</div>
+        <div class="cluster-stats"><span>R$ 7,8M</span><span>9 oportunidades</span></div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Escola</th><th>ACV</th><th>Etapa</th><th>Status / risco</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="escola">MJ Lopes<span class="uf">Maceió · AL</span>
+                <div class="resp"><span class="resp-chip">Líder: Ana Jessica</span><span class="resp-chip">CSE: Ana Carolina</span><span class="resp-chip">Consultor: Erika</span></div>
+              </td>
+              <td class="acv">R$ 888K</td><td><span class="badge badge-neg">Negociação</span></td>
+              <td class="acao risk">Insatisfeito com operações + avaliando concorrência; recusa assinar antes de agosto — apoio liderança CSE (Najéss)</td>
+            </tr>
+            <tr>
+              <td class="escola">Oficina Cursos<span class="uf">Salvador · BA</span>
+                <div class="resp"><span class="resp-chip">Líder: Lucas Faleiros</span><span class="resp-chip">CSE: Aline Tranquilli</span><span class="resp-chip">Consultor: Nayara</span></div>
+              </td>
+              <td class="acv">R$ 898K</td><td><span class="badge badge-neg">Negociação</span></td>
+              <td class="acao">Escola não responsiva desde 05/06; Igor tentar contato direto + deixar PIC pronto</td>
+            </tr>
+            <tr>
+              <td class="escola">Livraria Campos<span class="uf">Fortaleza · CE</span>
+                <div class="resp"><span class="resp-chip">Líder: Marcus Casanova</span><span class="resp-chip">CSE: Mayara Gama</span><span class="resp-chip">Consultor: Nayara</span></div>
+              </td>
+              <td class="acv">R$ 1,0M</td><td><span class="badge badge-elab">Elab. proposta</span></td>
+              <td class="acao risk">Cliente detrator — reunião com Moriggi agendada para 16/06</td>
+            </tr>
+            <tr>
+              <td class="escola">Monaliza Cavalcante<span class="uf">Tianguá · CE</span>
+                <div class="resp"><span class="resp-chip">Consultor: Nayara</span><span class="resp-chip warn">Sem CSE/Líder</span></div>
+              </td>
+              <td class="acv">R$ 732K</td><td><span class="badge badge-diag">Diagnóstico</span></td>
+              <td class="acao">Mantenedor com problemas de saúde; escola avalia material de ampliação</td>
+            </tr>
+            <tr>
+              <td class="escola">Sta Doroteia<span class="uf">Belém · PA</span>
+                <div class="resp"><span class="resp-chip">Líder: Mayara G.</span><span class="resp-chip">CSE: Bruna Peixoto</span><span class="resp-chip">Consultor: Assilon</span></div>
+              </td>
+              <td class="acv">R$ 196K</td><td><span class="badge badge-diag">Diagnóstico</span></td>
+              <td class="acao">Proposta pausada por falecimento — retomar esta semana</td>
+            </tr>
+            <tr>
+              <td class="escola">Diocesano Parnaíba<span class="uf">PI</span>
+                <div class="resp"><span class="resp-chip">Líder: Mayara G.</span><span class="resp-chip">CSE: Tatiane Malheiros</span><span class="resp-chip">Consultor: Erika</span></div>
+              </td>
+              <td class="acv">R$ 215K</td><td><span class="badge badge-bloc">Bloqueada</span></td>
+              <td class="acao risk">Caso crítico — dívida com Isaac pendente de resolução</td>
+            </tr>
+            <tr>
+              <td class="escola">CLFS Livros<span class="uf">Salvador · BA</span>
+                <div class="resp"><span class="resp-chip">Líder: Marcus Casanova</span><span class="resp-chip">CSE: Mayara Pessoa</span><span class="resp-chip">Consultor: Francisco</span></div>
+              </td>
+              <td class="acv">R$ 996K</td><td><span class="badge badge-bloc">Bloqueada</span></td>
+              <td class="acao risk">NF pendente trava pagamento de patrocínio</td>
+            </tr>
+            <tr>
+              <td class="escola">Podion DF + Fund. II<span class="uf">Brasília · DF</span>
+                <div class="resp"><span class="resp-chip">Líder: Marcelo de Paula</span><span class="resp-chip">Consultor: Gilberto</span></div>
+              </td>
+              <td class="acv">R$ 1,5M</td><td><span class="badge badge-diag">Diagnóstico</span></td>
+              <td class="acao warning">Simulador e proposta pendentes do líder CSE (Marcelo) — cobrar alinhamento urgente</td>
+            </tr>
+            <tr>
+              <td class="escola">Instituto Castro<span class="uf">Aquiraz · CE</span>
+                <div class="resp"><span class="resp-chip">Consultor: Nayara</span><span class="resp-chip warn">Sem CSE/Líder</span></div>
+              </td>
+              <td class="acv">R$ 311K</td><td><span class="badge badge-diag">Diagnóstico</span></td>
+              <td class="acao">Sem ação registrada no período</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="footer">
+      <span>OKR 1 — Renovação de Faturamento Prioritário · Arco Educação</span>
+      <span>Atualizado semanalmente pelo gestor de Sucesso Pedagógico</span>
+    </div>
+  </div>
+</body>
+</html>
