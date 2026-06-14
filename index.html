@@ -24,10 +24,10 @@
     .header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 28px 40px 24px; }
     .header-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
     .header-title { font-family: var(--font-display); font-size: 26px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.02em; margin-bottom: 4px; }
-    .header-meta { font-size: 12px; color: var(--text-muted); display: flex; align-items: center; gap: 16px; }
+    .header-meta { font-size: 12px; color: var(--text-muted); display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
     .header-meta span { display: flex; align-items: center; gap: 5px; }
     .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--text-muted); }
-    .container { max-width: 980px; margin: 0 auto; padding: 0 40px; }
+    .container { max-width: 1020px; margin: 0 auto; padding: 0 40px; }
     .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 28px 0 20px; }
     .metric { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 16px 18px; }
     .metric-label { font-size: 11px; font-weight: 500; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
@@ -39,8 +39,6 @@
     .alert { background: var(--danger-bg); border: 1px solid var(--danger-border); border-radius: var(--radius-md); padding: 14px 18px; margin-bottom: 28px; display: flex; gap: 12px; }
     .alert-title { font-size: 12px; font-weight: 600; color: var(--danger); margin-bottom: 3px; }
     .alert-text { font-size: 13px; color: #7A2020; line-height: 1.55; }
-
-    /* FUNIL CHARTS SECTION */
     .charts-section { margin-bottom: 28px; }
     .charts-section-title { font-size: 13px; font-weight: 500; color: var(--text-secondary); margin-bottom: 12px; }
     .legend-row { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 16px; font-size: 12px; color: var(--text-secondary); }
@@ -61,10 +59,11 @@
     .etapa-status-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
     .etapa-status-val { font-weight: 500; color: var(--text-primary); }
     .etapa-status-val.danger { color: var(--danger); }
+    .section-divider { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
 
-    /* CLUSTER TABLES */
-    .cluster { margin-bottom: 28px; }
-    .cluster-header { display: flex; align-items: center; gap: 10px; padding: 10px 16px; border-radius: var(--radius-sm); margin-bottom: 10px; }
+    /* CLUSTER */
+    .cluster { margin-bottom: 32px; }
+    .cluster-header { display: flex; align-items: center; gap: 10px; padding: 10px 16px; border-radius: var(--radius-sm); margin-bottom: 12px; }
     .cluster-header.hot { background: var(--hot-bg); border: 1px solid var(--hot-border); }
     .cluster-header.warm { background: var(--warm-bg); border: 1px solid var(--warm-border); }
     .cluster-header.cold { background: var(--cold-bg); border: 1px solid var(--cold-border); }
@@ -80,17 +79,30 @@
     .hot .cluster-stats { color: var(--hot); }
     .warm .cluster-stats { color: var(--warm); }
     .cold .cluster-stats { color: var(--cold); }
+
+    /* FILTERS */
+    .filters-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; align-items: center; }
+    .filter-group { display: flex; align-items: center; gap: 6px; }
+    .filter-label { font-size: 11px; color: var(--text-muted); white-space: nowrap; }
+    .filter-select { font-size: 11px; font-family: var(--font-body); color: var(--text-primary); background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 4px 8px; cursor: pointer; outline: none; min-width: 120px; }
+    .filter-select:focus { border-color: #185FA5; }
+    .sort-btn { font-size: 11px; font-family: var(--font-body); color: var(--text-secondary); background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; cursor: pointer; display: flex; align-items: center; gap: 4px; white-space: nowrap; }
+    .sort-btn:hover { background: var(--bg); }
+    .sort-btn.active { border-color: #185FA5; color: #185FA5; background: #EEF5FD; }
+    .filter-reset { font-size: 11px; color: var(--text-muted); background: none; border: none; cursor: pointer; text-decoration: underline; padding: 4px; }
+    .filter-reset:hover { color: var(--text-primary); }
+    .no-results { font-size: 12px; color: var(--text-muted); padding: 16px; text-align: center; display: none; }
+
+    /* TABLE */
     .table-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; }
     table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
-    thead th { padding: 9px 14px; text-align: left; font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; background: #FAFAF8; border-bottom: 1px solid var(--border); }
+    thead th { padding: 9px 14px; text-align: left; font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; background: #FAFAF8; border-bottom: 1px solid var(--border); white-space: nowrap; }
     tbody tr { border-bottom: 1px solid var(--border); }
     tbody tr:last-child { border-bottom: none; }
     tbody tr:hover { background: #FAFAF8; }
     tbody td { padding: 10px 14px; color: var(--text-primary); vertical-align: top; }
     td.acv { font-weight: 600; white-space: nowrap; font-variant-numeric: tabular-nums; }
-    td.acao { color: var(--text-secondary); line-height: 1.45; font-size: 12px; }
-    td.acao.risk { color: var(--danger); font-weight: 500; }
-    td.acao.warning { color: var(--warm); font-weight: 500; }
+    td.acao { color: var(--text-secondary); line-height: 1.45; font-size: 12px; min-width: 180px; }
     .badge { display: inline-block; font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 20px; white-space: nowrap; }
     .badge-neg { background: #EEF5FD; color: #1A5FA8; border: 1px solid #B3D0F0; }
     .badge-elab { background: #F2EFFE; color: #4A38B0; border: 1px solid #C9C0F5; }
@@ -104,7 +116,19 @@
     .resp { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 5px; }
     .resp-chip { background: #F1EFE8; border-radius: 4px; padding: 2px 6px; font-size: 10px; color: #5F5E5A; white-space: nowrap; }
     .resp-chip.warn { background: #FDF6E7; color: #A06000; }
-    .section-divider { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+
+    /* EDITABLE ACTION */
+    .acao-text { display: block; }
+    .acao-edit { display: none; width: 100%; font-size: 12px; font-family: var(--font-body); color: var(--text-primary); background: var(--surface); border: 1px solid #185FA5; border-radius: 4px; padding: 4px 6px; resize: vertical; min-height: 40px; outline: none; }
+    .acao-edit-btn { display: inline-flex; align-items: center; gap: 3px; margin-top: 4px; font-size: 10px; color: var(--text-muted); background: none; border: none; cursor: pointer; padding: 0; }
+    .acao-edit-btn:hover { color: #185FA5; }
+    .acao-save-btn { display: none; margin-top: 4px; font-size: 10px; font-family: var(--font-body); color: #fff; background: #185FA5; border: none; border-radius: 4px; padding: 3px 8px; cursor: pointer; }
+    .acao-save-btn:hover { background: #0C447C; }
+    .acao-cell.editing .acao-text { display: none; }
+    .acao-cell.editing .acao-edit { display: block; }
+    .acao-cell.editing .acao-edit-btn { display: none; }
+    .acao-cell.editing .acao-save-btn { display: inline-block; }
+
     .footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 11px; color: var(--text-muted); display: flex; justify-content: space-between; }
     @media (max-width: 700px) {
       .header { padding: 20px; }
@@ -129,28 +153,11 @@
   </div>
 
   <div class="container">
-
     <div class="metrics-grid">
-      <div class="metric">
-        <div class="metric-label">ACV total monitorado</div>
-        <div class="metric-value">R$ 19,2M</div>
-        <div class="metric-sub">20 oportunidades</div>
-      </div>
-      <div class="metric">
-        <div class="metric-label">Temperatura quente</div>
-        <div class="metric-value hot">R$ 6,8M</div>
-        <div class="metric-sub">6 oportunidades · 35% do total</div>
-      </div>
-      <div class="metric">
-        <div class="metric-label">Bloqueadas / críticos</div>
-        <div class="metric-value danger">R$ 1,1M</div>
-        <div class="metric-sub">2 oportunidades travadas</div>
-      </div>
-      <div class="metric">
-        <div class="metric-label">Visita presencial 19/06</div>
-        <div class="metric-value cold">R$ 4,1M</div>
-        <div class="metric-sub">2 escolas — RN</div>
-      </div>
+      <div class="metric"><div class="metric-label">ACV total monitorado</div><div class="metric-value">R$ 19,2M</div><div class="metric-sub">20 oportunidades</div></div>
+      <div class="metric"><div class="metric-label">Temperatura quente</div><div class="metric-value hot">R$ 6,8M</div><div class="metric-sub">6 oportunidades · 35% do total</div></div>
+      <div class="metric"><div class="metric-label">Bloqueadas / críticos</div><div class="metric-value danger">R$ 1,1M</div><div class="metric-sub">2 oportunidades travadas</div></div>
+      <div class="metric"><div class="metric-label">Visita presencial 19/06</div><div class="metric-value cold">R$ 4,1M</div><div class="metric-sub">2 escolas — RN</div></div>
     </div>
 
     <div class="alert">
@@ -160,7 +167,6 @@
       </div>
     </div>
 
-    <!-- CHARTS SECTION -->
     <div class="charts-section">
       <div class="charts-section-title">Distribuição por etapa de funil e status</div>
       <div class="legend-row">
@@ -172,34 +178,17 @@
         <span class="legend-item"><span class="legend-dot" style="background:#E24B4A;"></span>Bloqueada</span>
       </div>
       <div class="charts-grid">
-        <div class="chart-wrap">
-          <div class="chart-label">Escolas por etapa de funil</div>
-          <div class="chart-canvas-wrap">
-            <canvas id="cFunil" role="img" aria-label="Negociação 58%, Diagnóstico 32%, Elaboração 16%.">Negociação 11 (58%), Diagnóstico 6 (32%), Elaboração de proposta 3 (16%).</canvas>
-          </div>
-        </div>
-        <div class="chart-wrap">
-          <div class="chart-label">Status por etapa (%)</div>
-          <div class="chart-canvas-wrap">
-            <canvas id="cStatus" role="img" aria-label="Status por etapa de funil.">Negociação: 79% aguardando escola, 21% ação interna. Diagnóstico: 63% ação interna, 37% bloqueada. Elaboração: 100% ação interna.</canvas>
-          </div>
-        </div>
+        <div class="chart-wrap"><div class="chart-label">Escolas por etapa de funil</div><div class="chart-canvas-wrap"><canvas id="cFunil"></canvas></div></div>
+        <div class="chart-wrap"><div class="chart-label">Status por etapa (%)</div><div class="chart-canvas-wrap"><canvas id="cStatus"></canvas></div></div>
       </div>
-
       <div class="etapa-cards">
         <div class="etapa-card">
           <div class="etapa-card-title" style="color:#0C447C;">Negociação</div>
           <div class="etapa-card-value" style="color:#185FA5;">R$ 13,9M</div>
           <div class="etapa-card-sub">11 escolas · 72% do ACV total</div>
           <div class="etapa-card-divider">
-            <div class="etapa-status-row">
-              <span class="etapa-status-label"><span class="etapa-status-dot" style="background:#EF9F27;"></span>79% aguardando escola (9)</span>
-              <span class="etapa-status-val">R$ 11,0M</span>
-            </div>
-            <div class="etapa-status-row">
-              <span class="etapa-status-label"><span class="etapa-status-dot" style="background:#534AB7;"></span>21% ação interna (2)</span>
-              <span class="etapa-status-val">R$ 2,9M</span>
-            </div>
+            <div class="etapa-status-row"><span class="etapa-status-label"><span class="etapa-status-dot" style="background:#EF9F27;"></span>79% aguardando escola (9)</span><span class="etapa-status-val">R$ 11,0M</span></div>
+            <div class="etapa-status-row"><span class="etapa-status-label"><span class="etapa-status-dot" style="background:#534AB7;"></span>21% ação interna (2)</span><span class="etapa-status-val">R$ 2,9M</span></div>
           </div>
         </div>
         <div class="etapa-card">
@@ -207,14 +196,8 @@
           <div class="etapa-card-value" style="color:#888780;">R$ 3,2M</div>
           <div class="etapa-card-sub">6 escolas · 17% do ACV total</div>
           <div class="etapa-card-divider">
-            <div class="etapa-status-row">
-              <span class="etapa-status-label"><span class="etapa-status-dot" style="background:#534AB7;"></span>63% ação interna (4)</span>
-              <span class="etapa-status-val">R$ 2,0M</span>
-            </div>
-            <div class="etapa-status-row">
-              <span class="etapa-status-label"><span class="etapa-status-dot" style="background:#E24B4A;"></span>37% bloqueada (2)</span>
-              <span class="etapa-status-val danger">R$ 1,2M</span>
-            </div>
+            <div class="etapa-status-row"><span class="etapa-status-label"><span class="etapa-status-dot" style="background:#534AB7;"></span>63% ação interna (4)</span><span class="etapa-status-val">R$ 2,0M</span></div>
+            <div class="etapa-status-row"><span class="etapa-status-label"><span class="etapa-status-dot" style="background:#E24B4A;"></span>37% bloqueada (2)</span><span class="etapa-status-val danger">R$ 1,2M</span></div>
           </div>
         </div>
         <div class="etapa-card">
@@ -222,10 +205,7 @@
           <div class="etapa-card-value" style="color:#534AB7;">R$ 2,2M</div>
           <div class="etapa-card-sub">3 escolas · 11% do ACV total</div>
           <div class="etapa-card-divider">
-            <div class="etapa-status-row">
-              <span class="etapa-status-label"><span class="etapa-status-dot" style="background:#534AB7;"></span>100% ação interna (3)</span>
-              <span class="etapa-status-val">R$ 2,2M</span>
-            </div>
+            <div class="etapa-status-row"><span class="etapa-status-label"><span class="etapa-status-dot" style="background:#534AB7;"></span>100% ação interna (3)</span><span class="etapa-status-val">R$ 2,2M</span></div>
           </div>
         </div>
       </div>
@@ -234,170 +214,176 @@
     <hr class="section-divider">
 
     <!-- QUENTE -->
-    <div class="cluster">
+    <div class="cluster" id="cluster-hot">
       <div class="cluster-header hot">
         <div class="temp-indicator"></div>
         <div class="cluster-label">Quente</div>
         <div class="cluster-stats"><span>R$ 6,8M</span><span>6 oportunidades</span></div>
       </div>
+      <div class="filters-row" id="filters-hot"></div>
       <div class="table-wrap">
-        <table>
-          <thead><tr><th>Escola</th><th>ACV</th><th>Etapa</th><th>Status</th><th>Próxima ação</th></tr></thead>
+        <table id="table-hot">
+          <thead><tr><th>Escola</th><th>ACV ↕</th><th>Etapa</th><th>Status</th><th>Próxima ação</th></tr></thead>
           <tbody>
-            <tr>
+            <tr data-lider="Mayara Gonzalez De Sa Lobato" data-cse="Jessica De Freitas Correa" data-consultor="Halyson Dantas" data-acv="2637749" data-etapa="Negociação" data-status="Aguardando ação interna">
               <td><div class="escola-name">Colégio NSra das Neves · Natal/RN</div><div class="resp"><span class="resp-chip">Líder: Mayara G.</span><span class="resp-chip">CSE: Jessica Correa</span><span class="resp-chip">Consultor: Halyson</span></div></td>
               <td class="acv">R$ 2,6M</td><td><span class="badge badge-neg">Negociação</span></td>
               <td><span class="status-chip status-interno">Aguardando ação interna</span></td>
-              <td class="acao">Visita Igor + Halyson em 19/06 — fechar reajuste e ampliação infantil</td>
+              <td class="acao acao-cell"><span class="acao-text">Visita Igor + Halyson em 19/06 — fechar reajuste e ampliação infantil</span><textarea class="acao-edit"></textarea><button class="acao-edit-btn" onclick="editAcao(this)">✏️ editar</button><button class="acao-save-btn" onclick="saveAcao(this)">Salvar</button></td>
             </tr>
-            <tr>
+            <tr data-lider="Mayara Gonzalez De Sa Lobato" data-cse="Bruna Peixoto de Araujo" data-consultor="Assilon Netto" data-acv="3593613" data-etapa="Negociação" data-status="Aguardando retorno da escola">
               <td><div class="escola-name">Colégio Santa Doroteia · BH/MG</div><div class="resp"><span class="resp-chip">Líder: Mayara G.</span><span class="resp-chip">CSE: Bruna Peixoto</span><span class="resp-chip">Consultor: Assilon</span></div></td>
               <td class="acv">R$ 3,6M</td><td><span class="badge badge-neg">Negociação</span></td>
               <td><span class="status-chip status-escola">Aguardando retorno da escola</span></td>
-              <td class="acao">Retorno previsto para 22/06; subir PIC preventivamente</td>
+              <td class="acao acao-cell"><span class="acao-text">Retorno previsto para 22/06; subir PIC preventivamente</span><textarea class="acao-edit"></textarea><button class="acao-edit-btn" onclick="editAcao(this)">✏️ editar</button><button class="acao-save-btn" onclick="saveAcao(this)">Salvar</button></td>
             </tr>
-            <tr>
+            <tr data-lider="Mayara Gonzalez De Sa Lobato" data-cse="Jessica De Freitas Correa" data-consultor="Halyson Dantas" data-acv="1448277" data-etapa="Negociação" data-status="Aguardando ação interna">
               <td><div class="escola-name">Educandário NSra das Vitórias · Açu/RN</div><div class="resp"><span class="resp-chip">Líder: Mayara G.</span><span class="resp-chip">CSE: Jessica Correa</span><span class="resp-chip">Consultor: Halyson</span></div></td>
               <td class="acv">R$ 1,4M</td><td><span class="badge badge-neg">Negociação</span></td>
               <td><span class="status-chip status-interno">Aguardando ação interna</span></td>
-              <td class="acao">Visita Igor + Halyson em 19/06 — fechar reajuste e ampliação infantil</td>
+              <td class="acao acao-cell"><span class="acao-text">Visita Igor + Halyson em 19/06 — fechar reajuste e ampliação infantil</span><textarea class="acao-edit"></textarea><button class="acao-edit-btn" onclick="editAcao(this)">✏️ editar</button><button class="acao-save-btn" onclick="saveAcao(this)">Salvar</button></td>
             </tr>
-            <tr>
+            <tr data-lider="Mayara Gonzalez De Sa Lobato" data-cse="Jessica De Freitas Correa" data-consultor="Halyson Dantas" data-acv="1446559" data-etapa="Negociação" data-status="Aguardando ação interna">
               <td><div class="escola-name">SS Sacramento · Bonfim/BA</div><div class="resp"><span class="resp-chip">Líder: Mayara G.</span><span class="resp-chip">CSE: Jessica Correa</span><span class="resp-chip">Consultor: Halyson</span></div></td>
               <td class="acv">R$ 1,4M</td><td><span class="badge badge-neg">Negociação</span></td>
               <td><span class="status-chip status-escola">Aguardando retorno da escola</span></td>
-              <td class="acao">Proposta aceita (2 anos); confeccionar PIC</td>
+              <td class="acao acao-cell"><span class="acao-text">Proposta aceita (2 anos); confeccionar PIC</span><textarea class="acao-edit"></textarea><button class="acao-edit-btn" onclick="editAcao(this)">✏️ editar</button><button class="acao-save-btn" onclick="saveAcao(this)">Salvar</button></td>
             </tr>
-            <tr>
+            <tr data-lider="Mayara Gonzalez De Sa Lobato" data-cse="Jessica De Freitas Correa" data-consultor="Halyson Dantas" data-acv="603417" data-etapa="Negociação" data-status="Aguardando retorno da escola">
               <td><div class="escola-name">SS Sacramento · Salvador/BA</div><div class="resp"><span class="resp-chip">Líder: Mayara G.</span><span class="resp-chip">CSE: Jessica Correa</span><span class="resp-chip">Consultor: Halyson</span></div></td>
               <td class="acv">R$ 603K</td><td><span class="badge badge-neg">Negociação</span></td>
               <td><span class="status-chip status-escola">Aguardando retorno da escola</span></td>
-              <td class="acao">Aguardar retorno até 15/06</td>
+              <td class="acao acao-cell"><span class="acao-text">Aguardar retorno até 15/06</span><textarea class="acao-edit"></textarea><button class="acao-edit-btn" onclick="editAcao(this)">✏️ editar</button><button class="acao-save-btn" onclick="saveAcao(this)">Salvar</button></td>
             </tr>
-            <tr>
+            <tr data-lider="Lucas Faleiros" data-cse="Aline Evelyn De Oliveira Tranquilli" data-consultor="Gilberto Filho" data-acv="111530" data-etapa="Negociação" data-status="Aguardando retorno da escola">
               <td><div class="escola-name">Colégio Motiva · João Pessoa/PB</div><div class="resp"><span class="resp-chip">Líder: Lucas Faleiros</span><span class="resp-chip">CSE: Aline Tranquilli</span><span class="resp-chip">Consultor: Gilberto</span></div></td>
               <td class="acv">R$ 112K</td><td><span class="badge badge-neg">Negociação</span></td>
               <td><span class="status-chip status-escola">Aguardando retorno da escola</span></td>
-              <td class="acao">Fup + criar PIC na semana de 15/06</td>
+              <td class="acao acao-cell"><span class="acao-text">Fup + criar PIC na semana de 15/06</span><textarea class="acao-edit"></textarea><button class="acao-edit-btn" onclick="editAcao(this)">✏️ editar</button><button class="acao-save-btn" onclick="saveAcao(this)">Salvar</button></td>
             </tr>
           </tbody>
         </table>
+        <div class="no-results" id="no-hot">Nenhuma escola encontrada com os filtros selecionados.</div>
       </div>
     </div>
 
     <!-- MORNA -->
-    <div class="cluster">
+    <div class="cluster" id="cluster-warm">
       <div class="cluster-header warm">
         <div class="temp-indicator"></div>
         <div class="cluster-label">Morna</div>
         <div class="cluster-stats"><span>R$ 4,6M</span><span>5 oportunidades</span></div>
       </div>
+      <div class="filters-row" id="filters-warm"></div>
       <div class="table-wrap">
-        <table>
-          <thead><tr><th>Escola</th><th>ACV</th><th>Etapa</th><th>Status</th><th>Próxima ação</th></tr></thead>
+        <table id="table-warm">
+          <thead><tr><th>Escola</th><th>ACV ↕</th><th>Etapa</th><th>Status</th><th>Próxima ação</th></tr></thead>
           <tbody>
-            <tr>
+            <tr data-lider="Mayara Gonzalez De Sa Lobato" data-cse="Bruna Peixoto de Araujo" data-consultor="Assilon Netto" data-acv="881876" data-etapa="Negociação" data-status="Aguardando retorno da escola">
               <td><div class="escola-name">Sta Doroteia · Manaus/AM</div><div class="resp"><span class="resp-chip">Líder: Mayara G.</span><span class="resp-chip">CSE: Bruna Peixoto</span><span class="resp-chip">Consultor: Assilon</span></div></td>
               <td class="acv">R$ 882K</td><td><span class="badge badge-neg">Negociação</span></td>
               <td><span class="status-chip status-escola">Aguardando retorno da escola</span></td>
-              <td class="acao">Mantenedora rejeita reajuste acima de 6%; nova oferta enviada por e-mail</td>
+              <td class="acao acao-cell"><span class="acao-text">Mantenedora rejeita reajuste acima de 6%; nova oferta enviada por e-mail</span><textarea class="acao-edit"></textarea><button class="acao-edit-btn" onclick="editAcao(this)">✏️ editar</button><button class="acao-save-btn" onclick="saveAcao(this)">Salvar</button></td>
             </tr>
-            <tr>
+            <tr data-lider="Ana Jessica Araujo Ibiapina" data-cse="Kamila Pereira Buriti Dantas" data-consultor="Luciano Silva" data-acv="929628" data-etapa="Negociação" data-status="Aguardando retorno da escola">
               <td><div class="escola-name">São Judas Tadeu · Maceió/AL</div><div class="resp"><span class="resp-chip">Líder: Ana Jessica</span><span class="resp-chip">CSE: Kamila Buriti</span><span class="resp-chip">Consultor: Luciano</span></div></td>
               <td class="acv">R$ 930K</td><td><span class="badge badge-neg">Negociação</span></td>
               <td><span class="status-chip status-escola">Aguardando retorno da escola</span></td>
-              <td class="acao warning">Ameaça concorrência + restrição de prazo; CSE ligar para aprofundamento</td>
+              <td class="acao acao-cell"><span class="acao-text acao-warning">Ameaça concorrência + restrição de prazo; CSE ligar para aprofundamento</span><textarea class="acao-edit"></textarea><button class="acao-edit-btn" onclick="editAcao(this)">✏️ editar</button><button class="acao-save-btn" onclick="saveAcao(this)">Salvar</button></td>
             </tr>
-            <tr>
+            <tr data-lider="Mayara Gonzalez De Sa Lobato" data-cse="Halyson Rodrigo de Araujo Dantas" data-consultor="Erika Silva" data-acv="566103" data-etapa="Negociação" data-status="Aguardando retorno da escola">
               <td><div class="escola-name">Batista Maranhense · São Luís/MA</div><div class="resp"><span class="resp-chip">Líder: Mayara G.</span><span class="resp-chip">CSE: Halyson Dantas</span><span class="resp-chip">Consultor: Erika</span></div></td>
               <td class="acv">R$ 566K</td><td><span class="badge badge-neg">Negociação</span></td>
               <td><span class="status-chip status-escola">Aguardando retorno da escola</span></td>
-              <td class="acao">Contraproposta (8%→3%); reunião em 15/06</td>
+              <td class="acao acao-cell"><span class="acao-text">Contraproposta (8%→3%); reunião em 15/06</span><textarea class="acao-edit"></textarea><button class="acao-edit-btn" onclick="editAcao(this)">✏️ editar</button><button class="acao-save-btn" onclick="saveAcao(this)">Salvar</button></td>
             </tr>
-            <tr>
+            <tr data-lider="Ana Jessica Araujo Ibiapina" data-cse="Kamila Pereira Buriti Dantas" data-consultor="Luciano Silva" data-acv="519071" data-etapa="Elaboração de proposta" data-status="Aguardando ação interna">
               <td><div class="escola-name">Cristo Rei · Maceió/AL</div><div class="resp"><span class="resp-chip">Líder: Ana Jessica</span><span class="resp-chip">CSE: Kamila Buriti</span><span class="resp-chip">Consultor: Luciano</span></div></td>
               <td class="acv">R$ 519K</td><td><span class="badge badge-elab">Elab. proposta</span></td>
               <td><span class="status-chip status-interno">Aguardando ação interna</span></td>
-              <td class="acao">Mantenedor não responsivo; nova tentativa de contato</td>
+              <td class="acao acao-cell"><span class="acao-text">Mantenedor não responsivo; nova tentativa de contato</span><textarea class="acao-edit"></textarea><button class="acao-edit-btn" onclick="editAcao(this)">✏️ editar</button><button class="acao-save-btn" onclick="saveAcao(this)">Salvar</button></td>
             </tr>
-            <tr>
+            <tr data-lider="Mayara Gonzalez De Sa Lobato" data-cse="Tatiane Malheiros Da Silva" data-consultor="Halyson Dantas" data-acv="662863" data-etapa="Elaboração de proposta" data-status="Aguardando ação interna">
               <td><div class="escola-name">NSra de Lourdes · João Pessoa/PB</div><div class="resp"><span class="resp-chip">Líder: Mayara G.</span><span class="resp-chip">CSE: Tatiane Malheiros</span><span class="resp-chip">Consultor: Halyson</span></div></td>
               <td class="acv">R$ 663K</td><td><span class="badge badge-elab">Elab. proposta</span></td>
               <td><span class="status-chip status-interno">Aguardando ação interna</span></td>
-              <td class="acao">Proposta pronta; agendar reunião de apresentação</td>
+              <td class="acao acao-cell"><span class="acao-text">Proposta pronta; agendar reunião de apresentação</span><textarea class="acao-edit"></textarea><button class="acao-edit-btn" onclick="editAcao(this)">✏️ editar</button><button class="acao-save-btn" onclick="saveAcao(this)">Salvar</button></td>
             </tr>
           </tbody>
         </table>
+        <div class="no-results" id="no-warm">Nenhuma escola encontrada com os filtros selecionados.</div>
       </div>
     </div>
 
     <!-- FRIA -->
-    <div class="cluster">
+    <div class="cluster" id="cluster-cold">
       <div class="cluster-header cold">
         <div class="temp-indicator"></div>
         <div class="cluster-label">Fria</div>
         <div class="cluster-stats"><span>R$ 7,8M</span><span>9 oportunidades</span></div>
       </div>
+      <div class="filters-row" id="filters-cold"></div>
       <div class="table-wrap">
-        <table>
-          <thead><tr><th>Escola</th><th>ACV</th><th>Etapa</th><th>Status</th><th>Risco / ação</th></tr></thead>
+        <table id="table-cold">
+          <thead><tr><th>Escola</th><th>ACV ↕</th><th>Etapa</th><th>Status</th><th>Risco / ação</th></tr></thead>
           <tbody>
-            <tr>
+            <tr data-lider="Ana Jessica Araujo Ibiapina" data-cse="Ana Carolina Laudares Silva Mireles Coelho" data-consultor="Erika Silva" data-acv="888292" data-etapa="Negociação" data-status="Aguardando retorno da escola">
               <td><div class="escola-name">MJ Lopes · Maceió/AL</div><div class="resp"><span class="resp-chip">Líder: Ana Jessica</span><span class="resp-chip">CSE: Ana Carolina</span><span class="resp-chip">Consultor: Erika</span></div></td>
               <td class="acv">R$ 888K</td><td><span class="badge badge-neg">Negociação</span></td>
               <td><span class="status-chip status-escola">Aguardando retorno da escola</span></td>
-              <td class="acao risk">Insatisfeito com operações + avaliando concorrência; recusa assinar antes de agosto — apoio Najéss urgente</td>
+              <td class="acao acao-cell"><span class="acao-text acao-risk">Insatisfeito com operações + avaliando concorrência; recusa assinar antes de agosto — apoio Najéss urgente</span><textarea class="acao-edit"></textarea><button class="acao-edit-btn" onclick="editAcao(this)">✏️ editar</button><button class="acao-save-btn" onclick="saveAcao(this)">Salvar</button></td>
             </tr>
-            <tr>
+            <tr data-lider="Lucas Faleiros" data-cse="Aline Evelyn De Oliveira Tranquilli" data-consultor="Nayara Antunes" data-acv="898154" data-etapa="Negociação" data-status="Aguardando retorno da escola">
               <td><div class="escola-name">Oficina Cursos · Salvador/BA</div><div class="resp"><span class="resp-chip">Líder: Lucas Faleiros</span><span class="resp-chip">CSE: Aline Tranquilli</span><span class="resp-chip">Consultor: Nayara</span></div></td>
               <td class="acv">R$ 898K</td><td><span class="badge badge-neg">Negociação</span></td>
               <td><span class="status-chip status-escola">Aguardando retorno da escola</span></td>
-              <td class="acao">Escola não responsiva desde 05/06; Igor tentar contato direto + PIC pronto</td>
+              <td class="acao acao-cell"><span class="acao-text">Escola não responsiva desde 05/06; Igor tentar contato direto + PIC pronto</span><textarea class="acao-edit"></textarea><button class="acao-edit-btn" onclick="editAcao(this)">✏️ editar</button><button class="acao-save-btn" onclick="saveAcao(this)">Salvar</button></td>
             </tr>
-            <tr>
+            <tr data-lider="Marcus Casanova Nogueira Junior" data-cse="Mayara Gama de Paiva" data-consultor="Nayara Antunes" data-acv="1043303" data-etapa="Elaboração de proposta" data-status="Aguardando ação interna">
               <td><div class="escola-name">Livraria Campos · Fortaleza/CE</div><div class="resp"><span class="resp-chip">Líder: Marcus Casanova</span><span class="resp-chip">CSE: Mayara Gama</span><span class="resp-chip">Consultor: Nayara</span></div></td>
               <td class="acv">R$ 1,0M</td><td><span class="badge badge-elab">Elab. proposta</span></td>
               <td><span class="status-chip status-interno">Aguardando ação interna</span></td>
-              <td class="acao risk">Cliente detrator — reunião com Moriggi em 16/06</td>
+              <td class="acao acao-cell"><span class="acao-text acao-risk">Cliente detrator — reunião com Moriggi em 16/06</span><textarea class="acao-edit"></textarea><button class="acao-edit-btn" onclick="editAcao(this)">✏️ editar</button><button class="acao-save-btn" onclick="saveAcao(this)">Salvar</button></td>
             </tr>
-            <tr>
+            <tr data-lider="Sem líder" data-cse="Sem CSE" data-consultor="Nayara Antunes" data-acv="731576" data-etapa="Diagnóstico" data-status="Aguardando retorno da escola">
               <td><div class="escola-name">Monaliza Cavalcante · Tianguá/CE</div><div class="resp"><span class="resp-chip">Consultor: Nayara</span><span class="resp-chip warn">Sem CSE/Líder</span></div></td>
               <td class="acv">R$ 732K</td><td><span class="badge badge-diag">Diagnóstico</span></td>
               <td><span class="status-chip status-escola">Aguardando retorno da escola</span></td>
-              <td class="acao">Mantenedor com problemas de saúde; escola avalia ampliação</td>
+              <td class="acao acao-cell"><span class="acao-text">Mantenedor com problemas de saúde; escola avalia ampliação</span><textarea class="acao-edit"></textarea><button class="acao-edit-btn" onclick="editAcao(this)">✏️ editar</button><button class="acao-save-btn" onclick="saveAcao(this)">Salvar</button></td>
             </tr>
-            <tr>
+            <tr data-lider="Mayara Gonzalez De Sa Lobato" data-cse="Bruna Peixoto de Araujo" data-consultor="Assilon Netto" data-acv="195850" data-etapa="Diagnóstico" data-status="Aguardando ação interna">
               <td><div class="escola-name">Sta Doroteia · Belém/PA</div><div class="resp"><span class="resp-chip">Líder: Mayara G.</span><span class="resp-chip">CSE: Bruna Peixoto</span><span class="resp-chip">Consultor: Assilon</span></div></td>
               <td class="acv">R$ 196K</td><td><span class="badge badge-diag">Diagnóstico</span></td>
               <td><span class="status-chip status-interno">Aguardando ação interna</span></td>
-              <td class="acao">Proposta pausada por falecimento — retomar esta semana</td>
+              <td class="acao acao-cell"><span class="acao-text">Proposta pausada por falecimento — retomar esta semana</span><textarea class="acao-edit"></textarea><button class="acao-edit-btn" onclick="editAcao(this)">✏️ editar</button><button class="acao-save-btn" onclick="saveAcao(this)">Salvar</button></td>
             </tr>
-            <tr>
+            <tr data-lider="Mayara Gonzalez De Sa Lobato" data-cse="Tatiane Malheiros Da Silva" data-consultor="Erika Silva" data-acv="215237" data-etapa="Diagnóstico" data-status="Bloqueada por caso crítico">
               <td><div class="escola-name">Diocesano Parnaíba · PI</div><div class="resp"><span class="resp-chip">Líder: Mayara G.</span><span class="resp-chip">CSE: Tatiane Malheiros</span><span class="resp-chip">Consultor: Erika</span></div></td>
               <td class="acv">R$ 215K</td><td><span class="badge badge-diag">Diagnóstico</span></td>
               <td><span class="status-chip status-bloqueada">Bloqueada por caso crítico</span></td>
-              <td class="acao risk">Dívida com Isaac pendente de resolução</td>
+              <td class="acao acao-cell"><span class="acao-text acao-risk">Dívida com Isaac pendente de resolução</span><textarea class="acao-edit"></textarea><button class="acao-edit-btn" onclick="editAcao(this)">✏️ editar</button><button class="acao-save-btn" onclick="saveAcao(this)">Salvar</button></td>
             </tr>
-            <tr>
+            <tr data-lider="Marcus Casanova Nogueira Junior" data-cse="Mayara Pessoa Da Silva" data-consultor="Francisco Wellington" data-acv="996327" data-etapa="Diagnóstico" data-status="Bloqueada por caso crítico">
               <td><div class="escola-name">CLFS Livros · Salvador/BA</div><div class="resp"><span class="resp-chip">Líder: Marcus Casanova</span><span class="resp-chip">CSE: Mayara Pessoa</span><span class="resp-chip">Consultor: Francisco</span></div></td>
               <td class="acv">R$ 996K</td><td><span class="badge badge-diag">Diagnóstico</span></td>
               <td><span class="status-chip status-bloqueada">Bloqueada por caso crítico</span></td>
-              <td class="acao risk">NF pendente trava pagamento de patrocínio</td>
+              <td class="acao acao-cell"><span class="acao-text acao-risk">NF pendente trava pagamento de patrocínio</span><textarea class="acao-edit"></textarea><button class="acao-edit-btn" onclick="editAcao(this)">✏️ editar</button><button class="acao-save-btn" onclick="saveAcao(this)">Salvar</button></td>
             </tr>
-            <tr>
+            <tr data-lider="Marcelo De Paula" data-cse="Sem CSE" data-consultor="Gilberto Filho" data-acv="1529370" data-etapa="Diagnóstico" data-status="Aguardando ação interna">
               <td><div class="escola-name">Podion DF + Fund. II · Brasília/DF</div><div class="resp"><span class="resp-chip">Líder: Marcelo de Paula</span><span class="resp-chip">Consultor: Gilberto</span></div></td>
               <td class="acv">R$ 1,5M</td><td><span class="badge badge-diag">Diagnóstico</span></td>
               <td><span class="status-chip status-interno">Aguardando ação interna</span></td>
-              <td class="acao warning">Simulador e proposta pendentes do Marcelo — cobrar até quarta</td>
+              <td class="acao acao-cell"><span class="acao-text acao-warning">Simulador e proposta pendentes do Marcelo — cobrar até quarta</span><textarea class="acao-edit"></textarea><button class="acao-edit-btn" onclick="editAcao(this)">✏️ editar</button><button class="acao-save-btn" onclick="saveAcao(this)">Salvar</button></td>
             </tr>
-            <tr>
+            <tr data-lider="Sem líder" data-cse="Sem CSE" data-consultor="Nayara Antunes" data-acv="310520" data-etapa="Diagnóstico" data-status="Aguardando ação interna">
               <td><div class="escola-name">Instituto Castro · Aquiraz/CE</div><div class="resp"><span class="resp-chip">Consultor: Nayara</span><span class="resp-chip warn">Sem CSE/Líder</span></div></td>
               <td class="acv">R$ 311K</td><td><span class="badge badge-diag">Diagnóstico</span></td>
               <td><span class="status-chip status-interno">Aguardando ação interna</span></td>
-              <td class="acao">Sem ação registrada no período</td>
+              <td class="acao acao-cell"><span class="acao-text">Sem ação registrada no período</span><textarea class="acao-edit"></textarea><button class="acao-edit-btn" onclick="editAcao(this)">✏️ editar</button><button class="acao-save-btn" onclick="saveAcao(this)">Salvar</button></td>
             </tr>
           </tbody>
         </table>
+        <div class="no-results" id="no-cold">Nenhuma escola encontrada com os filtros selecionados.</div>
       </div>
     </div>
 
@@ -408,86 +394,177 @@
   </div>
 
   <script>
+    /* ── CHARTS ── */
     const isDark = matchMedia('(prefers-color-scheme: dark)').matches;
     const gridColor = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)';
     const lc = isDark ? '#9C9B96' : '#6B6A65';
-
     const labelPlugin = {
       id: 'inBarLabels',
       afterDatasetsDraw(chart) {
         const ctx = chart.ctx;
         chart.data.datasets.forEach((ds, i) => {
-          const meta = chart.getDatasetMeta(i);
-          meta.data.forEach((bar, j) => {
-            const val = ds.data[j];
-            if (!val) return;
+          chart.getDatasetMeta(i).data.forEach((bar, j) => {
+            const val = ds.data[j]; if (!val) return;
             const extra = ds._extra ? ds._extra[j] : null;
-            const lines = extra ? [val + '%', extra] : [val + '%'];
-            const lineH = 13;
-            const totalH = lines.length * lineH;
+            const lines = extra ? [val+'%', extra] : [val+'%'];
+            const lineH = 13, totalH = lines.length * lineH;
             const barH = Math.abs(bar.base - bar.y);
             if (barH < totalH + 8) return;
             const midY = (bar.y + bar.base) / 2;
-            ctx.save();
-            ctx.fillStyle = '#fff';
-            ctx.font = '500 11px Inter,sans-serif';
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            lines.forEach((line, li) => {
-              ctx.fillText(line, bar.x, midY - totalH/2 + li*lineH + lineH/2);
-            });
+            ctx.save(); ctx.fillStyle='#fff'; ctx.font='500 11px Inter,sans-serif'; ctx.textAlign='center'; ctx.textBaseline='middle';
+            lines.forEach((line, li) => ctx.fillText(line, bar.x, midY - totalH/2 + li*lineH + lineH/2));
             ctx.restore();
           });
         });
       }
     };
-
     new Chart(document.getElementById('cFunil'), {
-      type: 'bar',
-      plugins: [labelPlugin],
-      data: {
-        labels: ['Negociação', 'Diagnóstico', 'Elab. proposta'],
-        datasets:[{
-          data: [58, 32, 16],
-          _extra: ['11 · R$13,9M', '6 · R$3,2M', '3 · R$2,2M'],
-          backgroundColor: ['#185FA5','#888780','#534AB7'],
-          borderRadius: 4, borderSkipped: false
-        }]
-      },
-      options: {
-        responsive: true, maintainAspectRatio: false,
-        plugins: { legend:{display:false}, tooltip:{callbacks:{label: ctx => ['58%','32%','16%'][ctx.dataIndex]+' · '+['R$13,9M','R$3,2M','R$2,2M'][ctx.dataIndex]}} },
-        scales: {
-          x: { ticks:{color:lc,font:{size:11}}, grid:{display:false}, border:{display:false} },
-          y: { ticks:{color:lc,font:{size:11},callback:v=>v+'%'}, grid:{color:gridColor}, border:{display:false}, max:75 }
-        }
-      }
+      type:'bar', plugins:[labelPlugin],
+      data:{ labels:['Negociação','Diagnóstico','Elab. proposta'], datasets:[{ data:[58,32,16], _extra:['11 · R$13,9M','6 · R$3,2M','3 · R$2,2M'], backgroundColor:['#185FA5','#888780','#534AB7'], borderRadius:4, borderSkipped:false }] },
+      options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{display:false}, tooltip:{callbacks:{label:ctx=>['58%','32%','16%'][ctx.dataIndex]+' · '+['R$13,9M','R$3,2M','R$2,2M'][ctx.dataIndex]}} }, scales:{ x:{ticks:{color:lc,font:{size:11}},grid:{display:false},border:{display:false}}, y:{ticks:{color:lc,font:{size:11},callback:v=>v+'%'},grid:{color:gridColor},border:{display:false},max:75} } }
+    });
+    new Chart(document.getElementById('cStatus'), {
+      type:'bar', plugins:[labelPlugin],
+      data:{ labels:[['Negociação','58% · 11 escolas'],['Diagnóstico','32% · 6 escolas'],['Elab. proposta','16% · 3 escolas']], datasets:[
+        { label:'Aguardando escola', data:[79,0,0],    _extra:['R$11,0M',null,null],         backgroundColor:'#EF9F27', borderRadius:4, borderSkipped:false, barThickness:52 },
+        { label:'Ação interna',      data:[21,63,100], _extra:['R$2,9M','R$2,0M','R$2,2M'], backgroundColor:'#534AB7', borderRadius:4, borderSkipped:false, barThickness:52 },
+        { label:'Bloqueada',         data:[0,37,0],    _extra:[null,'R$1,2M',null],           backgroundColor:'#E24B4A', borderRadius:4, borderSkipped:false, barThickness:52 }
+      ]},
+      options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{display:false}, tooltip:{callbacks:{label:ctx=>ctx.dataset.label+': '+ctx.raw+'%'}} }, scales:{ x:{ticks:{color:lc,font:{size:11},maxRotation:0},grid:{display:false},border:{display:false}}, y:{ticks:{color:lc,font:{size:11},callback:v=>v+'%'},grid:{color:gridColor},border:{display:false},max:110} } }
     });
 
-    new Chart(document.getElementById('cStatus'), {
-      type: 'bar',
-      plugins: [labelPlugin],
-      data: {
-        labels: [
-          ['Negociação','58% · 11 escolas'],
-          ['Diagnóstico','32% · 6 escolas'],
-          ['Elab. proposta','16% · 3 escolas']
-        ],
-        datasets: [
-          { label:'Aguardando escola', data:[79,0,0],    _extra:['R$11,0M',null,null],         backgroundColor:'#EF9F27', borderRadius:4, borderSkipped:false, barThickness:52 },
-          { label:'Ação interna',      data:[21,63,100], _extra:['R$2,9M','R$2,0M','R$2,2M'], backgroundColor:'#534AB7', borderRadius:4, borderSkipped:false, barThickness:52 },
-          { label:'Bloqueada',         data:[0,37,0],    _extra:[null,'R$1,2M',null],           backgroundColor:'#E24B4A', borderRadius:4, borderSkipped:false, barThickness:52 }
-        ]
-      },
-      options: {
-        responsive: true, maintainAspectRatio: false,
-        plugins: { legend:{display:false}, tooltip:{callbacks:{label: ctx => ctx.dataset.label+': '+ctx.raw+'%'}} },
-        scales: {
-          x: { ticks:{color:lc,font:{size:11},maxRotation:0}, grid:{display:false}, border:{display:false} },
-          y: { ticks:{color:lc,font:{size:11},callback:v=>v+'%'}, grid:{color:gridColor}, border:{display:false}, max:110 }
-        }
+    /* ── FILTERS ── */
+    const clusters = [
+      { id: 'hot',  tableId: 'table-hot',  filtersId: 'filters-hot',  noId: 'no-hot'  },
+      { id: 'warm', tableId: 'table-warm', filtersId: 'filters-warm', noId: 'no-warm' },
+      { id: 'cold', tableId: 'table-cold', filtersId: 'filters-cold', noId: 'no-cold' },
+    ];
+
+    function getUnique(rows, attr) {
+      const vals = [...new Set([...rows].map(r => r.dataset[attr]))].filter(Boolean).sort();
+      return vals;
+    }
+
+    function buildFilters(cluster) {
+      const table = document.getElementById(cluster.tableId);
+      const rows = table.querySelectorAll('tbody tr');
+      const container = document.getElementById(cluster.filtersId);
+
+      const liders   = getUnique(rows, 'lider');
+      const cses     = getUnique(rows, 'cse');
+      const consults = getUnique(rows, 'consultor');
+      const etapas   = getUnique(rows, 'etapa');
+      const statuses = getUnique(rows, 'status');
+
+      function makeSelect(label, attr, options, id) {
+        const sel = document.createElement('select');
+        sel.className = 'filter-select';
+        sel.id = id;
+        const def = document.createElement('option');
+        def.value = ''; def.textContent = label;
+        sel.appendChild(def);
+        options.forEach(o => {
+          const opt = document.createElement('option');
+          opt.value = o; opt.textContent = o;
+          sel.appendChild(opt);
+        });
+        sel.addEventListener('change', () => applyFilters(cluster));
+        return sel;
       }
-    });
+
+      const acvAscBtn  = document.createElement('button');
+      acvAscBtn.className = 'sort-btn'; acvAscBtn.textContent = 'ACV ↑'; acvAscBtn.dataset.sort = 'asc';
+      const acvDescBtn = document.createElement('button');
+      acvDescBtn.className = 'sort-btn'; acvDescBtn.textContent = 'ACV ↓'; acvDescBtn.dataset.sort = 'desc';
+
+      [acvAscBtn, acvDescBtn].forEach(btn => {
+        btn.addEventListener('click', () => {
+          [acvAscBtn, acvDescBtn].forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          sortByACV(cluster, btn.dataset.sort);
+        });
+      });
+
+      const resetBtn = document.createElement('button');
+      resetBtn.className = 'filter-reset'; resetBtn.textContent = 'Limpar filtros';
+      resetBtn.addEventListener('click', () => {
+        container.querySelectorAll('select').forEach(s => s.value = '');
+        [acvAscBtn, acvDescBtn].forEach(b => b.classList.remove('active'));
+        applyFilters(cluster);
+      });
+
+      container.innerHTML = '';
+      const g = (label, el) => {
+        const wrap = document.createElement('span');
+        wrap.className = 'filter-group';
+        const lbl = document.createElement('span');
+        lbl.className = 'filter-label'; lbl.textContent = label;
+        wrap.appendChild(lbl); wrap.appendChild(el);
+        return wrap;
+      };
+
+      container.appendChild(g('Líder CSE:', makeSelect('Todos', 'lider', liders, `sel-lider-${cluster.id}`)));
+      container.appendChild(g('CSE:', makeSelect('Todos', 'cse', cses, `sel-cse-${cluster.id}`)));
+      container.appendChild(g('Consultor:', makeSelect('Todos', 'consultor', consults, `sel-consultor-${cluster.id}`)));
+      container.appendChild(g('Etapa:', makeSelect('Todas', 'etapa', etapas, `sel-etapa-${cluster.id}`)));
+      container.appendChild(g('Status:', makeSelect('Todos', 'status', statuses, `sel-status-${cluster.id}`)));
+      container.appendChild(g('ACV:', acvAscBtn));
+      container.appendChild(acvDescBtn);
+      container.appendChild(resetBtn);
+    }
+
+    function applyFilters(cluster) {
+      const table = document.getElementById(cluster.tableId);
+      const rows  = table.querySelectorAll('tbody tr');
+      const noEl  = document.getElementById(cluster.noId);
+      const get   = id => document.getElementById(id) ? document.getElementById(id).value : '';
+      const lider    = get(`sel-lider-${cluster.id}`);
+      const cse      = get(`sel-cse-${cluster.id}`);
+      const consultor= get(`sel-consultor-${cluster.id}`);
+      const etapa    = get(`sel-etapa-${cluster.id}`);
+      const status   = get(`sel-status-${cluster.id}`);
+      let visible = 0;
+      rows.forEach(row => {
+        const show =
+          (!lider    || row.dataset.lider    === lider)    &&
+          (!cse      || row.dataset.cse      === cse)      &&
+          (!consultor|| row.dataset.consultor=== consultor) &&
+          (!etapa    || row.dataset.etapa    === etapa)    &&
+          (!status   || row.dataset.status   === status);
+        row.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+      noEl.style.display = visible === 0 ? 'block' : 'none';
+    }
+
+    function sortByACV(cluster, dir) {
+      const table = document.getElementById(cluster.tableId);
+      const tbody = table.querySelector('tbody');
+      const rows  = [...tbody.querySelectorAll('tr')];
+      rows.sort((a, b) => {
+        const av = parseInt(a.dataset.acv), bv = parseInt(b.dataset.acv);
+        return dir === 'asc' ? av - bv : bv - av;
+      });
+      rows.forEach(r => tbody.appendChild(r));
+    }
+
+    /* ── EDITABLE ACTION ── */
+    function editAcao(btn) {
+      const cell = btn.closest('.acao-cell');
+      const textarea = cell.querySelector('.acao-edit');
+      textarea.value = cell.querySelector('.acao-text').textContent.trim();
+      cell.classList.add('editing');
+      textarea.focus();
+    }
+    function saveAcao(btn) {
+      const cell = btn.closest('.acao-cell');
+      const textarea = cell.querySelector('.acao-edit');
+      cell.querySelector('.acao-text').textContent = textarea.value;
+      cell.classList.remove('editing');
+    }
+
+    /* ── INIT ── */
+    clusters.forEach(buildFilters);
   </script>
 </body>
 </html>
