@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -27,7 +28,7 @@
     .header-meta span { display: flex; align-items: center; gap: 5px; }
     .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--text-muted); }
     .container { max-width: 980px; margin: 0 auto; padding: 0 40px; }
-    .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 28px 0; }
+    .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 28px 0 20px; }
     .metric { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 16px 18px; }
     .metric-label { font-size: 11px; font-weight: 500; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
     .metric-value { font-family: var(--font-display); font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: var(--text-primary); }
@@ -38,6 +39,30 @@
     .alert { background: var(--danger-bg); border: 1px solid var(--danger-border); border-radius: var(--radius-md); padding: 14px 18px; margin-bottom: 28px; display: flex; gap: 12px; }
     .alert-title { font-size: 12px; font-weight: 600; color: var(--danger); margin-bottom: 3px; }
     .alert-text { font-size: 13px; color: #7A2020; line-height: 1.55; }
+
+    /* FUNIL CHARTS SECTION */
+    .charts-section { margin-bottom: 28px; }
+    .charts-section-title { font-size: 13px; font-weight: 500; color: var(--text-secondary); margin-bottom: 12px; }
+    .legend-row { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 16px; font-size: 12px; color: var(--text-secondary); }
+    .legend-item { display: flex; align-items: center; gap: 5px; }
+    .legend-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+    .charts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 16px; }
+    .chart-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 16px; }
+    .chart-label { font-size: 12px; color: var(--text-secondary); margin-bottom: 12px; }
+    .chart-canvas-wrap { position: relative; width: 100%; height: 240px; }
+    .etapa-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+    .etapa-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 14px; }
+    .etapa-card-title { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+    .etapa-card-value { font-size: 20px; font-weight: 700; font-family: var(--font-display); }
+    .etapa-card-sub { font-size: 11px; color: var(--text-muted); margin-top: 2px; margin-bottom: 12px; }
+    .etapa-card-divider { border-top: 0.5px solid var(--border); padding-top: 10px; display: flex; flex-direction: column; gap: 6px; }
+    .etapa-status-row { display: flex; justify-content: space-between; align-items: center; font-size: 11px; }
+    .etapa-status-label { display: flex; align-items: center; gap: 5px; color: var(--text-secondary); }
+    .etapa-status-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+    .etapa-status-val { font-weight: 500; color: var(--text-primary); }
+    .etapa-status-val.danger { color: var(--danger); }
+
+    /* CLUSTER TABLES */
     .cluster { margin-bottom: 28px; }
     .cluster-header { display: flex; align-items: center; gap: 10px; padding: 10px 16px; border-radius: var(--radius-sm); margin-bottom: 10px; }
     .cluster-header.hot { background: var(--hot-bg); border: 1px solid var(--hot-border); }
@@ -79,11 +104,14 @@
     .resp { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 5px; }
     .resp-chip { background: #F1EFE8; border-radius: 4px; padding: 2px 6px; font-size: 10px; color: #5F5E5A; white-space: nowrap; }
     .resp-chip.warn { background: #FDF6E7; color: #A06000; }
+    .section-divider { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
     .footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 11px; color: var(--text-muted); display: flex; justify-content: space-between; }
     @media (max-width: 700px) {
       .header { padding: 20px; }
       .container { padding: 0 16px; }
       .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+      .charts-grid { grid-template-columns: 1fr; }
+      .etapa-cards { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -101,6 +129,7 @@
   </div>
 
   <div class="container">
+
     <div class="metrics-grid">
       <div class="metric">
         <div class="metric-label">ACV total monitorado</div>
@@ -130,6 +159,79 @@
         <div class="alert-text">57% do ACV (R$ 10,9M) está em temperatura fria ou morna — com 2 casos críticos bloqueados, 1 cliente detrator em reunião na semana e 1 mantenedor em AL avaliando concorrência ativamente. Sem aceleração nas próximas 2 semanas, o fechamento no Q2 está comprometido.</div>
       </div>
     </div>
+
+    <!-- CHARTS SECTION -->
+    <div class="charts-section">
+      <div class="charts-section-title">Distribuição por etapa de funil e status</div>
+      <div class="legend-row">
+        <span class="legend-item"><span class="legend-dot" style="background:#185FA5;"></span>Negociação</span>
+        <span class="legend-item"><span class="legend-dot" style="background:#888780;"></span>Diagnóstico</span>
+        <span class="legend-item"><span class="legend-dot" style="background:#534AB7;"></span>Elab. proposta</span>
+        <span class="legend-item"><span class="legend-dot" style="background:#EF9F27;"></span>Aguardando escola</span>
+        <span class="legend-item"><span class="legend-dot" style="background:#534AB7;"></span>Ação interna</span>
+        <span class="legend-item"><span class="legend-dot" style="background:#E24B4A;"></span>Bloqueada</span>
+      </div>
+      <div class="charts-grid">
+        <div class="chart-wrap">
+          <div class="chart-label">Escolas por etapa de funil</div>
+          <div class="chart-canvas-wrap">
+            <canvas id="cFunil" role="img" aria-label="Negociação 58%, Diagnóstico 32%, Elaboração 16%.">Negociação 11 (58%), Diagnóstico 6 (32%), Elaboração de proposta 3 (16%).</canvas>
+          </div>
+        </div>
+        <div class="chart-wrap">
+          <div class="chart-label">Status por etapa (%)</div>
+          <div class="chart-canvas-wrap">
+            <canvas id="cStatus" role="img" aria-label="Status por etapa de funil.">Negociação: 79% aguardando escola, 21% ação interna. Diagnóstico: 63% ação interna, 37% bloqueada. Elaboração: 100% ação interna.</canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="etapa-cards">
+        <div class="etapa-card">
+          <div class="etapa-card-title" style="color:#0C447C;">Negociação</div>
+          <div class="etapa-card-value" style="color:#185FA5;">R$ 13,9M</div>
+          <div class="etapa-card-sub">11 escolas · 72% do ACV total</div>
+          <div class="etapa-card-divider">
+            <div class="etapa-status-row">
+              <span class="etapa-status-label"><span class="etapa-status-dot" style="background:#EF9F27;"></span>79% aguardando escola (9)</span>
+              <span class="etapa-status-val">R$ 11,0M</span>
+            </div>
+            <div class="etapa-status-row">
+              <span class="etapa-status-label"><span class="etapa-status-dot" style="background:#534AB7;"></span>21% ação interna (2)</span>
+              <span class="etapa-status-val">R$ 2,9M</span>
+            </div>
+          </div>
+        </div>
+        <div class="etapa-card">
+          <div class="etapa-card-title" style="color:#444441;">Diagnóstico</div>
+          <div class="etapa-card-value" style="color:#888780;">R$ 3,2M</div>
+          <div class="etapa-card-sub">6 escolas · 17% do ACV total</div>
+          <div class="etapa-card-divider">
+            <div class="etapa-status-row">
+              <span class="etapa-status-label"><span class="etapa-status-dot" style="background:#534AB7;"></span>63% ação interna (4)</span>
+              <span class="etapa-status-val">R$ 2,0M</span>
+            </div>
+            <div class="etapa-status-row">
+              <span class="etapa-status-label"><span class="etapa-status-dot" style="background:#E24B4A;"></span>37% bloqueada (2)</span>
+              <span class="etapa-status-val danger">R$ 1,2M</span>
+            </div>
+          </div>
+        </div>
+        <div class="etapa-card">
+          <div class="etapa-card-title" style="color:#3C3489;">Elab. proposta</div>
+          <div class="etapa-card-value" style="color:#534AB7;">R$ 2,2M</div>
+          <div class="etapa-card-sub">3 escolas · 11% do ACV total</div>
+          <div class="etapa-card-divider">
+            <div class="etapa-status-row">
+              <span class="etapa-status-label"><span class="etapa-status-dot" style="background:#534AB7;"></span>100% ação interna (3)</span>
+              <span class="etapa-status-val">R$ 2,2M</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="section-divider">
 
     <!-- QUENTE -->
     <div class="cluster">
@@ -215,7 +317,7 @@
             <tr>
               <td><div class="escola-name">Cristo Rei · Maceió/AL</div><div class="resp"><span class="resp-chip">Líder: Ana Jessica</span><span class="resp-chip">CSE: Kamila Buriti</span><span class="resp-chip">Consultor: Luciano</span></div></td>
               <td class="acv">R$ 519K</td><td><span class="badge badge-elab">Elab. proposta</span></td>
-              <td><span class="status-chip status-escola">Aguardando retorno da escola</span></td>
+              <td><span class="status-chip status-interno">Aguardando ação interna</span></td>
               <td class="acao">Mantenedor não responsivo; nova tentativa de contato</td>
             </tr>
             <tr>
@@ -304,5 +406,88 @@
       <span>Atualizado semanalmente pelo gestor de Sucesso Pedagógico</span>
     </div>
   </div>
+
+  <script>
+    const isDark = matchMedia('(prefers-color-scheme: dark)').matches;
+    const gridColor = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)';
+    const lc = isDark ? '#9C9B96' : '#6B6A65';
+
+    const labelPlugin = {
+      id: 'inBarLabels',
+      afterDatasetsDraw(chart) {
+        const ctx = chart.ctx;
+        chart.data.datasets.forEach((ds, i) => {
+          const meta = chart.getDatasetMeta(i);
+          meta.data.forEach((bar, j) => {
+            const val = ds.data[j];
+            if (!val) return;
+            const extra = ds._extra ? ds._extra[j] : null;
+            const lines = extra ? [val + '%', extra] : [val + '%'];
+            const lineH = 13;
+            const totalH = lines.length * lineH;
+            const barH = Math.abs(bar.base - bar.y);
+            if (barH < totalH + 8) return;
+            const midY = (bar.y + bar.base) / 2;
+            ctx.save();
+            ctx.fillStyle = '#fff';
+            ctx.font = '500 11px Inter,sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            lines.forEach((line, li) => {
+              ctx.fillText(line, bar.x, midY - totalH/2 + li*lineH + lineH/2);
+            });
+            ctx.restore();
+          });
+        });
+      }
+    };
+
+    new Chart(document.getElementById('cFunil'), {
+      type: 'bar',
+      plugins: [labelPlugin],
+      data: {
+        labels: ['Negociação', 'Diagnóstico', 'Elab. proposta'],
+        datasets:[{
+          data: [58, 32, 16],
+          _extra: ['11 · R$13,9M', '6 · R$3,2M', '3 · R$2,2M'],
+          backgroundColor: ['#185FA5','#888780','#534AB7'],
+          borderRadius: 4, borderSkipped: false
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend:{display:false}, tooltip:{callbacks:{label: ctx => ['58%','32%','16%'][ctx.dataIndex]+' · '+['R$13,9M','R$3,2M','R$2,2M'][ctx.dataIndex]}} },
+        scales: {
+          x: { ticks:{color:lc,font:{size:11}}, grid:{display:false}, border:{display:false} },
+          y: { ticks:{color:lc,font:{size:11},callback:v=>v+'%'}, grid:{color:gridColor}, border:{display:false}, max:75 }
+        }
+      }
+    });
+
+    new Chart(document.getElementById('cStatus'), {
+      type: 'bar',
+      plugins: [labelPlugin],
+      data: {
+        labels: [
+          ['Negociação','58% · 11 escolas'],
+          ['Diagnóstico','32% · 6 escolas'],
+          ['Elab. proposta','16% · 3 escolas']
+        ],
+        datasets: [
+          { label:'Aguardando escola', data:[79,0,0],    _extra:['R$11,0M',null,null],         backgroundColor:'#EF9F27', borderRadius:4, borderSkipped:false, barThickness:52 },
+          { label:'Ação interna',      data:[21,63,100], _extra:['R$2,9M','R$2,0M','R$2,2M'], backgroundColor:'#534AB7', borderRadius:4, borderSkipped:false, barThickness:52 },
+          { label:'Bloqueada',         data:[0,37,0],    _extra:[null,'R$1,2M',null],           backgroundColor:'#E24B4A', borderRadius:4, borderSkipped:false, barThickness:52 }
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend:{display:false}, tooltip:{callbacks:{label: ctx => ctx.dataset.label+': '+ctx.raw+'%'}} },
+        scales: {
+          x: { ticks:{color:lc,font:{size:11},maxRotation:0}, grid:{display:false}, border:{display:false} },
+          y: { ticks:{color:lc,font:{size:11},callback:v=>v+'%'}, grid:{color:gridColor}, border:{display:false}, max:110 }
+        }
+      }
+    });
+  </script>
 </body>
 </html>
