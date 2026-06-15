@@ -32,9 +32,7 @@
     .metric { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 16px 18px; }
     .metric-label { font-size: 11px; font-weight: 500; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
     .metric-value { font-family: var(--font-display); font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: var(--text-primary); }
-    .metric-value.hot { color: var(--hot); }
-    .metric-value.danger { color: var(--danger); }
-    .metric-value.cold { color: var(--cold); }
+    .metric-value.hot { color: var(--hot); } .metric-value.danger { color: var(--danger); } .metric-value.cold { color: var(--cold); }
     .metric-sub { font-size: 11px; color: var(--text-muted); margin-top: 3px; }
     .alert { background: var(--danger-bg); border: 1px solid var(--danger-border); border-radius: var(--radius-md); padding: 14px 18px; margin-bottom: 28px; display: flex; gap: 12px; }
     .alert-title { font-size: 12px; font-weight: 600; color: var(--danger); margin-bottom: 3px; }
@@ -60,44 +58,32 @@
     .etapa-status-val { font-weight: 500; color: var(--text-primary); }
     .etapa-status-val.danger { color: var(--danger); }
     .section-divider { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
-
-    /* CLUSTER */
     .cluster { margin-bottom: 32px; }
     .cluster-header { display: flex; align-items: center; gap: 10px; padding: 10px 16px; border-radius: var(--radius-sm); margin-bottom: 12px; }
     .cluster-header.hot { background: var(--hot-bg); border: 1px solid var(--hot-border); }
     .cluster-header.warm { background: var(--warm-bg); border: 1px solid var(--warm-border); }
     .cluster-header.cold { background: var(--cold-bg); border: 1px solid var(--cold-border); }
     .temp-indicator { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-    .hot .temp-indicator { background: var(--hot); }
-    .warm .temp-indicator { background: var(--warm); }
-    .cold .temp-indicator { background: var(--cold); }
+    .hot .temp-indicator { background: var(--hot); } .warm .temp-indicator { background: var(--warm); } .cold .temp-indicator { background: var(--cold); }
     .cluster-label { font-size: 13px; font-weight: 600; }
-    .hot .cluster-label { color: var(--hot); }
-    .warm .cluster-label { color: var(--warm); }
-    .cold .cluster-label { color: var(--cold); }
+    .hot .cluster-label { color: var(--hot); } .warm .cluster-label { color: var(--warm); } .cold .cluster-label { color: var(--cold); }
     .cluster-stats { margin-left: auto; font-size: 12px; font-weight: 500; display: flex; gap: 16px; }
-    .hot .cluster-stats { color: var(--hot); }
-    .warm .cluster-stats { color: var(--warm); }
-    .cold .cluster-stats { color: var(--cold); }
-
-    /* FILTERS */
+    .hot .cluster-stats { color: var(--hot); } .warm .cluster-stats { color: var(--warm); } .cold .cluster-stats { color: var(--cold); }
     .filters-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; align-items: center; }
     .filter-group { display: flex; align-items: center; gap: 6px; }
     .filter-label { font-size: 11px; color: var(--text-muted); white-space: nowrap; }
-    .filter-select { font-size: 11px; font-family: var(--font-body); color: var(--text-primary); background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 4px 8px; cursor: pointer; outline: none; min-width: 120px; }
+    .filter-select { font-size: 11px; font-family: var(--font-body); color: var(--text-primary); background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 4px 8px; cursor: pointer; outline: none; min-width: 130px; }
     .filter-select:focus { border-color: #185FA5; }
-    .sort-btn { font-size: 11px; font-family: var(--font-body); color: var(--text-secondary); background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; cursor: pointer; display: flex; align-items: center; gap: 4px; white-space: nowrap; }
+    .sort-btn { font-size: 11px; font-family: var(--font-body); color: var(--text-secondary); background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; cursor: pointer; white-space: nowrap; }
     .sort-btn:hover { background: var(--bg); }
     .sort-btn.active { border-color: #185FA5; color: #185FA5; background: #EEF5FD; }
     .filter-reset { font-size: 11px; color: var(--text-muted); background: none; border: none; cursor: pointer; text-decoration: underline; padding: 4px; }
     .filter-reset:hover { color: var(--text-primary); }
     .no-results { font-size: 12px; color: var(--text-muted); padding: 16px; text-align: center; display: none; }
-
-    /* TABLE */
     .table-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; }
     table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
     thead th { padding: 9px 14px; text-align: left; font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; background: #FAFAF8; border-bottom: 1px solid var(--border); white-space: nowrap; }
-    tbody tr { border-bottom: 1px solid var(--border); }
+    tbody tr { border-bottom: 1px solid var(--border); transition: background 0.3s; }
     tbody tr:last-child { border-bottom: none; }
     tbody tr:hover { background: #FAFAF8; }
     tbody td { padding: 10px 14px; color: var(--text-primary); vertical-align: top; }
@@ -107,7 +93,6 @@
     .badge-neg { background: #EEF5FD; color: #1A5FA8; border: 1px solid #B3D0F0; }
     .badge-elab { background: #F2EFFE; color: #4A38B0; border: 1px solid #C9C0F5; }
     .badge-diag { background: #F1EFE8; color: #5F5E5A; border: 1px solid #D3D1C7; }
-    .badge-bloc { background: #FDF0F0; color: #C13333; border: 1px solid #F0B8B8; }
     .status-chip { display: inline-block; font-size: 10px; padding: 2px 7px; border-radius: 4px; font-weight: 500; white-space: nowrap; }
     .status-escola { background: #FDF6E7; color: #854F0B; }
     .status-interno { background: #EEEDFE; color: #3C3489; }
@@ -116,23 +101,30 @@
     .resp { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 5px; }
     .resp-chip { background: #F1EFE8; border-radius: 4px; padding: 2px 6px; font-size: 10px; color: #5F5E5A; white-space: nowrap; }
     .resp-chip.warn { background: #FDF6E7; color: #A06000; }
-
-    /* EDITABLE ACTION */
     .acao-text { display: block; }
     .acao-edit { display: none; width: 100%; font-size: 12px; font-family: var(--font-body); color: var(--text-primary); background: var(--surface); border: 1px solid #185FA5; border-radius: 4px; padding: 4px 6px; resize: vertical; min-height: 40px; outline: none; }
     .acao-edit-btn { display: inline-flex; align-items: center; gap: 3px; margin-top: 4px; font-size: 10px; color: var(--text-muted); background: none; border: none; cursor: pointer; padding: 0; }
     .acao-edit-btn:hover { color: #185FA5; }
     .acao-save-btn { display: none; margin-top: 4px; font-size: 10px; font-family: var(--font-body); color: #fff; background: #185FA5; border: none; border-radius: 4px; padding: 3px 8px; cursor: pointer; }
-    .acao-save-btn:hover { background: #0C447C; }
     .acao-cell.editing .acao-text { display: none; }
     .acao-cell.editing .acao-edit { display: block; }
     .acao-cell.editing .acao-edit-btn { display: none; }
     .acao-cell.editing .acao-save-btn { display: inline-block; }
-
+    /* MOVE */
+    .move-cell { width: 28px; text-align: center; vertical-align: middle; position: relative; }
+    .move-btn { background: none; border: 1px solid var(--border); border-radius: 6px; cursor: pointer; padding: 3px 6px; font-size: 12px; color: var(--text-muted); line-height: 1; }
+    .move-btn:hover { border-color: #185FA5; color: #185FA5; background: #EEF5FD; }
+    .move-menu { display: none; position: absolute; left: 32px; top: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.12); z-index: 200; min-width: 150px; overflow: hidden; }
+    .move-menu.open { display: block; }
+    .move-menu-title { font-size: 10px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; padding: 8px 12px 4px; }
+    .move-option { display: flex; align-items: center; gap: 8px; padding: 8px 12px; font-size: 12px; color: var(--text-primary); cursor: pointer; border: none; background: none; width: 100%; text-align: left; font-family: var(--font-body); }
+    .move-option:hover { background: var(--bg); }
+    .move-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    @keyframes flash { 0%{background:#FFFDE0} 100%{background:transparent} }
+    .row-flash { animation: flash 0.6s ease; }
     .footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 11px; color: var(--text-muted); display: flex; justify-content: space-between; }
     @media (max-width: 700px) {
-      .header { padding: 20px; }
-      .container { padding: 0 16px; }
+      .header { padding: 20px; } .container { padding: 0 16px; }
       .metrics-grid { grid-template-columns: repeat(2, 1fr); }
       .charts-grid { grid-template-columns: 1fr; }
       .etapa-cards { grid-template-columns: 1fr; }
@@ -140,431 +132,341 @@
   </style>
 </head>
 <body>
-  <div class="header">
-    <div class="container">
-      <div class="header-eyebrow">OKR 1 · Sucesso Pedagógico — Arco Educação</div>
-      <div class="header-title">Renovação de Faturamento Prioritário</div>
-      <div class="header-meta">
-        <span><div class="dot"></div> Atualizado em 15/06/2025</span>
-        <span><div class="dot"></div> 20 oportunidades monitoradas</span>
-        <span><div class="dot"></div> Semana 24</span>
-      </div>
-    </div>
-  </div>
-
+<div class="header">
   <div class="container">
-    <div class="metrics-grid">
-      <div class="metric"><div class="metric-label">ACV total monitorado</div><div class="metric-value">R$ 19,2M</div><div class="metric-sub">20 oportunidades</div></div>
-      <div class="metric"><div class="metric-label">Temperatura quente</div><div class="metric-value hot">R$ 6,8M</div><div class="metric-sub">6 oportunidades · 35% do total</div></div>
-      <div class="metric"><div class="metric-label">Bloqueadas / críticos</div><div class="metric-value danger">R$ 1,1M</div><div class="metric-sub">2 oportunidades travadas</div></div>
-      <div class="metric"><div class="metric-label">Visita presencial 19/06</div><div class="metric-value cold">R$ 4,1M</div><div class="metric-sub">2 escolas — RN</div></div>
+    <div class="header-eyebrow">OKR 1 · Sucesso Pedagógico — Arco Educação</div>
+    <div class="header-title">OKR 1: Renovação de faturamento prioritário — Time Igor CSP SAS</div>
+    <div class="header-meta">
+      <span><div class="dot"></div> Atualizado em 15/06/2025</span>
+      <span><div class="dot"></div> 20 oportunidades monitoradas</span>
     </div>
+  </div>
+</div>
 
-    <div class="alert">
-      <div>
-        <div class="alert-title">⚠ Risco principal desta semana</div>
-        <div class="alert-text">57% do ACV (R$ 10,9M) está em temperatura fria ou morna — com 2 casos críticos bloqueados, 1 cliente detrator em reunião na semana e 1 mantenedor em AL avaliando concorrência ativamente. Sem aceleração nas próximas 2 semanas, o fechamento no Q2 está comprometido.</div>
-      </div>
+<div class="container">
+  <div class="metrics-grid">
+    <div class="metric"><div class="metric-label">ACV total monitorado</div><div class="metric-value">R$ 19,2M</div><div class="metric-sub">20 oportunidades</div></div>
+    <div class="metric"><div class="metric-label">Temperatura quente</div><div class="metric-value hot">R$ 6,8M</div><div class="metric-sub">6 oportunidades · 35% do total</div></div>
+    <div class="metric"><div class="metric-label">Temperatura morna</div><div class="metric-value" style="color:var(--warm);">R$ 4,6M</div><div class="metric-sub">5 oportunidades · 24% do total</div></div>
+    <div class="metric"><div class="metric-label">Temperatura fria</div><div class="metric-value cold">R$ 7,8M</div><div class="metric-sub">9 oportunidades · 41% do total</div></div>
+  </div>
+
+  <div class="charts-section">
+    <div class="charts-section-title">Distribuição por etapa de funil e status</div>
+    <div class="legend-row">
+      <span class="legend-item"><span class="legend-dot" style="background:#185FA5;"></span>Negociação</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#888780;"></span>Diagnóstico</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#534AB7;"></span>Elab. proposta</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#EF9F27;"></span>Aguardando escola</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#534AB7;"></span>Ação interna</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#E24B4A;"></span>Bloqueada</span>
     </div>
-
-    <div class="charts-section">
-      <div class="charts-section-title">Distribuição por etapa de funil e status</div>
-      <div class="legend-row">
-        <span class="legend-item"><span class="legend-dot" style="background:#185FA5;"></span>Negociação</span>
-        <span class="legend-item"><span class="legend-dot" style="background:#888780;"></span>Diagnóstico</span>
-        <span class="legend-item"><span class="legend-dot" style="background:#534AB7;"></span>Elab. proposta</span>
-        <span class="legend-item"><span class="legend-dot" style="background:#EF9F27;"></span>Aguardando escola</span>
-        <span class="legend-item"><span class="legend-dot" style="background:#534AB7;"></span>Ação interna</span>
-        <span class="legend-item"><span class="legend-dot" style="background:#E24B4A;"></span>Bloqueada</span>
-      </div>
-      <div class="charts-grid">
-        <div class="chart-wrap"><div class="chart-label">Escolas por etapa de funil</div><div class="chart-canvas-wrap"><canvas id="cFunil"></canvas></div></div>
-        <div class="chart-wrap"><div class="chart-label">Status por etapa (%)</div><div class="chart-canvas-wrap"><canvas id="cStatus"></canvas></div></div>
-      </div>
-      <div class="etapa-cards">
-        <div class="etapa-card">
-          <div class="etapa-card-title" style="color:#0C447C;">Negociação</div>
-          <div class="etapa-card-value" style="color:#185FA5;">R$ 13,9M</div>
-          <div class="etapa-card-sub">11 escolas · 72% do ACV total</div>
-          <div class="etapa-card-divider">
-            <div class="etapa-status-row"><span class="etapa-status-label"><span class="etapa-status-dot" style="background:#EF9F27;"></span>79% aguardando escola (9)</span><span class="etapa-status-val">R$ 11,0M</span></div>
-            <div class="etapa-status-row"><span class="etapa-status-label"><span class="etapa-status-dot" style="background:#534AB7;"></span>21% ação interna (2)</span><span class="etapa-status-val">R$ 2,9M</span></div>
-          </div>
-        </div>
-        <div class="etapa-card">
-          <div class="etapa-card-title" style="color:#444441;">Diagnóstico</div>
-          <div class="etapa-card-value" style="color:#888780;">R$ 3,2M</div>
-          <div class="etapa-card-sub">6 escolas · 17% do ACV total</div>
-          <div class="etapa-card-divider">
-            <div class="etapa-status-row"><span class="etapa-status-label"><span class="etapa-status-dot" style="background:#534AB7;"></span>63% ação interna (4)</span><span class="etapa-status-val">R$ 2,0M</span></div>
-            <div class="etapa-status-row"><span class="etapa-status-label"><span class="etapa-status-dot" style="background:#E24B4A;"></span>37% bloqueada (2)</span><span class="etapa-status-val danger">R$ 1,2M</span></div>
-          </div>
-        </div>
-        <div class="etapa-card">
-          <div class="etapa-card-title" style="color:#3C3489;">Elab. proposta</div>
-          <div class="etapa-card-value" style="color:#534AB7;">R$ 2,2M</div>
-          <div class="etapa-card-sub">3 escolas · 11% do ACV total</div>
-          <div class="etapa-card-divider">
-            <div class="etapa-status-row"><span class="etapa-status-label"><span class="etapa-status-dot" style="background:#534AB7;"></span>100% ação interna (3)</span><span class="etapa-status-val">R$ 2,2M</span></div>
-          </div>
+    <div class="charts-grid">
+      <div class="chart-wrap"><div class="chart-label">Escolas por etapa de funil</div><div class="chart-canvas-wrap"><canvas id="cFunil"></canvas></div></div>
+      <div class="chart-wrap"><div class="chart-label">Status por etapa (%)</div><div class="chart-canvas-wrap"><canvas id="cStatus"></canvas></div></div>
+    </div>
+    <div class="etapa-cards">
+      <div class="etapa-card">
+        <div class="etapa-card-title" style="color:#0C447C;">Negociação</div>
+        <div class="etapa-card-value" style="color:#185FA5;">R$ 13,9M</div>
+        <div class="etapa-card-sub">11 escolas · 72% do ACV total</div>
+        <div class="etapa-card-divider">
+          <div class="etapa-status-row"><span class="etapa-status-label"><span class="etapa-status-dot" style="background:#EF9F27;"></span>79% aguardando escola (9)</span><span class="etapa-status-val">R$ 11,0M</span></div>
+          <div class="etapa-status-row"><span class="etapa-status-label"><span class="etapa-status-dot" style="background:#534AB7;"></span>21% ação interna (2)</span><span class="etapa-status-val">R$ 2,9M</span></div>
         </div>
       </div>
-    </div>
-
-    <hr class="section-divider">
-
-    <!-- QUENTE -->
-    <div class="cluster" id="cluster-hot">
-      <div class="cluster-header hot">
-        <div class="temp-indicator"></div>
-        <div class="cluster-label">Quente</div>
-        <div class="cluster-stats"><span>R$ 6,8M</span><span>6 oportunidades</span></div>
+      <div class="etapa-card">
+        <div class="etapa-card-title" style="color:#444441;">Diagnóstico</div>
+        <div class="etapa-card-value" style="color:#888780;">R$ 3,2M</div>
+        <div class="etapa-card-sub">6 escolas · 17% do ACV total</div>
+        <div class="etapa-card-divider">
+          <div class="etapa-status-row"><span class="etapa-status-label"><span class="etapa-status-dot" style="background:#534AB7;"></span>63% ação interna (4)</span><span class="etapa-status-val">R$ 2,0M</span></div>
+          <div class="etapa-status-row"><span class="etapa-status-label"><span class="etapa-status-dot" style="background:#E24B4A;"></span>37% bloqueada (2)</span><span class="etapa-status-val danger">R$ 1,2M</span></div>
+        </div>
       </div>
-      <div class="filters-row" id="filters-hot"></div>
-      <div class="table-wrap">
-        <table id="table-hot">
-          <thead><tr><th>Escola</th><th>ACV ↕</th><th>Etapa</th><th>Status</th><th>Próxima ação</th></tr></thead>
-          <tbody>
-            <tr data-lider="Mayara Gonzalez De Sa Lobato" data-cse="Jessica De Freitas Correa" data-consultor="Halyson Dantas" data-acv="2637749" data-etapa="Negociação" data-status="Aguardando ação interna">
-              <td><div class="escola-name">Colégio NSra das Neves · Natal/RN</div><div class="resp"><span class="resp-chip">Líder: Mayara G.</span><span class="resp-chip">CSE: Jessica Correa</span><span class="resp-chip">Consultor: Halyson</span></div></td>
-              <td class="acv">R$ 2,6M</td><td><span class="badge badge-neg">Negociação</span></td>
-              <td><span class="status-chip status-interno">Aguardando ação interna</span></td>
-              <td class="acao acao-cell"><span class="acao-text">Visita Igor + Halyson em 19/06 — fechar reajuste e ampliação infantil</span><textarea class="acao-edit"></textarea><button class="acao-edit-btn" onclick="editAcao(this)">✏️ editar</button><button class="acao-save-btn" onclick="saveAcao(this)">Salvar</button></td>
-            </tr>
-            <tr data-lider="Mayara Gonzalez De Sa Lobato" data-cse="Bruna Peixoto de Araujo" data-consultor="Assilon Netto" data-acv="3593613" data-etapa="Negociação" data-status="Aguardando retorno da escola">
-              <td><div class="escola-name">Colégio Santa Doroteia · BH/MG</div><div class="resp"><span class="resp-chip">Líder: Mayara G.</span><span class="resp-chip">CSE: Bruna Peixoto</span><span class="resp-chip">Consultor: Assilon</span></div></td>
-              <td class="acv">R$ 3,6M</td><td><span class="badge badge-neg">Negociação</span></td>
-              <td><span class="status-chip status-escola">Aguardando retorno da escola</span></td>
-              <td class="acao acao-cell"><span class="acao-text">Retorno previsto para 22/06; subir PIC preventivamente</span><textarea class="acao-edit"></textarea><button class="acao-edit-btn" onclick="editAcao(this)">✏️ editar</button><button class="acao-save-btn" onclick="saveAcao(this)">Salvar</button></td>
-            </tr>
-            <tr data-lider="Mayara Gonzalez De Sa Lobato" data-cse="Jessica De Freitas Correa" data-consultor="Halyson Dantas" data-acv="1448277" data-etapa="Negociação" data-status="Aguardando ação interna">
-              <td><div class="escola-name">Educandário NSra das Vitórias · Açu/RN</div><div class="resp"><span class="resp-chip">Líder: Mayara G.</span><span class="resp-chip">CSE: Jessica Correa</span><span class="resp-chip">Consultor: Halyson</span></div></td>
-              <td class="acv">R$ 1,4M</td><td><span class="badge badge-neg">Negociação</span></td>
-              <td><span class="status-chip status-interno">Aguardando ação interna</span></td>
-              <td class="acao acao-cell"><span class="acao-text">Visita Igor + Halyson em 19/06 — fechar reajuste e ampliação infantil</span><textarea class="acao-edit"></textarea><button class="acao-edit-btn" onclick="editAcao(this)">✏️ editar</button><button class="acao-save-btn" onclick="saveAcao(this)">Salvar</button></td>
-            </tr>
-            <tr data-lider="Mayara Gonzalez De Sa Lobato" data-cse="Jessica De Freitas Correa" data-consultor="Halyson Dantas" data-acv="1446559" data-etapa="Negociação" data-status="Aguardando ação interna">
-              <td><div class="escola-name">SS Sacramento · Bonfim/BA</div><div class="resp"><span class="resp-chip">Líder: Mayara G.</span><span class="resp-chip">CSE: Jessica Correa</span><span class="resp-chip">Consultor: Halyson</span></div></td>
-              <td class="acv">R$ 1,4M</td><td><span class="badge badge-neg">Negociação</span></td>
-              <td><span class="status-chip status-escola">Aguardando retorno da escola</span></td>
-              <td class="acao acao-cell"><span class="acao-text">Proposta aceita (2 anos); confeccionar PIC</span><textarea class="acao-edit"></textarea><button class="acao-edit-btn" onclick="editAcao(this)">✏️ editar</button><button class="acao-save-btn" onclick="saveAcao(this)">Salvar</button></td>
-            </tr>
-            <tr data-lider="Mayara Gonzalez De Sa Lobato" data-cse="Jessica De Freitas Correa" data-consultor="Halyson Dantas" data-acv="603417" data-etapa="Negociação" data-status="Aguardando retorno da escola">
-              <td><div class="escola-name">SS Sacramento · Salvador/BA</div><div class="resp"><span class="resp-chip">Líder: Mayara G.</span><span class="resp-chip">CSE: Jessica Correa</span><span class="resp-chip">Consultor: Halyson</span></div></td>
-              <td class="acv">R$ 603K</td><td><span class="badge badge-neg">Negociação</span></td>
-              <td><span class="status-chip status-escola">Aguardando retorno da escola</span></td>
-              <td class="acao acao-cell"><span class="acao-text">Aguardar retorno até 15/06</span><textarea class="acao-edit"></textarea><button class="acao-edit-btn" onclick="editAcao(this)">✏️ editar</button><button class="acao-save-btn" onclick="saveAcao(this)">Salvar</button></td>
-            </tr>
-            <tr data-lider="Lucas Faleiros" data-cse="Aline Evelyn De Oliveira Tranquilli" data-consultor="Gilberto Filho" data-acv="111530" data-etapa="Negociação" data-status="Aguardando retorno da escola">
-              <td><div class="escola-name">Colégio Motiva · João Pessoa/PB</div><div class="resp"><span class="resp-chip">Líder: Lucas Faleiros</span><span class="resp-chip">CSE: Aline Tranquilli</span><span class="resp-chip">Consultor: Gilberto</span></div></td>
-              <td class="acv">R$ 112K</td><td><span class="badge badge-neg">Negociação</span></td>
-              <td><span class="status-chip status-escola">Aguardando retorno da escola</span></td>
-              <td class="acao acao-cell"><span class="acao-text">Fup + criar PIC na semana de 15/06</span><textarea class="acao-edit"></textarea><button class="acao-edit-btn" onclick="editAcao(this)">✏️ editar</button><button class="acao-save-btn" onclick="saveAcao(this)">Salvar</button></td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="no-results" id="no-hot">Nenhuma escola encontrada com os filtros selecionados.</div>
+      <div class="etapa-card">
+        <div class="etapa-card-title" style="color:#3C3489;">Elab. proposta</div>
+        <div class="etapa-card-value" style="color:#534AB7;">R$ 2,2M</div>
+        <div class="etapa-card-sub">3 escolas · 11% do ACV total</div>
+        <div class="etapa-card-divider">
+          <div class="etapa-status-row"><span class="etapa-status-label"><span class="etapa-status-dot" style="background:#534AB7;"></span>100% ação interna (3)</span><span class="etapa-status-val">R$ 2,2M</span></div>
+        </div>
       </div>
-    </div>
-
-    <!-- MORNA -->
-    <div class="cluster" id="cluster-warm">
-      <div class="cluster-header warm">
-        <div class="temp-indicator"></div>
-        <div class="cluster-label">Morna</div>
-        <div class="cluster-stats"><span>R$ 4,6M</span><span>5 oportunidades</span></div>
-      </div>
-      <div class="filters-row" id="filters-warm"></div>
-      <div class="table-wrap">
-        <table id="table-warm">
-          <thead><tr><th>Escola</th><th>ACV ↕</th><th>Etapa</th><th>Status</th><th>Próxima ação</th></tr></thead>
-          <tbody>
-            <tr data-lider="Mayara Gonzalez De Sa Lobato" data-cse="Bruna Peixoto de Araujo" data-consultor="Assilon Netto" data-acv="881876" data-etapa="Negociação" data-status="Aguardando retorno da escola">
-              <td><div class="escola-name">Sta Doroteia · Manaus/AM</div><div class="resp"><span class="resp-chip">Líder: Mayara G.</span><span class="resp-chip">CSE: Bruna Peixoto</span><span class="resp-chip">Consultor: Assilon</span></div></td>
-              <td class="acv">R$ 882K</td><td><span class="badge badge-neg">Negociação</span></td>
-              <td><span class="status-chip status-escola">Aguardando retorno da escola</span></td>
-              <td class="acao acao-cell"><span class="acao-text">Mantenedora rejeita reajuste acima de 6%; nova oferta enviada por e-mail</span><textarea class="acao-edit"></textarea><button class="acao-edit-btn" onclick="editAcao(this)">✏️ editar</button><button class="acao-save-btn" onclick="saveAcao(this)">Salvar</button></td>
-            </tr>
-            <tr data-lider="Ana Jessica Araujo Ibiapina" data-cse="Kamila Pereira Buriti Dantas" data-consultor="Luciano Silva" data-acv="929628" data-etapa="Negociação" data-status="Aguardando retorno da escola">
-              <td><div class="escola-name">São Judas Tadeu · Maceió/AL</div><div class="resp"><span class="resp-chip">Líder: Ana Jessica</span><span class="resp-chip">CSE: Kamila Buriti</span><span class="resp-chip">Consultor: Luciano</span></div></td>
-              <td class="acv">R$ 930K</td><td><span class="badge badge-neg">Negociação</span></td>
-              <td><span class="status-chip status-escola">Aguardando retorno da escola</span></td>
-              <td class="acao acao-cell"><span class="acao-text acao-warning">Ameaça concorrência + restrição de prazo; CSE ligar para aprofundamento</span><textarea class="acao-edit"></textarea><button class="acao-edit-btn" onclick="editAcao(this)">✏️ editar</button><button class="acao-save-btn" onclick="saveAcao(this)">Salvar</button></td>
-            </tr>
-            <tr data-lider="Mayara Gonzalez De Sa Lobato" data-cse="Halyson Rodrigo de Araujo Dantas" data-consultor="Erika Silva" data-acv="566103" data-etapa="Negociação" data-status="Aguardando retorno da escola">
-              <td><div class="escola-name">Batista Maranhense · São Luís/MA</div><div class="resp"><span class="resp-chip">Líder: Mayara G.</span><span class="resp-chip">CSE: Halyson Dantas</span><span class="resp-chip">Consultor: Erika</span></div></td>
-              <td class="acv">R$ 566K</td><td><span class="badge badge-neg">Negociação</span></td>
-              <td><span class="status-chip status-escola">Aguardando retorno da escola</span></td>
-              <td class="acao acao-cell"><span class="acao-text">Contraproposta (8%→3%); reunião em 15/06</span><textarea class="acao-edit"></textarea><button class="acao-edit-btn" onclick="editAcao(this)">✏️ editar</button><button class="acao-save-btn" onclick="saveAcao(this)">Salvar</button></td>
-            </tr>
-            <tr data-lider="Ana Jessica Araujo Ibiapina" data-cse="Kamila Pereira Buriti Dantas" data-consultor="Luciano Silva" data-acv="519071" data-etapa="Elaboração de proposta" data-status="Aguardando ação interna">
-              <td><div class="escola-name">Cristo Rei · Maceió/AL</div><div class="resp"><span class="resp-chip">Líder: Ana Jessica</span><span class="resp-chip">CSE: Kamila Buriti</span><span class="resp-chip">Consultor: Luciano</span></div></td>
-              <td class="acv">R$ 519K</td><td><span class="badge badge-elab">Elab. proposta</span></td>
-              <td><span class="status-chip status-interno">Aguardando ação interna</span></td>
-              <td class="acao acao-cell"><span class="acao-text">Mantenedor não responsivo; nova tentativa de contato</span><textarea class="acao-edit"></textarea><button class="acao-edit-btn" onclick="editAcao(this)">✏️ editar</button><button class="acao-save-btn" onclick="saveAcao(this)">Salvar</button></td>
-            </tr>
-            <tr data-lider="Mayara Gonzalez De Sa Lobato" data-cse="Tatiane Malheiros Da Silva" data-consultor="Halyson Dantas" data-acv="662863" data-etapa="Elaboração de proposta" data-status="Aguardando ação interna">
-              <td><div class="escola-name">NSra de Lourdes · João Pessoa/PB</div><div class="resp"><span class="resp-chip">Líder: Mayara G.</span><span class="resp-chip">CSE: Tatiane Malheiros</span><span class="resp-chip">Consultor: Halyson</span></div></td>
-              <td class="acv">R$ 663K</td><td><span class="badge badge-elab">Elab. proposta</span></td>
-              <td><span class="status-chip status-interno">Aguardando ação interna</span></td>
-              <td class="acao acao-cell"><span class="acao-text">Proposta pronta; agendar reunião de apresentação</span><textarea class="acao-edit"></textarea><button class="acao-edit-btn" onclick="editAcao(this)">✏️ editar</button><button class="acao-save-btn" onclick="saveAcao(this)">Salvar</button></td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="no-results" id="no-warm">Nenhuma escola encontrada com os filtros selecionados.</div>
-      </div>
-    </div>
-
-    <!-- FRIA -->
-    <div class="cluster" id="cluster-cold">
-      <div class="cluster-header cold">
-        <div class="temp-indicator"></div>
-        <div class="cluster-label">Fria</div>
-        <div class="cluster-stats"><span>R$ 7,8M</span><span>9 oportunidades</span></div>
-      </div>
-      <div class="filters-row" id="filters-cold"></div>
-      <div class="table-wrap">
-        <table id="table-cold">
-          <thead><tr><th>Escola</th><th>ACV ↕</th><th>Etapa</th><th>Status</th><th>Risco / ação</th></tr></thead>
-          <tbody>
-            <tr data-lider="Ana Jessica Araujo Ibiapina" data-cse="Ana Carolina Laudares Silva Mireles Coelho" data-consultor="Erika Silva" data-acv="888292" data-etapa="Negociação" data-status="Aguardando retorno da escola">
-              <td><div class="escola-name">MJ Lopes · Maceió/AL</div><div class="resp"><span class="resp-chip">Líder: Ana Jessica</span><span class="resp-chip">CSE: Ana Carolina</span><span class="resp-chip">Consultor: Erika</span></div></td>
-              <td class="acv">R$ 888K</td><td><span class="badge badge-neg">Negociação</span></td>
-              <td><span class="status-chip status-escola">Aguardando retorno da escola</span></td>
-              <td class="acao acao-cell"><span class="acao-text acao-risk">Insatisfeito com operações + avaliando concorrência; recusa assinar antes de agosto — apoio Najéss urgente</span><textarea class="acao-edit"></textarea><button class="acao-edit-btn" onclick="editAcao(this)">✏️ editar</button><button class="acao-save-btn" onclick="saveAcao(this)">Salvar</button></td>
-            </tr>
-            <tr data-lider="Lucas Faleiros" data-cse="Aline Evelyn De Oliveira Tranquilli" data-consultor="Nayara Antunes" data-acv="898154" data-etapa="Negociação" data-status="Aguardando retorno da escola">
-              <td><div class="escola-name">Oficina Cursos · Salvador/BA</div><div class="resp"><span class="resp-chip">Líder: Lucas Faleiros</span><span class="resp-chip">CSE: Aline Tranquilli</span><span class="resp-chip">Consultor: Nayara</span></div></td>
-              <td class="acv">R$ 898K</td><td><span class="badge badge-neg">Negociação</span></td>
-              <td><span class="status-chip status-escola">Aguardando retorno da escola</span></td>
-              <td class="acao acao-cell"><span class="acao-text">Escola não responsiva desde 05/06; Igor tentar contato direto + PIC pronto</span><textarea class="acao-edit"></textarea><button class="acao-edit-btn" onclick="editAcao(this)">✏️ editar</button><button class="acao-save-btn" onclick="saveAcao(this)">Salvar</button></td>
-            </tr>
-            <tr data-lider="Marcus Casanova Nogueira Junior" data-cse="Mayara Gama de Paiva" data-consultor="Nayara Antunes" data-acv="1043303" data-etapa="Elaboração de proposta" data-status="Aguardando ação interna">
-              <td><div class="escola-name">Livraria Campos · Fortaleza/CE</div><div class="resp"><span class="resp-chip">Líder: Marcus Casanova</span><span class="resp-chip">CSE: Mayara Gama</span><span class="resp-chip">Consultor: Nayara</span></div></td>
-              <td class="acv">R$ 1,0M</td><td><span class="badge badge-elab">Elab. proposta</span></td>
-              <td><span class="status-chip status-interno">Aguardando ação interna</span></td>
-              <td class="acao acao-cell"><span class="acao-text acao-risk">Cliente detrator — reunião com Moriggi em 16/06</span><textarea class="acao-edit"></textarea><button class="acao-edit-btn" onclick="editAcao(this)">✏️ editar</button><button class="acao-save-btn" onclick="saveAcao(this)">Salvar</button></td>
-            </tr>
-            <tr data-lider="Sem líder" data-cse="Sem CSE" data-consultor="Nayara Antunes" data-acv="731576" data-etapa="Diagnóstico" data-status="Aguardando retorno da escola">
-              <td><div class="escola-name">Monaliza Cavalcante · Tianguá/CE</div><div class="resp"><span class="resp-chip">Consultor: Nayara</span><span class="resp-chip warn">Sem CSE/Líder</span></div></td>
-              <td class="acv">R$ 732K</td><td><span class="badge badge-diag">Diagnóstico</span></td>
-              <td><span class="status-chip status-escola">Aguardando retorno da escola</span></td>
-              <td class="acao acao-cell"><span class="acao-text">Mantenedor com problemas de saúde; escola avalia ampliação</span><textarea class="acao-edit"></textarea><button class="acao-edit-btn" onclick="editAcao(this)">✏️ editar</button><button class="acao-save-btn" onclick="saveAcao(this)">Salvar</button></td>
-            </tr>
-            <tr data-lider="Mayara Gonzalez De Sa Lobato" data-cse="Bruna Peixoto de Araujo" data-consultor="Assilon Netto" data-acv="195850" data-etapa="Diagnóstico" data-status="Aguardando ação interna">
-              <td><div class="escola-name">Sta Doroteia · Belém/PA</div><div class="resp"><span class="resp-chip">Líder: Mayara G.</span><span class="resp-chip">CSE: Bruna Peixoto</span><span class="resp-chip">Consultor: Assilon</span></div></td>
-              <td class="acv">R$ 196K</td><td><span class="badge badge-diag">Diagnóstico</span></td>
-              <td><span class="status-chip status-interno">Aguardando ação interna</span></td>
-              <td class="acao acao-cell"><span class="acao-text">Proposta pausada por falecimento — retomar esta semana</span><textarea class="acao-edit"></textarea><button class="acao-edit-btn" onclick="editAcao(this)">✏️ editar</button><button class="acao-save-btn" onclick="saveAcao(this)">Salvar</button></td>
-            </tr>
-            <tr data-lider="Mayara Gonzalez De Sa Lobato" data-cse="Tatiane Malheiros Da Silva" data-consultor="Erika Silva" data-acv="215237" data-etapa="Diagnóstico" data-status="Bloqueada por caso crítico">
-              <td><div class="escola-name">Diocesano Parnaíba · PI</div><div class="resp"><span class="resp-chip">Líder: Mayara G.</span><span class="resp-chip">CSE: Tatiane Malheiros</span><span class="resp-chip">Consultor: Erika</span></div></td>
-              <td class="acv">R$ 215K</td><td><span class="badge badge-diag">Diagnóstico</span></td>
-              <td><span class="status-chip status-bloqueada">Bloqueada por caso crítico</span></td>
-              <td class="acao acao-cell"><span class="acao-text acao-risk">Dívida com Isaac pendente de resolução</span><textarea class="acao-edit"></textarea><button class="acao-edit-btn" onclick="editAcao(this)">✏️ editar</button><button class="acao-save-btn" onclick="saveAcao(this)">Salvar</button></td>
-            </tr>
-            <tr data-lider="Marcus Casanova Nogueira Junior" data-cse="Mayara Pessoa Da Silva" data-consultor="Francisco Wellington" data-acv="996327" data-etapa="Diagnóstico" data-status="Bloqueada por caso crítico">
-              <td><div class="escola-name">CLFS Livros · Salvador/BA</div><div class="resp"><span class="resp-chip">Líder: Marcus Casanova</span><span class="resp-chip">CSE: Mayara Pessoa</span><span class="resp-chip">Consultor: Francisco</span></div></td>
-              <td class="acv">R$ 996K</td><td><span class="badge badge-diag">Diagnóstico</span></td>
-              <td><span class="status-chip status-bloqueada">Bloqueada por caso crítico</span></td>
-              <td class="acao acao-cell"><span class="acao-text acao-risk">NF pendente trava pagamento de patrocínio</span><textarea class="acao-edit"></textarea><button class="acao-edit-btn" onclick="editAcao(this)">✏️ editar</button><button class="acao-save-btn" onclick="saveAcao(this)">Salvar</button></td>
-            </tr>
-            <tr data-lider="Marcelo De Paula" data-cse="Sem CSE" data-consultor="Gilberto Filho" data-acv="1529370" data-etapa="Diagnóstico" data-status="Aguardando ação interna">
-              <td><div class="escola-name">Podion DF + Fund. II · Brasília/DF</div><div class="resp"><span class="resp-chip">Líder: Marcelo de Paula</span><span class="resp-chip">Consultor: Gilberto</span></div></td>
-              <td class="acv">R$ 1,5M</td><td><span class="badge badge-diag">Diagnóstico</span></td>
-              <td><span class="status-chip status-interno">Aguardando ação interna</span></td>
-              <td class="acao acao-cell"><span class="acao-text acao-warning">Simulador e proposta pendentes do Marcelo — cobrar até quarta</span><textarea class="acao-edit"></textarea><button class="acao-edit-btn" onclick="editAcao(this)">✏️ editar</button><button class="acao-save-btn" onclick="saveAcao(this)">Salvar</button></td>
-            </tr>
-            <tr data-lider="Sem líder" data-cse="Sem CSE" data-consultor="Nayara Antunes" data-acv="310520" data-etapa="Diagnóstico" data-status="Aguardando ação interna">
-              <td><div class="escola-name">Instituto Castro · Aquiraz/CE</div><div class="resp"><span class="resp-chip">Consultor: Nayara</span><span class="resp-chip warn">Sem CSE/Líder</span></div></td>
-              <td class="acv">R$ 311K</td><td><span class="badge badge-diag">Diagnóstico</span></td>
-              <td><span class="status-chip status-interno">Aguardando ação interna</span></td>
-              <td class="acao acao-cell"><span class="acao-text">Sem ação registrada no período</span><textarea class="acao-edit"></textarea><button class="acao-edit-btn" onclick="editAcao(this)">✏️ editar</button><button class="acao-save-btn" onclick="saveAcao(this)">Salvar</button></td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="no-results" id="no-cold">Nenhuma escola encontrada com os filtros selecionados.</div>
-      </div>
-    </div>
-
-    <div class="footer">
-      <span>OKR 1 — Renovação de Faturamento Prioritário · Arco Educação</span>
-      <span>Atualizado semanalmente pelo gestor de Sucesso Pedagógico</span>
     </div>
   </div>
 
-  <script>
-    /* ── CHARTS ── */
-    const isDark = matchMedia('(prefers-color-scheme: dark)').matches;
-    const gridColor = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)';
-    const lc = isDark ? '#9C9B96' : '#6B6A65';
-    const labelPlugin = {
-      id: 'inBarLabels',
-      afterDatasetsDraw(chart) {
-        const ctx = chart.ctx;
-        chart.data.datasets.forEach((ds, i) => {
-          chart.getDatasetMeta(i).data.forEach((bar, j) => {
-            const val = ds.data[j]; if (!val) return;
-            const extra = ds._extra ? ds._extra[j] : null;
-            const lines = extra ? [val+'%', extra] : [val+'%'];
-            const lineH = 13, totalH = lines.length * lineH;
-            const barH = Math.abs(bar.base - bar.y);
-            if (barH < totalH + 8) return;
-            const midY = (bar.y + bar.base) / 2;
-            ctx.save(); ctx.fillStyle='#fff'; ctx.font='500 11px Inter,sans-serif'; ctx.textAlign='center'; ctx.textBaseline='middle';
-            lines.forEach((line, li) => ctx.fillText(line, bar.x, midY - totalH/2 + li*lineH + lineH/2));
-            ctx.restore();
-          });
-        });
-      }
-    };
-    new Chart(document.getElementById('cFunil'), {
-      type:'bar', plugins:[labelPlugin],
-      data:{ labels:['Negociação','Diagnóstico','Elab. proposta'], datasets:[{ data:[58,32,16], _extra:['11 · R$13,9M','6 · R$3,2M','3 · R$2,2M'], backgroundColor:['#185FA5','#888780','#534AB7'], borderRadius:4, borderSkipped:false }] },
-      options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{display:false}, tooltip:{callbacks:{label:ctx=>['58%','32%','16%'][ctx.dataIndex]+' · '+['R$13,9M','R$3,2M','R$2,2M'][ctx.dataIndex]}} }, scales:{ x:{ticks:{color:lc,font:{size:11}},grid:{display:false},border:{display:false}}, y:{ticks:{color:lc,font:{size:11},callback:v=>v+'%'},grid:{color:gridColor},border:{display:false},max:75} } }
+  <hr class="section-divider">
+
+  <!-- CLUSTERS -->
+  <div class="cluster" id="cluster-hot">
+    <div class="cluster-header hot"><div class="temp-indicator"></div><div class="cluster-label">Quente</div><div class="cluster-stats" id="stats-hot"><span>R$ 6,8M</span><span>6 oportunidades</span></div></div>
+    <div class="filters-row" id="filters-hot"></div>
+    <div class="table-wrap">
+      <table id="table-hot">
+        <thead><tr><th></th><th>Escola</th><th>ACV ↕</th><th>Etapa</th><th>Status</th><th>Próxima ação</th></tr></thead>
+        <tbody id="tbody-hot"></tbody>
+      </table>
+      <div class="no-results" id="no-hot">Nenhuma escola encontrada com os filtros selecionados.</div>
+    </div>
+  </div>
+
+  <div class="cluster" id="cluster-warm">
+    <div class="cluster-header warm"><div class="temp-indicator"></div><div class="cluster-label">Morna</div><div class="cluster-stats" id="stats-warm"><span>R$ 4,6M</span><span>5 oportunidades</span></div></div>
+    <div class="filters-row" id="filters-warm"></div>
+    <div class="table-wrap">
+      <table id="table-warm">
+        <thead><tr><th></th><th>Escola</th><th>ACV ↕</th><th>Etapa</th><th>Status</th><th>Próxima ação</th></tr></thead>
+        <tbody id="tbody-warm"></tbody>
+      </table>
+      <div class="no-results" id="no-warm">Nenhuma escola encontrada com os filtros selecionados.</div>
+    </div>
+  </div>
+
+  <div class="cluster" id="cluster-cold">
+    <div class="cluster-header cold"><div class="temp-indicator"></div><div class="cluster-label">Fria</div><div class="cluster-stats" id="stats-cold"><span>R$ 7,8M</span><span>9 oportunidades</span></div></div>
+    <div class="filters-row" id="filters-cold"></div>
+    <div class="table-wrap">
+      <table id="table-cold">
+        <thead><tr><th></th><th>Escola</th><th>ACV ↕</th><th>Etapa</th><th>Status</th><th>Risco / ação</th></tr></thead>
+        <tbody id="tbody-cold"></tbody>
+      </table>
+      <div class="no-results" id="no-cold">Nenhuma escola encontrada com os filtros selecionados.</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>OKR 1 — Renovação de Faturamento Prioritário · Arco Educação</span>
+    <span>Atualizado semanalmente pelo gestor de Sucesso Pedagógico</span>
+  </div>
+</div>
+
+<script>
+/* ─── DATA ─── */
+const SCHOOLS = [
+  { cluster:'hot', escola:'Colégio NSra das Neves · Natal/RN', lider:'Mayara Gonzalez De Sa Lobato', cse:'Jessica De Freitas Correa', consultor:'Halyson Dantas', acv:2637749, acvLabel:'R$ 2,6M', etapa:'Negociação', etapaClass:'badge-neg', status:'Aguardando ação interna', statusClass:'status-interno', acao:'Visita Igor + Halyson em 19/06 — fechar reajuste e ampliação infantil', acaoClass:'' },
+  { cluster:'hot', escola:'Colégio Santa Doroteia · BH/MG', lider:'Mayara Gonzalez De Sa Lobato', cse:'Bruna Peixoto de Araujo', consultor:'Assilon Netto', acv:3593613, acvLabel:'R$ 3,6M', etapa:'Negociação', etapaClass:'badge-neg', status:'Aguardando retorno da escola', statusClass:'status-escola', acao:'Retorno previsto para 22/06; subir PIC preventivamente', acaoClass:'' },
+  { cluster:'hot', escola:'Educandário NSra das Vitórias · Açu/RN', lider:'Mayara Gonzalez De Sa Lobato', cse:'Jessica De Freitas Correa', consultor:'Halyson Dantas', acv:1448277, acvLabel:'R$ 1,4M', etapa:'Negociação', etapaClass:'badge-neg', status:'Aguardando ação interna', statusClass:'status-interno', acao:'Visita Igor + Halyson em 19/06 — fechar reajuste e ampliação infantil', acaoClass:'' },
+  { cluster:'hot', escola:'SS Sacramento · Bonfim/BA', lider:'Mayara Gonzalez De Sa Lobato', cse:'Jessica De Freitas Correa', consultor:'Halyson Dantas', acv:1446559, acvLabel:'R$ 1,4M', etapa:'Negociação', etapaClass:'badge-neg', status:'Aguardando retorno da escola', statusClass:'status-escola', acao:'Proposta aceita (2 anos); confeccionar PIC', acaoClass:'' },
+  { cluster:'hot', escola:'SS Sacramento · Salvador/BA', lider:'Mayara Gonzalez De Sa Lobato', cse:'Jessica De Freitas Correa', consultor:'Halyson Dantas', acv:603417, acvLabel:'R$ 603K', etapa:'Negociação', etapaClass:'badge-neg', status:'Aguardando retorno da escola', statusClass:'status-escola', acao:'Aguardar retorno até 15/06', acaoClass:'' },
+  { cluster:'hot', escola:'Colégio Motiva · João Pessoa/PB', lider:'Lucas Faleiros', cse:'Aline Evelyn De Oliveira Tranquilli', consultor:'Gilberto Filho', acv:111530, acvLabel:'R$ 112K', etapa:'Negociação', etapaClass:'badge-neg', status:'Aguardando retorno da escola', statusClass:'status-escola', acao:'Fup + criar PIC na semana de 15/06', acaoClass:'' },
+  { cluster:'warm', escola:'Sta Doroteia · Manaus/AM', lider:'Mayara Gonzalez De Sa Lobato', cse:'Bruna Peixoto de Araujo', consultor:'Assilon Netto', acv:881876, acvLabel:'R$ 882K', etapa:'Negociação', etapaClass:'badge-neg', status:'Aguardando retorno da escola', statusClass:'status-escola', acao:'Mantenedora rejeita reajuste acima de 6%; nova oferta enviada por e-mail', acaoClass:'' },
+  { cluster:'warm', escola:'São Judas Tadeu · Maceió/AL', lider:'Ana Jessica Araujo Ibiapina', cse:'Kamila Pereira Buriti Dantas', consultor:'Luciano Silva', acv:929628, acvLabel:'R$ 930K', etapa:'Negociação', etapaClass:'badge-neg', status:'Aguardando retorno da escola', statusClass:'status-escola', acao:'Ameaça concorrência + restrição de prazo; CSE ligar para aprofundamento', acaoClass:'risk' },
+  { cluster:'warm', escola:'Batista Maranhense · São Luís/MA', lider:'Mayara Gonzalez De Sa Lobato', cse:'Halyson Rodrigo de Araujo Dantas', consultor:'Erika Silva', acv:566103, acvLabel:'R$ 566K', etapa:'Negociação', etapaClass:'badge-neg', status:'Aguardando retorno da escola', statusClass:'status-escola', acao:'Contraproposta (8%→3%); reunião em 15/06', acaoClass:'' },
+  { cluster:'warm', escola:'Cristo Rei · Maceió/AL', lider:'Ana Jessica Araujo Ibiapina', cse:'Kamila Pereira Buriti Dantas', consultor:'Luciano Silva', acv:519071, acvLabel:'R$ 519K', etapa:'Elaboração de proposta', etapaClass:'badge-elab', status:'Aguardando ação interna', statusClass:'status-interno', acao:'Mantenedor não responsivo; nova tentativa de contato', acaoClass:'' },
+  { cluster:'warm', escola:'NSra de Lourdes · João Pessoa/PB', lider:'Mayara Gonzalez De Sa Lobato', cse:'Tatiane Malheiros Da Silva', consultor:'Halyson Dantas', acv:662863, acvLabel:'R$ 663K', etapa:'Elaboração de proposta', etapaClass:'badge-elab', status:'Aguardando ação interna', statusClass:'status-interno', acao:'Proposta pronta; agendar reunião de apresentação', acaoClass:'' },
+  { cluster:'cold', escola:'MJ Lopes · Maceió/AL', lider:'Ana Jessica Araujo Ibiapina', cse:'Ana Carolina Laudares Silva Mireles Coelho', consultor:'Erika Silva', acv:888292, acvLabel:'R$ 888K', etapa:'Negociação', etapaClass:'badge-neg', status:'Aguardando retorno da escola', statusClass:'status-escola', acao:'Insatisfeito com operações + avaliando concorrência; recusa assinar antes de agosto — apoio Najéss urgente', acaoClass:'risk' },
+  { cluster:'cold', escola:'Oficina Cursos · Salvador/BA', lider:'Lucas Faleiros', cse:'Aline Evelyn De Oliveira Tranquilli', consultor:'Nayara Antunes', acv:898154, acvLabel:'R$ 898K', etapa:'Negociação', etapaClass:'badge-neg', status:'Aguardando retorno da escola', statusClass:'status-escola', acao:'Escola não responsiva desde 05/06; Igor tentar contato direto + PIC pronto', acaoClass:'' },
+  { cluster:'cold', escola:'Livraria Campos · Fortaleza/CE', lider:'Marcus Casanova Nogueira Junior', cse:'Mayara Gama de Paiva', consultor:'Nayara Antunes', acv:1043303, acvLabel:'R$ 1,0M', etapa:'Elaboração de proposta', etapaClass:'badge-elab', status:'Aguardando ação interna', statusClass:'status-interno', acao:'Cliente detrator — reunião com Moriggi em 16/06', acaoClass:'risk' },
+  { cluster:'cold', escola:'Monaliza Cavalcante · Tianguá/CE', lider:'Sem líder', cse:'Sem CSE', consultor:'Nayara Antunes', acv:731576, acvLabel:'R$ 732K', etapa:'Diagnóstico', etapaClass:'badge-diag', status:'Aguardando retorno da escola', statusClass:'status-escola', acao:'Mantenedor com problemas de saúde; escola avalia ampliação', acaoClass:'' },
+  { cluster:'cold', escola:'Sta Doroteia · Belém/PA', lider:'Mayara Gonzalez De Sa Lobato', cse:'Bruna Peixoto de Araujo', consultor:'Assilon Netto', acv:195850, acvLabel:'R$ 196K', etapa:'Diagnóstico', etapaClass:'badge-diag', status:'Aguardando ação interna', statusClass:'status-interno', acao:'Proposta pausada por falecimento — retomar esta semana', acaoClass:'' },
+  { cluster:'cold', escola:'Diocesano Parnaíba · PI', lider:'Mayara Gonzalez De Sa Lobato', cse:'Tatiane Malheiros Da Silva', consultor:'Erika Silva', acv:215237, acvLabel:'R$ 215K', etapa:'Diagnóstico', etapaClass:'badge-diag', status:'Bloqueada por caso crítico', statusClass:'status-bloqueada', acao:'Dívida com Isaac pendente de resolução', acaoClass:'risk' },
+  { cluster:'cold', escola:'CLFS Livros · Salvador/BA', lider:'Marcus Casanova Nogueira Junior', cse:'Mayara Pessoa Da Silva', consultor:'Francisco Wellington', acv:996327, acvLabel:'R$ 996K', etapa:'Diagnóstico', etapaClass:'badge-diag', status:'Bloqueada por caso crítico', statusClass:'status-bloqueada', acao:'NF pendente trava pagamento de patrocínio', acaoClass:'risk' },
+  { cluster:'cold', escola:'Podion DF + Fund. II · Brasília/DF', lider:'Marcelo De Paula', cse:'Sem CSE', consultor:'Gilberto Filho', acv:1529370, acvLabel:'R$ 1,5M', etapa:'Diagnóstico', etapaClass:'badge-diag', status:'Aguardando ação interna', statusClass:'status-interno', acao:'Simulador e proposta pendentes do Marcelo — cobrar até quarta', acaoClass:'warning' },
+  { cluster:'cold', escola:'Instituto Castro · Aquiraz/CE', lider:'Sem líder', cse:'Sem CSE', consultor:'Nayara Antunes', acv:310520, acvLabel:'R$ 311K', etapa:'Diagnóstico', etapaClass:'badge-diag', status:'Aguardando ação interna', statusClass:'status-interno', acao:'Sem ação registrada no período', acaoClass:'' },
+];
+
+const CLUSTERS = ['hot','warm','cold'];
+const CLUSTER_LABELS = { hot:'Quente', warm:'Morna', cold:'Fria' };
+const CLUSTER_COLORS = { hot:'#C94A22', warm:'#A06000', cold:'#1A5FA8' };
+
+/* State: current acaoText edits per escola */
+const acaoEdits = {};
+/* Sort state per cluster */
+const sortState = { hot: null, warm: null, cold: null };
+/* Filter state per cluster */
+const filterState = {
+  hot:  { lider:'', cse:'', consultor:'', etapa:'', status:'' },
+  warm: { lider:'', cse:'', consultor:'', etapa:'', status:'' },
+  cold: { lider:'', cse:'', consultor:'', etapa:'', status:'' },
+};
+
+/* ─── RENDER ROW ─── */
+function renderRow(s) {
+  const acao = acaoEdits[s.escola] !== undefined ? acaoEdits[s.escola] : s.acao;
+  const others = CLUSTERS.filter(c => c !== s.cluster);
+  const menuOptions = others.map(c =>
+    `<button class="move-option" onclick="moveSchool('${s.escola}','${c}');event.stopPropagation()">
+      <span class="move-dot" style="background:${CLUSTER_COLORS[c]}"></span>${CLUSTER_LABELS[c]}
+    </button>`
+  ).join('');
+
+  const liderShort = s.lider === 'Sem líder' ? null : s.lider.split(' ').slice(0,2).join(' ');
+  const cseShort   = s.cse   === 'Sem CSE'   ? null : s.cse.split(' ').slice(0,2).join(' ');
+  const conShort   = s.consultor.split(' ').slice(0,1).join(' ');
+  const respChips  = [
+    liderShort ? `<span class="resp-chip">Líder: ${liderShort}</span>` : `<span class="resp-chip warn">Sem Líder</span>`,
+    cseShort   ? `<span class="resp-chip">CSE: ${cseShort}</span>`     : `<span class="resp-chip warn">Sem CSE</span>`,
+    `<span class="resp-chip">Consultor: ${conShort}</span>`
+  ].join('');
+
+  return `<tr data-escola="${s.escola}" data-cluster="${s.cluster}"
+    data-lider="${s.lider}" data-cse="${s.cse}" data-consultor="${s.consultor}"
+    data-acv="${s.acv}" data-etapa="${s.etapa}" data-status="${s.status}">
+    <td class="move-cell">
+      <button class="move-btn" onclick="toggleMenu(this,event)" title="Mover escola">⇄
+        <div class="move-menu">
+          <div class="move-menu-title">Mover para</div>
+          ${menuOptions}
+        </div>
+      </button>
+    </td>
+    <td><div class="escola-name">${s.escola}</div><div class="resp">${respChips}</div></td>
+    <td class="acv">${s.acvLabel}</td>
+    <td><span class="badge ${s.etapaClass}">${s.etapa}</span></td>
+    <td><span class="status-chip ${s.statusClass}">${s.status}</span></td>
+    <td class="acao acao-cell">
+      <span class="acao-text${s.acaoClass ? ' acao-'+s.acaoClass : ''}">${acao}</span>
+      <textarea class="acao-edit"></textarea>
+      <button class="acao-edit-btn" onclick="editAcao(this)">✏️ editar</button>
+      <button class="acao-save-btn" onclick="saveAcao(this)">Salvar</button>
+    </td>
+  </tr>`;
+}
+
+/* ─── GET FILTERED+SORTED SCHOOLS FOR A CLUSTER ─── */
+function getRows(cluster) {
+  const f = filterState[cluster];
+  let rows = SCHOOLS.filter(s => s.cluster === cluster);
+  if (f.lider)    rows = rows.filter(s => s.lider    === f.lider);
+  if (f.cse)      rows = rows.filter(s => s.cse      === f.cse);
+  if (f.consultor)rows = rows.filter(s => s.consultor=== f.consultor);
+  if (f.etapa)    rows = rows.filter(s => s.etapa    === f.etapa);
+  if (f.status)   rows = rows.filter(s => s.status   === f.status);
+  if (sortState[cluster]) {
+    rows = [...rows].sort((a,b) => sortState[cluster]==='asc' ? a.acv-b.acv : b.acv-a.acv);
+  }
+  return rows;
+}
+
+/* ─── RENDER CLUSTER TABLE ─── */
+function renderCluster(cluster) {
+  const rows = getRows(cluster);
+  const tbody = document.getElementById('tbody-'+cluster);
+  tbody.innerHTML = rows.map(renderRow).join('');
+  const noEl = document.getElementById('no-'+cluster);
+  noEl.style.display = rows.length === 0 ? 'block' : 'none';
+}
+
+/* ─── BUILD FILTERS ─── */
+function buildFilters(cluster) {
+  const allInCluster = SCHOOLS.filter(s => s.cluster === cluster);
+  const unique = (key) => [...new Set(allInCluster.map(s => s[key]))].sort();
+  const container = document.getElementById('filters-'+cluster);
+
+  function makeSelect(label, key, options) {
+    const sel = document.createElement('select');
+    sel.className = 'filter-select';
+    const def = document.createElement('option'); def.value=''; def.textContent=label; sel.appendChild(def);
+    options.forEach(o => { const opt=document.createElement('option'); opt.value=o; opt.textContent=o; sel.appendChild(opt); });
+    sel.value = filterState[cluster][key] || '';
+    sel.addEventListener('change', () => { filterState[cluster][key] = sel.value; renderCluster(cluster); });
+    return sel;
+  }
+
+  const acvAsc  = document.createElement('button'); acvAsc.className='sort-btn'; acvAsc.textContent='ACV ↑';
+  const acvDesc = document.createElement('button'); acvDesc.className='sort-btn'; acvDesc.textContent='ACV ↓';
+  if (sortState[cluster]==='asc')  acvAsc.classList.add('active');
+  if (sortState[cluster]==='desc') acvDesc.classList.add('active');
+  acvAsc.addEventListener('click',  () => { sortState[cluster]= sortState[cluster]==='asc'  ? null : 'asc';  buildFilters(cluster); renderCluster(cluster); });
+  acvDesc.addEventListener('click', () => { sortState[cluster]= sortState[cluster]==='desc' ? null : 'desc'; buildFilters(cluster); renderCluster(cluster); });
+
+  const reset = document.createElement('button'); reset.className='filter-reset'; reset.textContent='Limpar filtros';
+  reset.addEventListener('click', () => {
+    filterState[cluster] = { lider:'', cse:'', consultor:'', etapa:'', status:'' };
+    sortState[cluster] = null;
+    buildFilters(cluster);
+    renderCluster(cluster);
+  });
+
+  const g = (label, el) => {
+    const w=document.createElement('span'); w.className='filter-group';
+    const lb=document.createElement('span'); lb.className='filter-label'; lb.textContent=label;
+    w.appendChild(lb); w.appendChild(el); return w;
+  };
+
+  container.innerHTML = '';
+  container.appendChild(g('Líder CSE:', makeSelect('Todos','lider', unique('lider'))));
+  container.appendChild(g('CSE:',       makeSelect('Todos','cse',   unique('cse'))));
+  container.appendChild(g('Consultor:', makeSelect('Todos','consultor', unique('consultor'))));
+  container.appendChild(g('Etapa:',     makeSelect('Todas','etapa', unique('etapa'))));
+  container.appendChild(g('Status:',    makeSelect('Todos','status', unique('status'))));
+  container.appendChild(g('ACV:', acvAsc));
+  container.appendChild(acvDesc);
+  container.appendChild(reset);
+}
+
+/* ─── MOVE SCHOOL ─── */
+function moveSchool(escolaName, toCluster) {
+  const s = SCHOOLS.find(x => x.escola === escolaName);
+  if (!s) return;
+  s.cluster = toCluster;
+  /* Reset filter if it would exclude the moved row */
+  CLUSTERS.forEach(c => buildFilters(c));
+  CLUSTERS.forEach(c => renderCluster(c));
+  /* Flash the moved row */
+  setTimeout(() => {
+    const row = document.querySelector(`tr[data-escola="${escolaName}"]`);
+    if (row) { row.classList.add('row-flash'); row.scrollIntoView({ behavior:'smooth', block:'nearest' }); setTimeout(() => row.classList.remove('row-flash'), 700); }
+  }, 50);
+  closeAllMenus();
+}
+
+/* ─── MOVE MENU TOGGLE ─── */
+function toggleMenu(btn, e) {
+  e.stopPropagation();
+  const menu = btn.querySelector('.move-menu');
+  const isOpen = menu.classList.contains('open');
+  closeAllMenus();
+  if (!isOpen) menu.classList.add('open');
+}
+function closeAllMenus() { document.querySelectorAll('.move-menu.open').forEach(m => m.classList.remove('open')); }
+document.addEventListener('click', closeAllMenus);
+
+/* ─── EDITABLE ACTION ─── */
+function editAcao(btn) {
+  const cell = btn.closest('.acao-cell');
+  cell.querySelector('.acao-edit').value = cell.querySelector('.acao-text').textContent.trim();
+  cell.classList.add('editing');
+  cell.querySelector('.acao-edit').focus();
+}
+function saveAcao(btn) {
+  const cell = btn.closest('.acao-cell');
+  const newText = cell.querySelector('.acao-edit').value;
+  const row = cell.closest('tr');
+  const escolaName = row.dataset.escola;
+  acaoEdits[escolaName] = newText;
+  cell.querySelector('.acao-text').textContent = newText;
+  cell.classList.remove('editing');
+}
+
+/* ─── CHARTS ─── */
+const isDark = matchMedia('(prefers-color-scheme: dark)').matches;
+const gridColor = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)';
+const lc = isDark ? '#9C9B96' : '#6B6A65';
+const labelPlugin = {
+  id:'inBarLabels',
+  afterDatasetsDraw(chart) {
+    const ctx = chart.ctx;
+    chart.data.datasets.forEach((ds,i) => {
+      chart.getDatasetMeta(i).data.forEach((bar,j) => {
+        const val=ds.data[j]; if(!val) return;
+        const extra=ds._extra?ds._extra[j]:null;
+        const lines=extra?[val+'%',extra]:[val+'%'];
+        const lineH=13,totalH=lines.length*lineH;
+        const barH=Math.abs(bar.base-bar.y); if(barH<totalH+8) return;
+        const midY=(bar.y+bar.base)/2;
+        ctx.save(); ctx.fillStyle='#fff'; ctx.font='500 11px Inter,sans-serif'; ctx.textAlign='center'; ctx.textBaseline='middle';
+        lines.forEach((line,li)=>ctx.fillText(line,bar.x,midY-totalH/2+li*lineH+lineH/2));
+        ctx.restore();
+      });
     });
-    new Chart(document.getElementById('cStatus'), {
-      type:'bar', plugins:[labelPlugin],
-      data:{ labels:[['Negociação','58% · 11 escolas'],['Diagnóstico','32% · 6 escolas'],['Elab. proposta','16% · 3 escolas']], datasets:[
-        { label:'Aguardando escola', data:[79,0,0],    _extra:['R$11,0M',null,null],         backgroundColor:'#EF9F27', borderRadius:4, borderSkipped:false, barThickness:52 },
-        { label:'Ação interna',      data:[21,63,100], _extra:['R$2,9M','R$2,0M','R$2,2M'], backgroundColor:'#534AB7', borderRadius:4, borderSkipped:false, barThickness:52 },
-        { label:'Bloqueada',         data:[0,37,0],    _extra:[null,'R$1,2M',null],           backgroundColor:'#E24B4A', borderRadius:4, borderSkipped:false, barThickness:52 }
-      ]},
-      options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{display:false}, tooltip:{callbacks:{label:ctx=>ctx.dataset.label+': '+ctx.raw+'%'}} }, scales:{ x:{ticks:{color:lc,font:{size:11},maxRotation:0},grid:{display:false},border:{display:false}}, y:{ticks:{color:lc,font:{size:11},callback:v=>v+'%'},grid:{color:gridColor},border:{display:false},max:110} } }
-    });
+  }
+};
+new Chart(document.getElementById('cFunil'),{type:'bar',plugins:[labelPlugin],data:{labels:['Negociação','Diagnóstico','Elab. proposta'],datasets:[{data:[58,32,16],_extra:['11 · R$13,9M','6 · R$3,2M','3 · R$2,2M'],backgroundColor:['#185FA5','#888780','#534AB7'],borderRadius:4,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>['58%','32%','16%'][ctx.dataIndex]+' · '+['R$13,9M','R$3,2M','R$2,2M'][ctx.dataIndex]}}},scales:{x:{ticks:{color:lc,font:{size:11}},grid:{display:false},border:{display:false}},y:{ticks:{color:lc,font:{size:11},callback:v=>v+'%'},grid:{color:gridColor},border:{display:false},max:75}}}});
+new Chart(document.getElementById('cStatus'),{type:'bar',plugins:[labelPlugin],data:{labels:[['Negociação','58% · 11 escolas'],['Diagnóstico','32% · 6 escolas'],['Elab. proposta','16% · 3 escolas']],datasets:[{label:'Aguardando escola',data:[79,0,0],_extra:['R$11,0M',null,null],backgroundColor:'#EF9F27',borderRadius:4,borderSkipped:false,barThickness:52},{label:'Ação interna',data:[21,63,100],_extra:['R$2,9M','R$2,0M','R$2,2M'],backgroundColor:'#534AB7',borderRadius:4,borderSkipped:false,barThickness:52},{label:'Bloqueada',data:[0,37,0],_extra:[null,'R$1,2M',null],backgroundColor:'#E24B4A',borderRadius:4,borderSkipped:false,barThickness:52}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.dataset.label+': '+ctx.raw+'%'}}},scales:{x:{ticks:{color:lc,font:{size:11},maxRotation:0},grid:{display:false},border:{display:false}},y:{ticks:{color:lc,font:{size:11},callback:v=>v+'%'},grid:{color:gridColor},border:{display:false},max:110}}}});
 
-    /* ── FILTERS ── */
-    const clusters = [
-      { id: 'hot',  tableId: 'table-hot',  filtersId: 'filters-hot',  noId: 'no-hot'  },
-      { id: 'warm', tableId: 'table-warm', filtersId: 'filters-warm', noId: 'no-warm' },
-      { id: 'cold', tableId: 'table-cold', filtersId: 'filters-cold', noId: 'no-cold' },
-    ];
-
-    function getUnique(rows, attr) {
-      const vals = [...new Set([...rows].map(r => r.dataset[attr]))].filter(Boolean).sort();
-      return vals;
-    }
-
-    function buildFilters(cluster) {
-      const table = document.getElementById(cluster.tableId);
-      const rows = table.querySelectorAll('tbody tr');
-      const container = document.getElementById(cluster.filtersId);
-
-      const liders   = getUnique(rows, 'lider');
-      const cses     = getUnique(rows, 'cse');
-      const consults = getUnique(rows, 'consultor');
-      const etapas   = getUnique(rows, 'etapa');
-      const statuses = getUnique(rows, 'status');
-
-      function makeSelect(label, attr, options, id) {
-        const sel = document.createElement('select');
-        sel.className = 'filter-select';
-        sel.id = id;
-        const def = document.createElement('option');
-        def.value = ''; def.textContent = label;
-        sel.appendChild(def);
-        options.forEach(o => {
-          const opt = document.createElement('option');
-          opt.value = o; opt.textContent = o;
-          sel.appendChild(opt);
-        });
-        sel.addEventListener('change', () => applyFilters(cluster));
-        return sel;
-      }
-
-      const acvAscBtn  = document.createElement('button');
-      acvAscBtn.className = 'sort-btn'; acvAscBtn.textContent = 'ACV ↑'; acvAscBtn.dataset.sort = 'asc';
-      const acvDescBtn = document.createElement('button');
-      acvDescBtn.className = 'sort-btn'; acvDescBtn.textContent = 'ACV ↓'; acvDescBtn.dataset.sort = 'desc';
-
-      [acvAscBtn, acvDescBtn].forEach(btn => {
-        btn.addEventListener('click', () => {
-          [acvAscBtn, acvDescBtn].forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          sortByACV(cluster, btn.dataset.sort);
-        });
-      });
-
-      const resetBtn = document.createElement('button');
-      resetBtn.className = 'filter-reset'; resetBtn.textContent = 'Limpar filtros';
-      resetBtn.addEventListener('click', () => {
-        container.querySelectorAll('select').forEach(s => s.value = '');
-        [acvAscBtn, acvDescBtn].forEach(b => b.classList.remove('active'));
-        applyFilters(cluster);
-      });
-
-      container.innerHTML = '';
-      const g = (label, el) => {
-        const wrap = document.createElement('span');
-        wrap.className = 'filter-group';
-        const lbl = document.createElement('span');
-        lbl.className = 'filter-label'; lbl.textContent = label;
-        wrap.appendChild(lbl); wrap.appendChild(el);
-        return wrap;
-      };
-
-      container.appendChild(g('Líder CSE:', makeSelect('Todos', 'lider', liders, `sel-lider-${cluster.id}`)));
-      container.appendChild(g('CSE:', makeSelect('Todos', 'cse', cses, `sel-cse-${cluster.id}`)));
-      container.appendChild(g('Consultor:', makeSelect('Todos', 'consultor', consults, `sel-consultor-${cluster.id}`)));
-      container.appendChild(g('Etapa:', makeSelect('Todas', 'etapa', etapas, `sel-etapa-${cluster.id}`)));
-      container.appendChild(g('Status:', makeSelect('Todos', 'status', statuses, `sel-status-${cluster.id}`)));
-      container.appendChild(g('ACV:', acvAscBtn));
-      container.appendChild(acvDescBtn);
-      container.appendChild(resetBtn);
-    }
-
-    function applyFilters(cluster) {
-      const table = document.getElementById(cluster.tableId);
-      const rows  = table.querySelectorAll('tbody tr');
-      const noEl  = document.getElementById(cluster.noId);
-      const get   = id => document.getElementById(id) ? document.getElementById(id).value : '';
-      const lider    = get(`sel-lider-${cluster.id}`);
-      const cse      = get(`sel-cse-${cluster.id}`);
-      const consultor= get(`sel-consultor-${cluster.id}`);
-      const etapa    = get(`sel-etapa-${cluster.id}`);
-      const status   = get(`sel-status-${cluster.id}`);
-      let visible = 0;
-      rows.forEach(row => {
-        const show =
-          (!lider    || row.dataset.lider    === lider)    &&
-          (!cse      || row.dataset.cse      === cse)      &&
-          (!consultor|| row.dataset.consultor=== consultor) &&
-          (!etapa    || row.dataset.etapa    === etapa)    &&
-          (!status   || row.dataset.status   === status);
-        row.style.display = show ? '' : 'none';
-        if (show) visible++;
-      });
-      noEl.style.display = visible === 0 ? 'block' : 'none';
-    }
-
-    function sortByACV(cluster, dir) {
-      const table = document.getElementById(cluster.tableId);
-      const tbody = table.querySelector('tbody');
-      const rows  = [...tbody.querySelectorAll('tr')];
-      rows.sort((a, b) => {
-        const av = parseInt(a.dataset.acv), bv = parseInt(b.dataset.acv);
-        return dir === 'asc' ? av - bv : bv - av;
-      });
-      rows.forEach(r => tbody.appendChild(r));
-    }
-
-    /* ── EDITABLE ACTION ── */
-    function editAcao(btn) {
-      const cell = btn.closest('.acao-cell');
-      const textarea = cell.querySelector('.acao-edit');
-      textarea.value = cell.querySelector('.acao-text').textContent.trim();
-      cell.classList.add('editing');
-      textarea.focus();
-    }
-    function saveAcao(btn) {
-      const cell = btn.closest('.acao-cell');
-      const textarea = cell.querySelector('.acao-edit');
-      cell.querySelector('.acao-text').textContent = textarea.value;
-      cell.classList.remove('editing');
-    }
-
-    /* ── INIT ── */
-    clusters.forEach(buildFilters);
-  </script>
+/* ─── INIT ─── */
+CLUSTERS.forEach(c => { buildFilters(c); renderCluster(c); });
+</script>
 </body>
 </html>
