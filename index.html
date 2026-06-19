@@ -343,7 +343,7 @@
 
 <script>
 const SHEET_ID  = '1ZgCd-S4F3yNgMh2y7asnts6jJ_-bEB1o6bbiX6Q99YE';
-const SHEET_TAB = '[Renovação CSP] Prioridade time Igor Q2 V3';
+const SHEET_GID = '0';
 
 const CLUSTERS     = ['fc','hot','warm','cold'];
 const C_LABELS     = {fc:'Forecast da semana',hot:'Quente',warm:'Morna',cold:'Fria'};
@@ -369,10 +369,13 @@ async function loadData(){
   document.getElementById('loadingScreen').style.display='flex';
   document.getElementById('mainContent').style.display='none';
   try{
-    const url=`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(SHEET_TAB)}`;
+    const url=`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&gid=${SHEET_GID}`;
     const res=await fetch(url);
+    if(!res.ok){throw new Error('HTTP '+res.status+' — '+(res.status===404?'planilha ou aba não encontrada':res.status===403?'sem permissão de acesso':'erro de servidor'));}
     const text=await res.text();
-    const json=JSON.parse(text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*)\)/)[1]);
+    const match=text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*)\)/);
+    if(!match){throw new Error('Resposta inesperada do Google Sheets — verifique se o link e o GID estão corretos');}
+    const json=JSON.parse(match[1]);
     parseSheetData(json);
     document.getElementById('lastUpdate').textContent='Atualizado em '+new Date().toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});
     document.getElementById('totalCount').textContent=SCHOOLS.length;
