@@ -45,7 +45,21 @@
     .hdr-btn.primary:hover{background:#0C447C}
     .container{max-width:1080px;margin:0 auto;padding:0 40px}
 
-    .fc-banner{background:var(--fc-bg);border:1px solid var(--fc-bd);border-radius:var(--rmd);padding:18px 22px;margin:24px 0 18px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+    /* WON BANNER */
+    .won-banner{background:#FFF7E0;border:1px solid #F0D78C;border-radius:var(--rmd);padding:18px 22px;margin:24px 0 14px}
+    .won-banner-top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:12px}
+    .won-eyebrow{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#8A6200;margin-bottom:4px}
+    .won-title{font-size:14px;font-weight:500;color:#5C4200}
+    .won-acv{font-family:var(--fd);font-size:28px;font-weight:700;color:#8A6200;text-align:right}
+    .won-acv-label{font-size:11px;color:#8A6200;text-align:right}
+    .won-table{width:100%;border-collapse:collapse;font-size:12px}
+    .won-table th{text-align:left;font-size:10px;font-weight:600;color:#8A6200;text-transform:uppercase;letter-spacing:.05em;padding:4px 10px;border-bottom:0.5px solid #F0D78C}
+    .won-table td{padding:7px 10px;border-bottom:0.5px solid #F5E5B0;color:#5C4200;vertical-align:top}
+    .won-table tr:last-child td{border-bottom:none}
+    .won-escola{font-weight:500}
+    .won-empty{font-size:12px;color:#8A6200;padding:8px 10px;text-align:center}
+
+    .fc-banner{background:var(--fc-bg);border:1px solid var(--fc-bd);border-radius:var(--rmd);padding:18px 22px;margin:0 0 18px;display:flex;align-items:center;justify-content:space-between;gap:16px}
     .fc-banner-left .fc-eyebrow{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--fc-sub);margin-bottom:4px}
     .fc-banner-left .fc-title{font-size:14px;font-weight:500;color:var(--fc)}
     .fc-banner-left .fc-sub{font-size:12px;color:var(--fc-sub);margin-top:2px}
@@ -82,21 +96,25 @@
 
     .cluster{margin-bottom:28px}
     .cluster-header{display:flex;align-items:center;gap:9px;padding:9px 14px;border-radius:var(--rm);margin-bottom:10px}
+    .cluster-header.won {background:#FFF7E0;border:1px solid #F0D78C}
     .cluster-header.fc  {background:var(--fc-bg);border:1px solid var(--fc-bd)}
     .cluster-header.hot {background:var(--hot-bg);border:1px solid var(--hot-bd)}
     .cluster-header.warm{background:var(--warm-bg);border:1px solid var(--warm-bd)}
     .cluster-header.cold{background:var(--cold-bg);border:1px solid var(--cold-bd)}
     .temp-ind{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+    .won  .temp-ind{background:#B8860B}
     .fc   .temp-ind{background:var(--fc)}
     .hot  .temp-ind{background:var(--hot)}
     .warm .temp-ind{background:var(--warm)}
     .cold .temp-ind{background:var(--cold)}
     .cluster-lbl{font-size:13px;font-weight:600}
+    .won  .cluster-lbl{color:#8A6200}
     .fc   .cluster-lbl{color:var(--fc)}
     .hot  .cluster-lbl{color:var(--hot)}
     .warm .cluster-lbl{color:var(--warm)}
     .cold .cluster-lbl{color:var(--cold)}
     .cluster-stats{margin-left:auto;font-size:12px;font-weight:500;display:flex;gap:14px}
+    .won  .cluster-stats{color:#8A6200}
     .fc   .cluster-stats{color:var(--fc)}
     .hot  .cluster-stats{color:var(--hot)}
     .warm .cluster-stats{color:var(--warm)}
@@ -137,6 +155,7 @@
     .badge-elab{background:#F2EFFE;color:#4A38B0;border:1px solid #C9C0F5}
     .badge-diag{background:#F1EFE8;color:#5F5E5A;border:1px solid #D3D1C7}
     .badge-lost{background:#FCEBEB;color:#791F1F;border:1px solid #F0B8B8}
+    .badge-won{background:#FFF7E0;color:#8A6200;border:1px solid #F0D78C}
     .status-chip{display:inline-block;font-size:10px;padding:2px 7px;border-radius:4px;font-weight:500;white-space:nowrap;cursor:pointer}
     .status-chip:hover{opacity:.8}
     .s-escola   {background:#FDF6E7;color:#854F0B}
@@ -292,6 +311,24 @@
 
 <div class="container" id="mainContent" style="display:none">
 
+  <div class="won-banner">
+    <div class="won-banner-top">
+      <div>
+        <div class="won-eyebrow">🏆 Fechado e Ganho</div>
+        <div class="won-title">Escolas com renovação confirmada</div>
+      </div>
+      <div>
+        <div class="won-acv" id="wonAcv">—</div>
+        <div class="won-acv-label">ACV fechado e ganho</div>
+      </div>
+    </div>
+    <table class="won-table">
+      <thead><tr><th>Escola</th><th>ACV</th><th>Líder CSE</th><th>CSE</th><th>Consultor</th></tr></thead>
+      <tbody id="wonTableBody"></tbody>
+    </table>
+    <div class="won-empty" id="wonEmpty" style="display:none">Nenhuma escola fechada e ganha no momento.</div>
+  </div>
+
   <div class="fc-banner">
     <div class="fc-banner-left">
       <div class="fc-eyebrow">🎯 Forecast da semana</div>
@@ -330,6 +367,7 @@
 
   <hr class="divider">
 
+  <div id="cluster-won"  class="cluster"></div>
   <div id="cluster-fc"   class="cluster"></div>
   <div id="cluster-hot"  class="cluster"></div>
   <div id="cluster-warm" class="cluster"></div>
@@ -345,12 +383,12 @@
 const SHEET_ID  = '1ZgCd-S4F3yNgMh2y7asnts6jJ_-bEB1o6bbiX6Q99YE';
 const SHEET_GID = '0';
 
-const CLUSTERS     = ['fc','hot','warm','cold'];
-const C_LABELS     = {fc:'Forecast da semana',hot:'Quente',warm:'Morna',cold:'Fria'};
-const C_COLORS     = {fc:'#1D9E75',hot:'#C94A22',warm:'#A06000',cold:'#1A5FA8'};
+const CLUSTERS     = ['won','fc','hot','warm','cold'];
+const C_LABELS     = {won:'Fechado e Ganho',fc:'Forecast da semana',hot:'Quente',warm:'Morna',cold:'Fria'};
+const C_COLORS     = {won:'#B8860B',fc:'#1D9E75',hot:'#C94A22',warm:'#A06000',cold:'#1A5FA8'};
 const TEMP_MAP     = {'Quente':'hot','Morna':'warm','Fria':'cold'};
 const STATUS_CLASS = {'Forecast da semana':'s-forecast','Aguardando ação interna':'s-interno','Aguardando retorno da escola':'s-escola','Bloqueada por caso crítico':'s-bloqueada'};
-const ETAPA_CLASS  = {'Negociação':'badge-neg','Elaboração de proposta':'badge-elab','Diagnóstico':'badge-diag','Fechado e perdido':'badge-lost'};
+const ETAPA_CLASS  = {'Negociação':'badge-neg','Elaboração de proposta':'badge-elab','Diagnóstico':'badge-diag','Fechado e perdido':'badge-lost','Fechado e ganho':'badge-won'};
 const ETAPA_OPTIONS  = ['Negociação','Elaboração de proposta','Diagnóstico','Fechado e perdido'];
 const STATUS_OPTIONS = ['Forecast da semana','Aguardando ação interna','Aguardando retorno da escola','Bloqueada por caso crítico'];
 
@@ -407,8 +445,6 @@ function parseSheetData(json){
     rows = rows.slice(1);
   }
   RAW_HEADERS=[...cols];
-  console.log('Colunas detectadas:', cols);
-  console.log('Total de linhas:', rows.length);
 
   const idx=name=>cols.findIndex(c=>c.trim().toLowerCase()===name.trim().toLowerCase());
   const iEscola=idx('escola'),iConsult=idx('consultor'),iLider=idx('líder cse'),iCSE=idx('cse');
@@ -437,6 +473,7 @@ function parseSheetData(json){
     const etapa=cellVal(row,iEtapa);
     let cluster=TEMP_MAP[temp]||'cold';
     if(status==='Forecast da semana')cluster='fc';
+    if(etapa==='Fechado e ganho')cluster='won';
 
     const acaoAtual=atualCols.length>0?cellVal(row,atualCols[atualCols.length-1].i):'';
     const histToShow=histCols.filter(h=>!h.label.includes('[Atual]')).map(h=>({label:h.label.replace(/\[Histórico\]\s*/,''),value:cellVal(row,h.i)}));
@@ -529,7 +566,25 @@ function recalcDashboard(){
   const total=SCHOOLS.reduce((s,r)=>s+r.acv,0);
   const byC=c=>SCHOOLS.filter(s=>s.cluster===c);
   const acvSum=arr=>arr.reduce((s,r)=>s+r.acv,0);
-  const fcS=byC('fc'),hotS=byC('hot'),warmS=byC('warm'),coldS=byC('cold');
+  const wonS=byC('won'),fcS=byC('fc'),hotS=byC('hot'),warmS=byC('warm'),coldS=byC('cold');
+
+  // Won banner
+  document.getElementById('wonAcv').textContent=fmtAcv(acvSum(wonS));
+  const wonBody=document.getElementById('wonTableBody');
+  const wonEmpty=document.getElementById('wonEmpty');
+  if(wonS.length===0){
+    wonBody.innerHTML='';
+    wonEmpty.style.display='block';
+  }else{
+    wonEmpty.style.display='none';
+    wonBody.innerHTML=wonS.slice().sort((a,b)=>b.acv-a.acv).map(s=>{
+      const liderS=s.lider==='Sem líder'?'—':s.lider.split(' ').slice(0,2).join(' ');
+      const cseS=s.cse==='Sem CSE'?'—':s.cse.split(' ').slice(0,2).join(' ');
+      const conS=s.consultor.split(' ')[0]||'—';
+      return`<tr><td class="won-escola">${s.escola}</td><td>${s.acvL}</td><td>${liderS}</td><td>${cseS}</td><td>${conS}</td></tr>`;
+    }).join('');
+  }
+
   document.getElementById('fcBannerAcv').textContent=fmtAcv(acvSum(fcS));
   document.getElementById('fcBannerSub').textContent=fcS.length+' escola'+(fcS.length!==1?'s':'');
   document.getElementById('mTotal').textContent=fmtAcv(total);
