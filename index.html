@@ -21,15 +21,30 @@
       --rm:6px;--rmd:10px;
     }
     body{font-family:var(--fb);background:var(--bg);color:var(--tp);font-size:14px;line-height:1.5;min-height:100vh;padding:0 0 60px}
-    .header{background:var(--surface);border-bottom:1px solid var(--border);padding:24px 40px 20px}
+
+    .loading-screen{position:fixed;inset:0;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:999;gap:16px}
+    .loading-spinner{width:36px;height:36px;border:3px solid var(--border);border-top-color:#185FA5;border-radius:50%;animation:spin .8s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .loading-text{font-size:14px;color:var(--ts)}
+    .loading-sub{font-size:12px;color:var(--tm)}
+
+    .header{background:var(--surface);border-bottom:1px solid var(--border);padding:20px 40px 18px}
+    .header-inner{display:flex;align-items:flex-start;justify-content:space-between;gap:20px}
+    .header-left{flex:1;min-width:0}
+    .header-logo{flex-shrink:0;display:flex;align-items:center}
+    .header-logo img{height:44px;width:auto;object-fit:contain}
     .header-ey{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--tm);margin-bottom:5px}
     .header-ti{font-family:var(--fd);font-size:22px;font-weight:700;color:var(--tp);letter-spacing:-.02em;margin-bottom:4px}
-    .header-me{font-size:12px;color:var(--tm);display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+    .header-me{font-size:12px;color:var(--tm);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
     .header-me span{display:flex;align-items:center;gap:4px}
     .dotm{width:5px;height:5px;border-radius:50%;background:var(--tm)}
+    .header-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+    .hdr-btn{font-size:11px;font-family:var(--fb);background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:5px 12px;cursor:pointer;display:flex;align-items:center;gap:5px;color:var(--ts);white-space:nowrap}
+    .hdr-btn:hover{background:var(--bg);border-color:#185FA5;color:#185FA5}
+    .hdr-btn.primary{background:#185FA5;color:#fff;border-color:#185FA5}
+    .hdr-btn.primary:hover{background:#0C447C}
     .container{max-width:1080px;margin:0 auto;padding:0 40px}
 
-    /* FORECAST BANNER */
     .fc-banner{background:var(--fc-bg);border:1px solid var(--fc-bd);border-radius:var(--rmd);padding:18px 22px;margin:24px 0 18px;display:flex;align-items:center;justify-content:space-between;gap:16px}
     .fc-banner-left .fc-eyebrow{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--fc-sub);margin-bottom:4px}
     .fc-banner-left .fc-title{font-size:14px;font-weight:500;color:var(--fc)}
@@ -38,14 +53,12 @@
     .fc-banner-acv{font-family:var(--fd);font-size:28px;font-weight:700;color:var(--fc)}
     .fc-banner-acv-label{font-size:11px;color:var(--fc-sub)}
 
-    /* METRICS */
     .metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin-bottom:22px}
     .metric{background:var(--surface);border:1px solid var(--border);border-radius:var(--rmd);padding:14px 16px}
     .metric-label{font-size:11px;font-weight:500;color:var(--tm);text-transform:uppercase;letter-spacing:.05em;margin-bottom:7px}
     .metric-value{font-family:var(--fd);font-size:21px;font-weight:700;letter-spacing:-.02em}
     .metric-sub{font-size:11px;color:var(--tm);margin-top:2px}
 
-    /* CHARTS */
     .charts-sec{margin-bottom:26px}
     .charts-sec-title{font-size:13px;font-weight:500;color:var(--ts);margin-bottom:10px}
     .legend-row{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:14px;font-size:12px;color:var(--ts)}
@@ -67,7 +80,6 @@
     .etapa-sv{font-weight:500;color:var(--tp)}
     .divider{border:none;border-top:1px solid var(--border);margin:24px 0}
 
-    /* CLUSTER */
     .cluster{margin-bottom:28px}
     .cluster-header{display:flex;align-items:center;gap:9px;padding:9px 14px;border-radius:var(--rm);margin-bottom:10px}
     .cluster-header.fc  {background:var(--fc-bg);border:1px solid var(--fc-bd)}
@@ -90,7 +102,6 @@
     .warm .cluster-stats{color:var(--warm)}
     .cold .cluster-stats{color:var(--cold)}
 
-    /* MULTI-SELECT FILTERS */
     .filters-row{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:10px;align-items:center}
     .filter-group{position:relative}
     .filter-btn{font-size:11px;font-family:var(--fb);color:var(--ts);background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:4px 10px;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:4px}
@@ -98,7 +109,7 @@
     .filter-btn.active{border-color:#185FA5;color:#185FA5;background:#EEF5FD}
     .filter-btn .f-arrow{font-size:9px;transition:transform .15s}
     .filter-btn.open .f-arrow{transform:rotate(180deg)}
-    .filter-dropdown{display:none;position:absolute;top:calc(100% + 4px);left:0;background:var(--surface);border:1px solid var(--border);border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,.12);z-index:300;min-width:190px;padding:6px 0}
+    .filter-dropdown{display:none;position:absolute;top:calc(100% + 4px);left:0;background:var(--surface);border:1px solid var(--border);border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,.12);z-index:300;min-width:200px;padding:6px 0}
     .filter-dropdown.open{display:block}
     .filter-search{width:calc(100% - 16px);margin:4px 8px 6px;padding:4px 8px;font-size:11px;font-family:var(--fb);border:1px solid var(--border);border-radius:5px;outline:none}
     .filter-option{display:flex;align-items:center;gap:8px;padding:5px 12px;font-size:12px;color:var(--tp);cursor:pointer}
@@ -111,7 +122,6 @@
     .sort-btn.active{border-color:#185FA5;color:#185FA5;background:#EEF5FD}
     .filter-reset-all{font-size:11px;color:var(--tm);background:none;border:none;cursor:pointer;text-decoration:underline;padding:4px}
 
-    /* TABLE */
     .table-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--rmd);overflow:hidden}
     table{width:100%;border-collapse:collapse;font-size:12px}
     thead th{padding:8px 11px;text-align:left;font-size:10px;font-weight:600;color:var(--tm);text-transform:uppercase;letter-spacing:.05em;background:#FAFAF8;border-bottom:1px solid var(--border);white-space:nowrap}
@@ -121,7 +131,6 @@
     tbody td{padding:9px 11px;color:var(--tp);vertical-align:top}
     td.acv{font-weight:600;white-space:nowrap}
 
-    /* BADGES & CHIPS */
     .badge{display:inline-block;font-size:10px;font-weight:600;padding:2px 7px;border-radius:20px;white-space:nowrap;cursor:pointer}
     .badge:hover{opacity:.8}
     .badge-neg {background:#EEF5FD;color:#1A5FA8;border:1px solid #B3D0F0}
@@ -133,18 +142,18 @@
     .s-escola   {background:#FDF6E7;color:#854F0B}
     .s-interno  {background:#EEEDFE;color:#3C3489}
     .s-forecast {background:#EAF3DE;color:#27500A;border:.5px solid #C0DD97;font-weight:600}
-
-    /* INLINE EDITOR (etapa/status) */
+    .s-bloqueada{background:#FCEBEB;color:#791F1F}
     .inline-select{font-size:10px;font-family:var(--fb);border:1px solid #185FA5;border-radius:4px;padding:2px 5px;cursor:pointer;outline:none;display:none}
 
-    /* ESCOLA */
     .escola-name{font-size:12px;font-weight:500;line-height:1.4}
     .resp{display:flex;flex-wrap:wrap;gap:3px;margin-top:4px}
     .resp-chip{background:#F1EFE8;border-radius:4px;padding:2px 5px;font-size:10px;color:#5F5E5A;white-space:nowrap}
     .resp-chip.warn{background:#FDF6E7;color:#A06000}
 
-    /* ACAO */
-    .acao-cell{min-width:180px}
+    /* ACAO CELL */
+    .acao-cell{min-width:200px}
+    .acao-current-wrap{margin-bottom:4px}
+    .acao-label{font-size:10px;font-weight:600;color:var(--tm);text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px}
     .acao-text{font-size:12px;color:var(--ts);line-height:1.45}
     .acao-text.risk{color:#791F1F;font-weight:500}
     .acao-text.warning{color:#633806;font-weight:500}
@@ -161,7 +170,18 @@
     .hist-lbl{font-size:10px;font-weight:600;color:var(--tm);text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px}
     .hist-txt{font-size:11px;color:var(--ts);line-height:1.4}
 
-    /* MOVE */
+    /* NEW ACTION */
+    .new-acao-block{display:none;margin-top:8px;border-top:.5px solid var(--fc-bd);padding-top:8px;background:#F6FBF0;border-radius:4px;padding:8px}
+    .new-acao-block.open{display:block}
+    .new-acao-col-label{font-size:10px;font-weight:600;color:var(--fc-sub);margin-bottom:4px}
+    .new-acao-col-input{width:100%;font-size:11px;font-family:var(--fb);border:1px solid var(--fc-bd);border-radius:4px;padding:3px 7px;outline:none;background:#fff;color:var(--tp);margin-bottom:6px}
+    .new-acao-ta{width:100%;font-size:12px;font-family:var(--fb);color:var(--tp);background:#fff;border:1px solid var(--fc-bd);border-radius:4px;padding:4px;resize:vertical;min-height:38px;outline:none;margin-bottom:6px}
+    .new-acao-actions{display:flex;gap:6px}
+    .new-acao-save{font-size:11px;font-family:var(--fb);color:#fff;background:var(--fc);border:none;border-radius:4px;padding:3px 10px;cursor:pointer}
+    .new-acao-cancel{font-size:11px;font-family:var(--fb);color:var(--ts);background:none;border:1px solid var(--border);border-radius:4px;padding:3px 8px;cursor:pointer}
+    .plus-btn{font-size:10px;color:var(--fc-sub);background:none;border:1px solid var(--fc-bd);border-radius:4px;cursor:pointer;padding:2px 7px;white-space:nowrap}
+    .plus-btn:hover{background:var(--fc-bg);color:var(--fc)}
+
     .move-cell{width:26px;text-align:center;vertical-align:middle;position:relative}
     .move-btn{background:none;border:1px solid var(--border);border-radius:5px;cursor:pointer;padding:2px 5px;font-size:11px;color:var(--tm);line-height:1}
     .move-btn:hover{border-color:#185FA5;color:#185FA5;background:#EEF5FD}
@@ -172,12 +192,12 @@
     .move-option:hover{background:var(--bg)}
     .move-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
 
-    /* STATUS POPUP */
-    .status-popup-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:500;align-items:center;justify-content:center}
-    .status-popup-overlay.open{display:flex}
-    .status-popup{background:var(--surface);border-radius:var(--rmd);padding:20px 22px;min-width:300px;box-shadow:0 8px 32px rgba(0,0,0,.18)}
-    .status-popup-ti{font-size:14px;font-weight:600;color:var(--tp);margin-bottom:4px}
-    .status-popup-sub{font-size:12px;color:var(--ts);margin-bottom:16px}
+    /* POPUPS */
+    .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:500;align-items:center;justify-content:center}
+    .overlay.open{display:flex}
+    .popup{background:var(--surface);border-radius:var(--rmd);padding:20px 22px;min-width:300px;box-shadow:0 8px 32px rgba(0,0,0,.18)}
+    .popup-ti{font-size:14px;font-weight:600;color:var(--tp);margin-bottom:4px}
+    .popup-sub{font-size:12px;color:var(--ts);margin-bottom:16px}
     .status-options{display:flex;flex-direction:column;gap:8px;margin-bottom:18px}
     .status-opt{display:flex;align-items:center;gap:10px;padding:9px 12px;border:1px solid var(--border);border-radius:var(--rm);cursor:pointer;font-size:13px;color:var(--tp)}
     .status-opt:hover{border-color:#185FA5;background:#EEF5FD}
@@ -187,9 +207,14 @@
     .popup-cancel{font-size:12px;font-family:var(--fb);color:var(--ts);background:none;border:1px solid var(--border);border-radius:6px;padding:6px 14px;cursor:pointer}
     .popup-confirm{font-size:12px;font-family:var(--fb);color:#fff;background:#185FA5;border:none;border-radius:6px;padding:6px 14px;cursor:pointer}
 
+    /* EXPORT */
+    .export-info{font-size:12px;color:var(--ts);margin-bottom:14px;line-height:1.6}
+    .export-steps{margin:10px 0 16px;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+    .export-steps li{display:flex;gap:8px;font-size:12px;color:var(--ts)}
+    .export-steps li span.step-num{background:#185FA5;color:#fff;border-radius:50%;width:18px;height:18px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;flex-shrink:0;margin-top:1px}
+
     @keyframes flash{0%{background:#FFFDE0}100%{background:transparent}}
     .row-flash{animation:flash .6s ease}
-    .fc-tr{background:#F6FBF0}
     .footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--border);font-size:11px;color:var(--tm);display:flex;justify-content:space-between}
     @media(max-width:700px){
       .header{padding:18px}.container{padding:0 16px}
@@ -201,64 +226,91 @@
 </head>
 <body>
 
-<!-- STATUS MOVE POPUP -->
-<div class="status-popup-overlay" id="statusPopup">
-  <div class="status-popup">
-    <div class="status-popup-ti">Mover escola</div>
-    <div class="status-popup-sub" id="popupSub">Selecione o novo status</div>
+<div class="loading-screen" id="loadingScreen">
+  <div class="loading-spinner"></div>
+  <div class="loading-text">Carregando dados da planilha...</div>
+  <div class="loading-sub">Conectando ao Google Sheets</div>
+</div>
+
+<!-- MOVE POPUP -->
+<div class="overlay" id="statusPopup">
+  <div class="popup">
+    <div class="popup-ti">Mover escola</div>
+    <div class="popup-sub" id="popupSub"></div>
     <div class="status-options">
-      <div class="status-opt" data-status="Forecast da semana" onclick="selectPopupStatus(this)">
-        <span class="status-opt-dot" style="background:#1D9E75"></span>Forecast da semana
-      </div>
-      <div class="status-opt" data-status="Aguardando ação interna" onclick="selectPopupStatus(this)">
-        <span class="status-opt-dot" style="background:#534AB7"></span>Aguardando ação interna
-      </div>
-      <div class="status-opt" data-status="Aguardando retorno da escola" onclick="selectPopupStatus(this)">
-        <span class="status-opt-dot" style="background:#EF9F27"></span>Aguardando retorno da escola
-      </div>
+      <div class="status-opt" data-status="Forecast da semana" onclick="selectPopupStatus(this)"><span class="status-opt-dot" style="background:#1D9E75"></span>Forecast da semana</div>
+      <div class="status-opt" data-status="Aguardando ação interna" onclick="selectPopupStatus(this)"><span class="status-opt-dot" style="background:#534AB7"></span>Aguardando ação interna</div>
+      <div class="status-opt" data-status="Aguardando retorno da escola" onclick="selectPopupStatus(this)"><span class="status-opt-dot" style="background:#EF9F27"></span>Aguardando retorno da escola</div>
     </div>
     <div class="popup-actions">
-      <button class="popup-cancel" onclick="closePopup()">Cancelar</button>
+      <button class="popup-cancel" onclick="closePopup('statusPopup')">Cancelar</button>
       <button class="popup-confirm" onclick="confirmMove()">Confirmar</button>
+    </div>
+  </div>
+</div>
+
+<!-- EXPORT POPUP -->
+<div class="overlay" id="exportPopup">
+  <div class="popup" style="min-width:380px;max-width:480px">
+    <div class="popup-ti">📥 Exportar planilha atualizada</div>
+    <div class="export-info">O arquivo CSV vai conter <strong>todas as escolas</strong> com as alterações que você fez nesta sessão — clusters, status, etapas e ações novas.</div>
+    <ul class="export-steps">
+      <li><span class="step-num">1</span>Clique em <strong>Baixar CSV</strong> abaixo</li>
+      <li><span class="step-num">2</span>Abra o Google Sheets → selecione a aba <strong>[Renovação CSP] Prioridade time Igor Q2 V3</strong></li>
+      <li><span class="step-num">3</span>Clique em <strong>Arquivo → Importar</strong></li>
+      <li><span class="step-num">4</span>Selecione o arquivo baixado → escolha <strong>"Substituir planilha atual"</strong></li>
+      <li><span class="step-num">5</span>Clique em <strong>Importar dados</strong> — pronto!</li>
+    </ul>
+    <div class="popup-actions">
+      <button class="popup-cancel" onclick="closePopup('exportPopup')">Fechar</button>
+      <button class="popup-confirm" onclick="doExport()">⬇ Baixar CSV</button>
     </div>
   </div>
 </div>
 
 <div class="header">
   <div class="container">
-    <div class="header-ey">OKR 1 · Sucesso Pedagógico — Arco Educação</div>
-    <div class="header-ti">OKR 1: Renovação de faturamento prioritário — Time Igor CSP SAS</div>
-    <div class="header-me">
-      <span><div class="dotm"></div> Atualizado em 22/06/2025</span>
-      <span><div class="dotm"></div> 20 oportunidades monitoradas</span>
+    <div class="header-inner">
+      <div class="header-left">
+        <div class="header-ey">OKR 1 · Sucesso Pedagógico — Arco Educação</div>
+        <div class="header-ti">OKR 1: Renovação de faturamento prioritário — Time Igor CSP SAS</div>
+        <div class="header-me">
+          <span><div class="dotm"></div><span id="lastUpdate">Carregando...</span></span>
+          <span><div class="dotm"></div><span id="totalCount">—</span> oportunidades</span>
+        </div>
+        <div class="header-actions">
+          <button class="hdr-btn" onclick="loadData()">↻ Atualizar</button>
+          <button class="hdr-btn primary" onclick="openPopup('exportPopup')">📥 Exportar planilha</button>
+        </div>
+      </div>
+      <div class="header-logo">
+        <img src="logo.png" alt="SAS Educação" onerror="this.style.display='none'">
+      </div>
     </div>
   </div>
 </div>
 
-<div class="container">
+<div class="container" id="mainContent" style="display:none">
 
-  <!-- FORECAST BANNER -->
   <div class="fc-banner">
     <div class="fc-banner-left">
       <div class="fc-eyebrow">🎯 Forecast da semana</div>
       <div class="fc-title">Escolas com compromisso de fechamento esta semana</div>
-      <div class="fc-sub" id="fcBannerSub">5 escolas</div>
+      <div class="fc-sub" id="fcBannerSub">—</div>
     </div>
     <div class="fc-banner-right">
-      <div class="fc-banner-acv" id="fcBannerAcv">R$ 4,8M</div>
+      <div class="fc-banner-acv" id="fcBannerAcv">—</div>
       <div class="fc-banner-acv-label">ACV em forecast de renovação</div>
     </div>
   </div>
 
-  <!-- METRICS -->
-  <div class="metrics-grid" id="metricsGrid">
-    <div class="metric"><div class="metric-label">ACV total monitorado</div><div class="metric-value" id="mTotal">R$ 19,2M</div><div class="metric-sub" id="mTotalSub">20 oportunidades</div></div>
+  <div class="metrics-grid">
+    <div class="metric"><div class="metric-label">ACV total monitorado</div><div class="metric-value" id="mTotal">—</div><div class="metric-sub" id="mTotalSub">—</div></div>
     <div class="metric"><div class="metric-label">Temperatura quente</div><div class="metric-value" style="color:var(--hot)" id="mHot">—</div><div class="metric-sub" id="mHotSub">—</div></div>
     <div class="metric"><div class="metric-label">Temperatura morna</div><div class="metric-value" style="color:var(--warm)" id="mWarm">—</div><div class="metric-sub" id="mWarmSub">—</div></div>
     <div class="metric"><div class="metric-label">Temperatura fria</div><div class="metric-value" style="color:var(--cold)" id="mCold">—</div><div class="metric-sub" id="mColdSub">—</div></div>
   </div>
 
-  <!-- CHARTS -->
   <div class="charts-sec">
     <div class="charts-sec-title">Distribuição por etapa de funil e status</div>
     <div class="legend-row">
@@ -270,477 +322,407 @@
       <span class="legend-item"><span class="legend-dot" style="background:#534AB7"></span>Ação interna</span>
     </div>
     <div class="charts-grid">
-      <div class="chart-wrap"><div class="chart-label">Escolas por etapa</div><div class="chart-cw"><canvas id="cFunil" role="img" aria-label="Gráfico de etapas">Negociação 16, Diagnóstico 2, Elaboração 2.</canvas></div></div>
-      <div class="chart-wrap"><div class="chart-label">Status por etapa (%)</div><div class="chart-cw"><canvas id="cStatus" role="img" aria-label="Gráfico de status">Ver dados na tabela.</canvas></div></div>
+      <div class="chart-wrap"><div class="chart-label">Escolas por etapa</div><div class="chart-cw"><canvas id="cFunil" role="img" aria-label="Gráfico de etapas">Ver tabelas abaixo.</canvas></div></div>
+      <div class="chart-wrap"><div class="chart-label">Status por etapa (%)</div><div class="chart-cw"><canvas id="cStatus" role="img" aria-label="Gráfico de status">Ver tabelas abaixo.</canvas></div></div>
     </div>
     <div class="etapa-cards" id="etapaCards"></div>
   </div>
 
   <hr class="divider">
 
-  <!-- CLUSTERS -->
-  <div id="cluster-fc"  class="cluster"></div>
-  <div id="cluster-hot" class="cluster"></div>
-  <div id="cluster-warm"class="cluster"></div>
-  <div id="cluster-cold"class="cluster"></div>
+  <div id="cluster-fc"   class="cluster"></div>
+  <div id="cluster-hot"  class="cluster"></div>
+  <div id="cluster-warm" class="cluster"></div>
+  <div id="cluster-cold" class="cluster"></div>
 
   <div class="footer">
     <span>OKR 1 — Renovação de Faturamento Prioritário · Arco Educação</span>
-    <span>Atualizado semanalmente pelo gestor de Sucesso Pedagógico</span>
+    <span>Dados carregados diretamente do Google Sheets</span>
   </div>
 </div>
 
 <script>
-/* ── DATA ── */
-const SCHOOLS = [
-  {id:'s1', cluster:'fc',   escola:'SS Sacramento · Bonfim/BA',          lider:'Mayara Gonzalez De Sa Lobato',           cse:'Jessica De Freitas Correa',                 consultor:'Halyson Dantas',     acv:1446559,  acvL:'R$ 1,4M', etapa:'Negociação',        etapaC:'badge-neg',  status:'Forecast da semana',          statusC:'s-forecast', acaoAtual:'Fazer PIC; Halyson manda pra assinatura semana de 22/06',                                               acaoC:'',       h08:'Proposta construída - agenda à tarde', h15:'Proposta aceita para 2 anos; PIC pendente',          a15:'CSE confeccionar o PIC.'},
-  {id:'s2', cluster:'fc',   escola:'MJ Lopes · Maceió/AL',               lider:'Ana Jessica Araujo Ibiapina',            cse:'Ana Carolina Laudares Silva Mireles Coelho', consultor:'Erika Silva',        acv:1282969,  acvL:'R$ 1,3M', etapa:'Negociação',        etapaC:'badge-neg',  status:'Forecast da semana',          statusC:'s-forecast', acaoAtual:'Previsão de assinatura semana de 22/06; aditivo/contrato 2027; PIC subido',                              acaoC:'',       h08:'Proposta enviada no Arco Day',        h15:'Mantenedor insatisfeito; avaliando concorrência',    a15:'Pedir ajuda à liderança de CSE (Najéss).'},
-  {id:'s3', cluster:'fc',   escola:'São Judas Tadeu · Maceió/AL',        lider:'Ana Jessica Araujo Ibiapina',            cse:'Kamila Pereira Buriti Dantas',               consultor:'Luciano Silva',      acv:929628,   acvL:'R$ 930K', etapa:'Negociação',        etapaC:'badge-neg',  status:'Forecast da semana',          statusC:'s-forecast', acaoAtual:'Contrato na mão da escola; Kamila à frente com Ernesto (mantenedor)',                                     acaoC:'',       h08:'Proposta enviada',                    h15:'Restrições de prazo; sensibilidade à taxa; concorrência', a15:'CSE ligar para aprofundamento.'},
-  {id:'s4', cluster:'fc',   escola:'Sta Doroteia · Manaus/AM',           lider:'Mayara Gonzalez De Sa Lobato',           cse:'Bruna Peixoto de Araujo',                   consultor:'Assilon Netto',      acv:851761,   acvL:'R$ 852K', etapa:'Negociação',        etapaC:'badge-neg',  status:'Forecast da semana',          statusC:'s-forecast', acaoAtual:'Aguardando aprovação de contratos para assinatura; PIC feito',                                            acaoC:'',       h08:'Proposta marcada para amanhã (09)',    h15:'Mantenedora rejeita acima de 6%; nova oferta enviada',   a15:'Assilon enviar proposta por e-mail para a Irmã.'},
-  {id:'s5', cluster:'fc',   escola:'Instituto Castro · Aquiraz/CE',      lider:'Marcus Casanova Nogueira Junior',        cse:'Mayara Gama de Paiva',                      consultor:'Nayara Antunes',     acv:310520,   acvL:'R$ 311K', etapa:'Negociação',        etapaC:'badge-neg',  status:'Forecast da semana',          statusC:'s-forecast', acaoAtual:'Ajustando intercompany para subir PIC; proposta aceita',                                                  acaoC:'',       h08:'—',                                   h15:'—',                                                      a15:'—'},
-  {id:'s6', cluster:'hot',  escola:'Colégio Santa Doroteia · BH/MG',     lider:'Mayara Gonzalez De Sa Lobato',           cse:'Bruna Peixoto de Araujo',                   consultor:'Assilon Netto',      acv:3593613,  acvL:'R$ 3,6M', etapa:'Negociação',        etapaC:'badge-neg',  status:'Aguardando retorno da escola', statusC:'s-escola',   acaoAtual:'Terminar de ajustar simulador e subir PIC',                                                               acaoC:'',       h08:'Proposta apresentada; retorno até 22/06', h15:'Retorno previsto 22/06; subir PIC preventivamente',  a15:'CSE e Assilon subirem o PIC.'},
-  {id:'s7', cluster:'hot',  escola:'Colégio NSra das Neves · Natal/RN',  lider:'Mayara Gonzalez De Sa Lobato',           cse:'Jessica De Freitas Correa',                 consultor:'Halyson Dantas',     acv:2637749,  acvL:'R$ 2,6M', etapa:'Negociação',        etapaC:'badge-neg',  status:'Aguardando retorno da escola', statusC:'s-escola',   acaoAtual:'Visita Igor + Halyson 19/06 — fechar reajuste e ampliação infantil',                                     acaoC:'',       h08:'Apresentação na visita junho',        h15:'Negociação ampliação infantil; reajuste 9,5%→8,5%',     a15:'Igor e Halyson realizarem visita presencial 19/06.'},
-  {id:'s8', cluster:'hot',  escola:'Educandário NSra das Vitórias · Açu',lider:'Mayara Gonzalez De Sa Lobato',           cse:'Jessica De Freitas Correa',                 consultor:'Halyson Dantas',     acv:1448277,  acvL:'R$ 1,4M', etapa:'Negociação',        etapaC:'badge-neg',  status:'Aguardando ação interna',      statusC:'s-interno',  acaoAtual:'Visita Igor + Halyson 19/06 — fechar reajuste e ampliação infantil',                                     acaoC:'',       h08:'Apresentação na visita junho',        h15:'Negociação ampliação infantil; reajuste em andamento',   a15:'Igor e Halyson realizarem visita presencial 19/06.'},
-  {id:'s9', cluster:'hot',  escola:'SS Sacramento · Salvador/BA',        lider:'Mayara Gonzalez De Sa Lobato',           cse:'Jessica De Freitas Correa',                 consultor:'Halyson Dantas',     acv:603417,   acvL:'R$ 603K', etapa:'Negociação',        etapaC:'badge-neg',  status:'Aguardando retorno da escola', statusC:'s-escola',   acaoAtual:'Aguardar retorno até 15/06',                                                                              acaoC:'',       h08:'Proposta construída - agenda à tarde',h15:'Finalizada; aguardando retorno sem riscos',             a15:'Acompanhar retorno até 15/06.'},
-  {id:'s10',cluster:'hot',  escola:'Batista Maranhense · São Luís/MA',   lider:'Mayara Gonzalez De Sa Lobato',           cse:'Halyson Rodrigo de Araujo Dantas',          consultor:'Erika Silva',        acv:566103,   acvL:'R$ 566K', etapa:'Negociação',        etapaC:'badge-neg',  status:'Aguardando retorno da escola', statusC:'s-escola',   acaoAtual:'Resposta final 22/06; chances altas; May double check; PIC com Igor e Erika',                            acaoC:'',       h08:'Proposta enviada',                    h15:'Contraproposta redução 8%→3%; nova oferta em formulação', a15:'Erika tocar reunião de contraproposta 15/06.'},
-  {id:'s11',cluster:'hot',  escola:'Podion DF + Fund. II · Brasília/DF', lider:'Marcelo De Paula',                       cse:'Sem CSE',                                   consultor:'Gilberto Filho',     acv:1529370,  acvL:'R$ 1,5M', etapa:'Negociação',        etapaC:'badge-neg',  status:'Aguardando ação interna',      statusC:'s-interno',  acaoAtual:'Fazer minuta; valores finais enviados; contrato indexado',                                                acaoC:'warning',h08:'Aguardando retorno sobre simulador',  h15:'Alinhamento feito; simulador pendente do Marcelo',       a15:'Montar simulador e proposta (cobrar Marcelo).'},
-  {id:'s12',cluster:'hot',  escola:'Colégio Motiva · João Pessoa/PB',    lider:'Lucas Faleiros',                         cse:'Aline Evelyn De Oliveira Tranquilli',       consultor:'Gilberto Filho',     acv:111530,   acvL:'R$ 112K', etapa:'Negociação',        etapaC:'badge-neg',  status:'Aguardando ação interna',      statusC:'s-interno',  acaoAtual:'Finalizar PIC; problema com simulador de Redes; jornada assistida não resolveu',                         acaoC:'',       h08:'Proposta enviada',                    h15:'Proposta enviada; resposta aguardada 12/06',             a15:'Fup com a escola; CSE criar PIC semana 15/06.'},
-  {id:'s13',cluster:'warm', escola:'NSra de Lourdes · João Pessoa/PB',   lider:'Mayara Gonzalez De Sa Lobato',           cse:'Tatiane Malheiros Da Silva',                consultor:'Halyson Dantas',     acv:662863,   acvL:'R$ 663K', etapa:'Elaboração de proposta',etapaC:'badge-elab',status:'Aguardando ação interna',      statusC:'s-interno',  acaoAtual:'Proposta pronta; Halyson agendar reunião de apresentação',                                                acaoC:'',       h08:'Aguardando agendamento com a escola', h15:'Proposta elaborada; agendar reunião',                    a15:'Halyson conversar com a escola.'},
-  {id:'s14',cluster:'cold', escola:'Livraria Campos · Fortaleza/CE',     lider:'Marcus Casanova Nogueira Junior',        cse:'Mayara Gama de Paiva',                      consultor:'Nayara Antunes',     acv:1043303,  acvL:'R$ 1,0M', etapa:'Negociação',        etapaC:'badge-lost', status:'Aguardando retorno da escola', statusC:'s-escola',   acaoAtual:'Reunião adiada para final de junho; sem tempo hábil para reverter no Q2',                                acaoC:'risk',   h08:'Cliente detratora; reunião com Moriggi 16/06',h15:'Cliente detrator; reunião de negociação agendada',  a15:'Realizar reunião com Moriggi 16/06.'},
-  {id:'s15',cluster:'cold', escola:'Oficina Cursos · Salvador/BA',       lider:'Lucas Faleiros',                         cse:'Aline Evelyn De Oliveira Tranquilli',       consultor:'Nayara Antunes',     acv:898154,   acvL:'R$ 898K', etapa:'Negociação',        etapaC:'badge-neg',  status:'Aguardando retorno da escola', statusC:'s-escola',   acaoAtual:'Subir para liderança sênior (Moriggi); escola não responde',                                              acaoC:'risk',   h08:'Escola devia dar retorno 05/06',      h15:'Escola não responsiva; novas tentativas',                a15:'Igor ligar e deixar PIC pronto.'},
-  {id:'s16',cluster:'cold', escola:'CLFS Livros · Salvador/BA',          lider:'Marcus Casanova Nogueira Junior',        cse:'Mayara Pessoa Da Silva',                    consultor:'Francisco Wellington',acv:996327,   acvL:'R$ 996K', etapa:'Diagnóstico',       etapaC:'badge-diag', status:'Aguardando retorno da escola', statusC:'s-escola',   acaoAtual:'Impasses internos + desclassificação SAS Enem; fechamento complexo',                                      acaoC:'risk',   h08:'Patrocínio pendente - Caso Crítico',  h15:'NF travando pagamento patrocínio',                       a15:'Acompanhar NF para destravar pagamento.'},
-  {id:'s17',cluster:'cold', escola:'Cristo Rei · Maceió/AL',             lider:'Ana Jessica Araujo Ibiapina',            cse:'Kamila Pereira Buriti Dantas',               consultor:'Luciano Silva',      acv:519071,   acvL:'R$ 519K', etapa:'Negociação',        etapaC:'badge-neg',  status:'Aguardando retorno da escola', statusC:'s-escola',   acaoAtual:'Igor ligar para Henrique e Jorge Henrique; mantenedor e pais não responsivos',                            acaoC:'risk',   h08:'Proposta sendo construída',           h15:'Mantenedor parou de responder',                          a15:'Luciano tentar novo contato.'},
-  {id:'s18',cluster:'cold', escola:'Monaliza Cavalcante · Tianguá/CE',   lider:'Mayara Gonzalez De Sa Lobato',           cse:'Halyson Dantas',                            consultor:'Nayara Antunes',     acv:731576,   acvL:'R$ 732K', etapa:'Elaboração de proposta',etapaC:'badge-elab',status:'Aguardando ação interna',      statusC:'s-interno',  acaoAtual:'Formalizar proposta combo Arco; negociação fria',                                                         acaoC:'',       h08:'Problemas de saúde do mantenedor',    h15:'—',                                                      a15:'—'},
-  {id:'s19',cluster:'cold', escola:'Diocesano Parnaíba · PI',            lider:'Mayara Gonzalez De Sa Lobato',           cse:'Tatiane Malheiros Da Silva',                consultor:'Erika Silva',        acv:215237,   acvL:'R$ 215K', etapa:'Negociação',        etapaC:'badge-neg',  status:'Aguardando retorno da escola', statusC:'s-escola',   acaoAtual:'Dívida Isaac resolvida; proposta enviada; análise ACODINE — não vem no Q2',                              acaoC:'',       h08:'Dívida com Isaac - Caso crítico',     h15:'Bloqueado por caso crítico dívida Isaac',                a15:'Verificar resolução e alinhar proposta.'},
-  {id:'s20',cluster:'cold', escola:'Sta Doroteia · Belém/PA',            lider:'Mayara Gonzalez De Sa Lobato',           cse:'Bruna Peixoto de Araujo',                   consultor:'Assilon Netto',      acv:195850,   acvL:'R$ 196K', etapa:'Diagnóstico',       etapaC:'badge-diag', status:'Aguardando ação interna',      statusC:'s-interno',  acaoAtual:'Despriorizado; retomar após BH e Manaus',                                                                 acaoC:'',       h08:'Não apresentamos a proposta',         h15:'Proposta pausada por falecimento da mantenedora',        a15:'Retomar essa semana.'},
-];
+const SHEET_ID  = '18nCf98_ok63uKM3x35KbZKJ-8oRpFtPoEO14ERIwUS4';
+const SHEET_TAB = '[Renovação CSP] Prioridade time Igor Q2 V3';
 
-const CLUSTERS  = ['fc','hot','warm','cold'];
-const C_LABELS  = {fc:'Forecast da semana',hot:'Quente',warm:'Morna',cold:'Fria'};
-const C_COLORS  = {fc:'#1D9E75',hot:'#C94A22',warm:'#A06000',cold:'#1A5FA8'};
-const STATUS_CLASSES = {'Forecast da semana':'s-forecast','Aguardando ação interna':'s-interno','Aguardando retorno da escola':'s-escola','Bloqueada por caso crítico':'s-bloqueada'};
+const CLUSTERS     = ['fc','hot','warm','cold'];
+const C_LABELS     = {fc:'Forecast da semana',hot:'Quente',warm:'Morna',cold:'Fria'};
+const C_COLORS     = {fc:'#1D9E75',hot:'#C94A22',warm:'#A06000',cold:'#1A5FA8'};
+const TEMP_MAP     = {'Quente':'hot','Morna':'warm','Fria':'cold'};
+const STATUS_CLASS = {'Forecast da semana':'s-forecast','Aguardando ação interna':'s-interno','Aguardando retorno da escola':'s-escola','Bloqueada por caso crítico':'s-bloqueada'};
+const ETAPA_CLASS  = {'Negociação':'badge-neg','Elaboração de proposta':'badge-elab','Diagnóstico':'badge-diag','Fechado e perdido':'badge-lost'};
 const ETAPA_OPTIONS  = ['Negociação','Elaboração de proposta','Diagnóstico','Fechado e perdido'];
 const STATUS_OPTIONS = ['Forecast da semana','Aguardando ação interna','Aguardando retorno da escola','Bloqueada por caso crítico'];
 
-const acaoEdits  = {};
+let SCHOOLS = [];
+let RAW_HEADERS = []; // original column headers from sheet
+let RAW_ROWS = [];    // original raw rows
+const acaoEdits  = {}; // id -> current acao text
+const newAcoes   = {}; // id -> {colName, text} new action added via +
 const sortState  = {fc:null,hot:null,warm:null,cold:null};
-const filterState= {
-  fc:  {lider:[],cse:[],consultor:[],etapa:[],status:[]},
-  hot: {lider:[],cse:[],consultor:[],etapa:[],status:[]},
-  warm:{lider:[],cse:[],consultor:[],etapa:[],status:[]},
-  cold:{lider:[],cse:[],consultor:[],etapa:[],status:[]},
-};
+const filterState= {fc:{},hot:{},warm:{},cold:{}};
+let pendingMove  = {id:null,toCluster:null};
+let chartFunil=null,chartStatus=null;
 
-let pendingMove = {escola:null, toCluster:null};
+/* ── LOAD ── */
+async function loadData(){
+  document.getElementById('loadingScreen').style.display='flex';
+  document.getElementById('mainContent').style.display='none';
+  try{
+    const url=`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(SHEET_TAB)}`;
+    const res=await fetch(url);
+    const text=await res.text();
+    const json=JSON.parse(text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*)\)/)[1]);
+    parseSheetData(json);
+    document.getElementById('lastUpdate').textContent='Atualizado em '+new Date().toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});
+    document.getElementById('totalCount').textContent=SCHOOLS.length;
+    document.getElementById('loadingScreen').style.display='none';
+    document.getElementById('mainContent').style.display='block';
+    CLUSTERS.forEach(c=>{filterState[c]={lider:[],cse:[],consultor:[],etapa:[],status:[]};renderCluster(c);});
+    recalcDashboard();
+  }catch(e){
+    document.getElementById('loadingScreen').innerHTML=`
+      <div style="text-align:center;max-width:420px;padding:0 20px">
+        <div style="font-size:32px;margin-bottom:12px">⚠️</div>
+        <div style="font-size:15px;font-weight:500;color:#791F1F;margin-bottom:8px">Não foi possível carregar os dados</div>
+        <div style="font-size:13px;color:var(--ts);margin-bottom:20px">Certifique-se de que a planilha está pública ("Qualquer pessoa com o link pode visualizar").</div>
+        <button onclick="loadData()" style="font-size:13px;font-family:var(--fb);color:#fff;background:#185FA5;border:none;border-radius:8px;padding:8px 20px;cursor:pointer">↻ Tentar novamente</button>
+        <div style="font-size:11px;color:var(--tm);margin-top:12px">Erro: ${e.message}</div>
+      </div>`;
+  }
+}
+
+/* ── PARSE ── */
+function parseSheetData(json){
+  const cols=json.table.cols.map(c=>c.label||'');
+  RAW_HEADERS=[...cols];
+
+  const idx=name=>cols.findIndex(c=>c.trim().toLowerCase()===name.trim().toLowerCase());
+  const iEscola=idx('escola'),iConsult=idx('consultor'),iLider=idx('líder cse'),iCSE=idx('cse');
+  const iACV=idx('acv'),iEtapa=idx('etapa funil'),iStatus=idx('status'),iTemp=idx('temperatura');
+
+  // History cols
+  const histCols=[];
+  cols.forEach((label,i)=>{if(label.includes('[Histórico]')||label.includes('[Atual]'))histCols.push({i,label:label.trim()});});
+  histCols.sort((a,b)=>a.i-b.i);
+  const atualCols=histCols.filter(h=>h.label.includes('[Atual]'));
+
+  function cellVal(row,ci){
+    if(ci<0||!row.c||!row.c[ci]||row.c[ci].v===null||row.c[ci].v===undefined)return'';
+    const v=row.c[ci];if(typeof v.v==='number')return v.v;return(v.f||v.v||'').toString().trim();
+  }
+  function parseAcv(raw){if(typeof raw==='number')return raw;return parseFloat(String(raw).replace(/[R$\s.]/g,'').replace(',','.'))||0;}
+
+  SCHOOLS=[];RAW_ROWS=[];
+  json.table.rows.forEach((row,ri)=>{
+    const escola=cellVal(row,iEscola);
+    if(!escola)return;
+    const acv=parseAcv(cellVal(row,iACV));
+    if(acv<=0)return;
+    const status=cellVal(row,iStatus);
+    const temp=cellVal(row,iTemp);
+    const etapa=cellVal(row,iEtapa);
+    let cluster=TEMP_MAP[temp]||'cold';
+    if(status==='Forecast da semana')cluster='fc';
+
+    const acaoAtual=atualCols.length>0?cellVal(row,atualCols[atualCols.length-1].i):'';
+    const histToShow=histCols.filter(h=>!h.label.includes('[Atual]')).map(h=>({label:h.label.replace(/\[Histórico\]\s*/,''),value:cellVal(row,h.i)}));
+    if(atualCols.length>1)atualCols.slice(0,-1).forEach(h=>histToShow.push({label:h.label.replace(/\[Atual\]\s*/,''),value:cellVal(row,h.i)}));
+
+    const lider=cellVal(row,iLider)||'Sem líder';
+    const cse=cellVal(row,iCSE)||'Sem CSE';
+    const consultor=cellVal(row,iConsult);
+    const conName=consultor.includes('@')?consultor.split('@')[0].replace(/[^a-zA-ZÀ-ú]/g,' ').trim():consultor;
+
+    // Store raw row for export
+    const rawRow={};
+    cols.forEach((label,ci)=>{rawRow[label]=cellVal(row,ci);});
+    RAW_ROWS.push({ri,rawRow});
+
+    SCHOOLS.push({id:'s'+ri,cluster,escola:escola.replace(/^\[UNI\]\s*-\s*/,''),lider,cse,consultor:conName||consultor,acv,acvL:fmtAcv(acv),etapa:etapa||'Negociação',etapaC:ETAPA_CLASS[etapa]||'badge-neg',status:status||'Aguardando ação interna',statusC:STATUS_CLASS[status]||'s-interno',acaoAtual:acaoAtual||'—',acaoC:'',history:histToShow,_ri:ri});
+  });
+}
+
+/* ── EXPORT ── */
+function openPopup(id){document.getElementById(id).classList.add('open');}
+function closePopup(id){document.getElementById(id).classList.remove('open');}
+
+function doExport(){
+  // Build CSV with original structure + any edits
+  const headers=[...RAW_HEADERS];
+  // Check if we need to add a new action column
+  const hasNewAcao=Object.values(newAcoes).some(n=>n&&n.colName&&n.text);
+  let newColName='';
+  if(hasNewAcao){
+    // Get the column name from first new action (they should all match if user typed same name)
+    newColName=Object.values(newAcoes).find(n=>n&&n.colName)?.colName||'[Atual] Nova ação';
+    if(!headers.includes(newColName))headers.push(newColName);
+  }
+
+  const rows=SCHOOLS.map(s=>{
+    const raw=RAW_ROWS.find(r=>r.ri===s._ri)?.rawRow||{};
+    const row={};
+    RAW_HEADERS.forEach(h=>{row[h]=raw[h]||'';});
+
+    // Apply edits
+    // Temperature (cluster)
+    const tempReverse={fc:'Quente',hot:'Quente',warm:'Morna',cold:'Fria'};
+    // Find the temperatura column
+    const tempCol=RAW_HEADERS.find(h=>h.toLowerCase()==='temperatura');
+    if(tempCol)row[tempCol]=tempReverse[s.cluster]||row[tempCol];
+
+    // Status
+    const statusCol=RAW_HEADERS.find(h=>h.toLowerCase()==='status');
+    if(statusCol)row[statusCol]=s.status;
+
+    // Etapa
+    const etapaCol=RAW_HEADERS.find(h=>h.toLowerCase()==='etapa funil');
+    if(etapaCol)row[etapaCol]=s.etapa;
+
+    // Acao atual — find last [Atual] column
+    const atualCols=RAW_HEADERS.filter(h=>h.includes('[Atual]'));
+    if(atualCols.length>0){
+      const lastAtual=atualCols[atualCols.length-1];
+      if(acaoEdits[s.id]!==undefined)row[lastAtual]=acaoEdits[s.id];
+    }
+
+    // New action column
+    if(newColName){row[newColName]=newAcoes[s.id]?.text||'';}
+
+    return headers.map(h=>csvCell(row[h]||''));
+  });
+
+  const csv=[headers.map(csvCell).join(','),...rows.map(r=>r.join(','))].join('\n');
+  const blob=new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;a.download='OKR1_Renovacao_'+new Date().toLocaleDateString('pt-BR').replace(/\//g,'-')+'.csv';
+  a.click();URL.revokeObjectURL(url);
+  closePopup('exportPopup');
+}
+
+function csvCell(v){
+  const s=String(v||'');
+  if(s.includes(',')||s.includes('"')||s.includes('\n'))return'"'+s.replace(/"/g,'""')+'"';
+  return s;
+}
 
 /* ── HELPERS ── */
-const fmtAcv = v => v>=1e6 ? 'R$ '+(v/1e6).toFixed(1)+'M' : 'R$ '+(v/1e3).toFixed(0)+'K';
-const safeId = s => s.replace(/[^a-z0-9]/gi,'_');
+const fmtAcv=v=>{if(!v||isNaN(v))return'—';return v>=1e6?'R$ '+(v/1e6).toFixed(1)+'M':'R$ '+(v/1e3).toFixed(0)+'K';};
+function statusColor(s){if(s==='Forecast da semana')return'#1D9E75';if(s==='Aguardando retorno da escola')return'#EF9F27';if(s==='Aguardando ação interna')return'#534AB7';return'#888780';}
 
-/* ── DASHBOARD RECALC ── */
-function recalcDashboard() {
-  const total = SCHOOLS.reduce((s,r)=>s+r.acv,0);
-  const byCluster = c => SCHOOLS.filter(s=>s.cluster===c);
-  const acvSum    = arr => arr.reduce((s,r)=>s+r.acv,0);
-
-  const fcSchools  = byCluster('fc');
-  const hotSchools = byCluster('hot');
-  const warmSchools= byCluster('warm');
-  const coldSchools= byCluster('cold');
-
-  /* banner */
-  const fcAcv = acvSum(fcSchools);
-  document.getElementById('fcBannerAcv').textContent = fmtAcv(fcAcv);
-  document.getElementById('fcBannerSub').textContent = fcSchools.length+' escola'+(fcSchools.length!==1?'s':'');
-
-  /* metric cards */
-  const hotAcv  = acvSum(hotSchools);
-  const warmAcv = acvSum(warmSchools);
-  const coldAcv = acvSum(coldSchools);
-  document.getElementById('mHot').textContent   = fmtAcv(hotAcv);
-  document.getElementById('mHotSub').textContent= hotSchools.length+' escola'+(hotSchools.length!==1?'s':'')+' · '+Math.round(hotAcv/total*100)+'% do total';
-  document.getElementById('mWarm').textContent  = fmtAcv(warmAcv);
-  document.getElementById('mWarmSub').textContent=warmSchools.length+' escola'+(warmSchools.length!==1?'s':'')+' · '+Math.round(warmAcv/total*100)+'% do total';
-  document.getElementById('mCold').textContent  = fmtAcv(coldAcv);
-  document.getElementById('mColdSub').textContent=coldSchools.length+' escola'+(coldSchools.length!==1?'s':'')+' · '+Math.round(coldAcv/total*100)+'% do total';
-
-  /* etapa cards */
-  const etapas = ['Negociação','Elaboração de proposta','Diagnóstico'];
-  const etapaColors = {Negociação:'#185FA5','Elaboração de proposta':'#534AB7','Diagnóstico':'#888780'};
-  const etapaTitleColors = {Negociação:'#0C447C','Elaboração de proposta':'#3C3489','Diagnóstico':'#444441'};
-  let cardsHtml = '';
-  etapas.forEach(et => {
-    const rows = SCHOOLS.filter(s=>s.etapa===et);
-    const etAcv = acvSum(rows);
-    const byStatus = {};
-    rows.forEach(r=>{ byStatus[r.status]=(byStatus[r.status]||0)+r.acv; });
-    const statusRows = Object.entries(byStatus).sort((a,b)=>b[1]-a[1]).map(([st,av])=>`
-      <div class="etapa-sr">
-        <span class="etapa-sl"><span class="etapa-sd" style="background:${statusColor(st)}"></span>${st} (${rows.filter(s=>s.status===st).length})</span>
-        <span class="etapa-sv">${fmtAcv(av)}</span>
-      </div>`).join('');
-    cardsHtml+=`<div class="etapa-card">
-      <div class="etapa-card-ti" style="color:${etapaTitleColors[et]}">${et}</div>
-      <div class="etapa-card-v" style="color:${etapaColors[et]}">${fmtAcv(etAcv)}</div>
-      <div class="etapa-card-s">${rows.length} escolas · ${Math.round(etAcv/total*100)}% do ACV total</div>
-      <div class="etapa-card-d">${statusRows}</div>
-    </div>`;
-  });
-  document.getElementById('etapaCards').innerHTML = cardsHtml;
-
-  /* charts */
+/* ── DASHBOARD ── */
+function recalcDashboard(){
+  const total=SCHOOLS.reduce((s,r)=>s+r.acv,0);
+  const byC=c=>SCHOOLS.filter(s=>s.cluster===c);
+  const acvSum=arr=>arr.reduce((s,r)=>s+r.acv,0);
+  const fcS=byC('fc'),hotS=byC('hot'),warmS=byC('warm'),coldS=byC('cold');
+  document.getElementById('fcBannerAcv').textContent=fmtAcv(acvSum(fcS));
+  document.getElementById('fcBannerSub').textContent=fcS.length+' escola'+(fcS.length!==1?'s':'');
+  document.getElementById('mTotal').textContent=fmtAcv(total);
+  document.getElementById('mTotalSub').textContent=SCHOOLS.length+' oportunidades';
+  [[hotS,'Hot'],[warmS,'Warm'],[coldS,'Cold']].forEach(([arr,k])=>{const av=acvSum(arr);document.getElementById('m'+k).textContent=fmtAcv(av);document.getElementById('m'+k+'Sub').textContent=arr.length+' escola'+(arr.length!==1?'s':'')+' · '+Math.round(total?av/total*100:0)+'% do total';});
+  const etapas=['Negociação','Elaboração de proposta','Diagnóstico'];
+  const etapaColors={Negociação:'#185FA5','Elaboração de proposta':'#534AB7',Diagnóstico:'#888780'};
+  const etapaTitleColors={Negociação:'#0C447C','Elaboração de proposta':'#3C3489',Diagnóstico:'#444441'};
+  document.getElementById('etapaCards').innerHTML=etapas.map(et=>{
+    const rows=SCHOOLS.filter(s=>s.etapa===et);const etAcv=acvSum(rows);
+    const byStatus={};rows.forEach(r=>{byStatus[r.status]=(byStatus[r.status]||0)+r.acv;});
+    const statusRows=Object.entries(byStatus).sort((a,b)=>b[1]-a[1]).map(([st,av])=>`<div class="etapa-sr"><span class="etapa-sl"><span class="etapa-sd" style="background:${statusColor(st)}"></span>${st} (${rows.filter(s=>s.status===st).length})</span><span class="etapa-sv">${fmtAcv(av)}</span></div>`).join('');
+    return`<div class="etapa-card"><div class="etapa-card-ti" style="color:${etapaTitleColors[et]}">${et}</div><div class="etapa-card-v" style="color:${etapaColors[et]}">${fmtAcv(etAcv)}</div><div class="etapa-card-s">${rows.length} escolas · ${Math.round(total?etAcv/total*100:0)}% do ACV total</div><div class="etapa-card-d">${statusRows}</div></div>`;
+  }).join('');
   updateCharts();
 }
 
-function statusColor(s) {
-  if(s==='Forecast da semana') return '#1D9E75';
-  if(s==='Aguardando retorno da escola') return '#EF9F27';
-  if(s==='Aguardando ação interna') return '#534AB7';
-  return '#888780';
-}
-
 /* ── CHARTS ── */
-let chartFunil=null, chartStatus=null;
-const isDark = matchMedia('(prefers-color-scheme: dark)').matches;
-const gc = isDark?'rgba(255,255,255,.08)':'rgba(0,0,0,.06)';
-const lc = isDark?'#9C9B96':'#6B6A65';
+const isDark=matchMedia('(prefers-color-scheme: dark)').matches;
+const gc=isDark?'rgba(255,255,255,.08)':'rgba(0,0,0,.06)';
+const lc=isDark?'#9C9B96':'#6B6A65';
+const labelPlugin={id:'inBarLabels',afterDatasetsDraw(chart){const ctx=chart.ctx;chart.data.datasets.forEach((ds,i)=>{chart.getDatasetMeta(i).data.forEach((bar,j)=>{const val=ds.data[j];if(!val)return;const extra=ds._extra?ds._extra[j]:null;const lines=extra?[val+'%',extra]:[val+'%'];const lH=13,tH=lines.length*lH;const bH=Math.abs(bar.base-bar.y);if(bH<tH+8)return;const mY=(bar.y+bar.base)/2;ctx.save();ctx.fillStyle='#fff';ctx.font='500 11px Inter,sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';lines.forEach((l,li)=>ctx.fillText(l,bar.x,mY-tH/2+li*lH+lH/2));ctx.restore();});});}};
 
-const labelPlugin = {
-  id:'inBarLabels',
-  afterDatasetsDraw(chart){
-    const ctx=chart.ctx;
-    chart.data.datasets.forEach((ds,i)=>{
-      chart.getDatasetMeta(i).data.forEach((bar,j)=>{
-        const val=ds.data[j]; if(!val) return;
-        const extra=ds._extra?ds._extra[j]:null;
-        const lines=extra?[val+'%',extra]:[val+'%'];
-        const lH=13,tH=lines.length*lH;
-        const bH=Math.abs(bar.base-bar.y); if(bH<tH+8) return;
-        const mY=(bar.y+bar.base)/2;
-        ctx.save();ctx.fillStyle='#fff';ctx.font='500 11px Inter,sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';
-        lines.forEach((l,li)=>ctx.fillText(l,bar.x,mY-tH/2+li*lH+lH/2));
-        ctx.restore();
-      });
-    });
-  }
-};
-
-function updateCharts() {
-  const etapas = ['Negociação','Elaboração de proposta','Diagnóstico'];
-  const total  = SCHOOLS.length;
-  const funiData = etapas.map(e=>Math.round(SCHOOLS.filter(s=>s.etapa===e).length/total*100));
-  const funiExtra= etapas.map(e=>{const c=SCHOOLS.filter(s=>s.etapa===e).length; return `${c} · ${fmtAcv(SCHOOLS.filter(s=>s.etapa===e).reduce((a,r)=>a+r.acv,0))}`;});
-  const funiLabels=['Negociação','Elab. proposta','Diagnóstico'];
-
-  if(chartFunil) chartFunil.destroy();
-  chartFunil=new Chart(document.getElementById('cFunil'),{
-    type:'bar',plugins:[labelPlugin],
-    data:{labels:funiLabels,datasets:[{data:funiData,_extra:funiExtra,backgroundColor:['#185FA5','#534AB7','#888780'],borderRadius:4,borderSkipped:false}]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>funiData[ctx.dataIndex]+'% · '+funiExtra[ctx.dataIndex]}}},scales:{x:{ticks:{color:lc,font:{size:11}},grid:{display:false},border:{display:false}},y:{ticks:{color:lc,font:{size:11},callback:v=>v+'%'},grid:{color:gc},border:{display:false},max:95}}}
-  });
-
+function updateCharts(){
+  const etapas=['Negociação','Elaboração de proposta','Diagnóstico'];
+  const total=SCHOOLS.length||1;
+  const acvSum=arr=>arr.reduce((s,r)=>s+r.acv,0);
+  const funiData=etapas.map(e=>Math.round(SCHOOLS.filter(s=>s.etapa===e).length/total*100));
+  const funiExtra=etapas.map(e=>{const r=SCHOOLS.filter(s=>s.etapa===e);return`${r.length} · ${fmtAcv(acvSum(r))}`;});
+  if(chartFunil)chartFunil.destroy();
+  chartFunil=new Chart(document.getElementById('cFunil'),{type:'bar',plugins:[labelPlugin],data:{labels:['Negociação','Elab. proposta','Diagnóstico'],datasets:[{data:funiData,_extra:funiExtra,backgroundColor:['#185FA5','#534AB7','#888780'],borderRadius:4,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:lc,font:{size:11}},grid:{display:false},border:{display:false}},y:{ticks:{color:lc,font:{size:11},callback:v=>v+'%'},grid:{color:gc},border:{display:false},max:95}}}});
   const statuses=['Forecast da semana','Aguardando retorno da escola','Aguardando ação interna'];
   const statusColors=['#1D9E75','#EF9F27','#534AB7'];
-  const datasets=statuses.map((st,si)=>({
-    label:st,
-    data:etapas.map(et=>{const sub=SCHOOLS.filter(s=>s.etapa===et);const cnt=sub.filter(s=>s.status===st).length;return sub.length?Math.round(cnt/sub.length*100):0;}),
-    backgroundColor:statusColors[si],borderRadius:4,borderSkipped:false,barThickness:46
-  }));
-
-  if(chartStatus) chartStatus.destroy();
-  const statusLabels=etapas.map((et,i)=>{const c=SCHOOLS.filter(s=>s.etapa===et).length;const pct=Math.round(c/total*100);return [et===`Elaboração de proposta`?'Elab. proposta':et,`${pct}% · ${c} escolas`];});
-  chartStatus=new Chart(document.getElementById('cStatus'),{
-    type:'bar',plugins:[labelPlugin],
-    data:{labels:statusLabels,datasets},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.dataset.label+': '+ctx.raw+'%'}}},scales:{x:{ticks:{color:lc,font:{size:11},maxRotation:0},grid:{display:false},border:{display:false}},y:{ticks:{color:lc,font:{size:11},callback:v=>v+'%'},grid:{color:gc},border:{display:false},max:110}}}
-  });
+  const datasets=statuses.map((st,si)=>({label:st,data:etapas.map(et=>{const sub=SCHOOLS.filter(s=>s.etapa===et);return sub.length?Math.round(sub.filter(s=>s.status===st).length/sub.length*100):0;}),backgroundColor:statusColors[si],borderRadius:4,borderSkipped:false,barThickness:46}));
+  const statusLabels=etapas.map((et,i)=>{const c=SCHOOLS.filter(s=>s.etapa===et).length;return[['Negociação','Elab. proposta','Diagnóstico'][i],`${Math.round(c/total*100)}% · ${c} escolas`];});
+  if(chartStatus)chartStatus.destroy();
+  chartStatus=new Chart(document.getElementById('cStatus'),{type:'bar',plugins:[labelPlugin],data:{labels:statusLabels,datasets},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:lc,font:{size:11},maxRotation:0},grid:{display:false},border:{display:false}},y:{ticks:{color:lc,font:{size:11},callback:v=>v+'%'},grid:{color:gc},border:{display:false},max:110}}}});
 }
 
 /* ── RENDER ROW ── */
-function renderRow(s) {
-  const acao = acaoEdits[s.id]!==undefined ? acaoEdits[s.id] : s.acaoAtual;
-  const others = CLUSTERS.filter(c=>c!==s.cluster);
-  const menuOpts = others.map(c=>`<button class="move-option" onclick="initMove('${s.id}','${c}');event.stopPropagation()"><span class="move-dot" style="background:${C_COLORS[c]}"></span>${C_LABELS[c]}</button>`).join('');
-  const liderS  = s.lider==='Sem líder'?null:s.lider.split(' ').slice(0,2).join(' ');
-  const cseS    = s.cse==='Sem CSE'   ?null:s.cse.split(' ').slice(0,2).join(' ');
-  const conS    = s.consultor.split(' ')[0];
-  const chips   = [
-    liderS?`<span class="resp-chip">Líder: ${liderS}</span>`:`<span class="resp-chip warn">Sem Líder</span>`,
-    cseS  ?`<span class="resp-chip">CSE: ${cseS}</span>`    :`<span class="resp-chip warn">Sem CSE</span>`,
-    `<span class="resp-chip">Consultor: ${conS}</span>`
-  ].join('');
-  const isFc = s.status==='Forecast da semana';
-  const trStyle= isFc?'style="background:#F6FBF0"':'';
-
-  /* etapa select */
+function renderRow(s){
+  const acao=acaoEdits[s.id]!==undefined?acaoEdits[s.id]:s.acaoAtual;
+  const newA=newAcoes[s.id];
+  const others=CLUSTERS.filter(c=>c!==s.cluster);
+  const menuOpts=others.map(c=>`<button class="move-option" onclick="initMove('${s.id}','${c}');event.stopPropagation()"><span class="move-dot" style="background:${C_COLORS[c]}"></span>${C_LABELS[c]}</button>`).join('');
+  const liderS=s.lider==='Sem líder'?null:s.lider.split(' ').slice(0,2).join(' ');
+  const cseS=s.cse==='Sem CSE'?null:s.cse.split(' ').slice(0,2).join(' ');
+  const conS=s.consultor.split(' ')[0];
+  const chips=[liderS?`<span class="resp-chip">Líder: ${liderS}</span>`:`<span class="resp-chip warn">Sem Líder</span>`,cseS?`<span class="resp-chip">CSE: ${cseS}</span>`:`<span class="resp-chip warn">Sem CSE</span>`,`<span class="resp-chip">Consultor: ${conS}</span>`].join('');
+  const isFc=s.status==='Forecast da semana';
+  const trStyle=isFc?'style="background:#F6FBF0"':'';
   const etapaOpts=ETAPA_OPTIONS.map(e=>`<option value="${e}"${s.etapa===e?' selected':''}>${e}</option>`).join('');
-  /* status select */
   const statusOpts=STATUS_OPTIONS.map(o=>`<option value="${o}"${s.status===o?' selected':''}>${o}</option>`).join('');
+  const histHtml=s.history.map(h=>`<div class="hist-row"><div class="hist-lbl">${h.label}</div><div class="hist-txt">${h.value||'—'}</div></div>`).join('');
 
-  return `<tr data-id="${s.id}" data-cluster="${s.cluster}" data-lider="${s.lider}" data-cse="${s.cse}" data-consultor="${s.consultor}" data-acv="${s.acv}" data-etapa="${s.etapa}" data-status="${s.status}" ${trStyle}>
+  const newAcaoHtml=newA?`
+    <div class="new-acao-block open">
+      <div class="new-acao-col-label">📌 ${newA.colName}</div>
+      <textarea class="new-acao-ta" id="na-ta-${s.id}" onchange="updateNewAcao('${s.id}',this.value)">${newA.text}</textarea>
+      <div class="new-acao-actions">
+        <button class="new-acao-cancel" onclick="removeNewAcao('${s.id}')">Remover</button>
+      </div>
+    </div>`:`
+    <div class="new-acao-block" id="na-block-${s.id}">
+      <div class="new-acao-col-label">Nome da nova coluna</div>
+      <input class="new-acao-col-input" id="na-col-${s.id}" type="text" placeholder="Ex: [Atual] Ação 29/06">
+      <textarea class="new-acao-ta" id="na-ta-${s.id}" placeholder="Digite a nova ação..."></textarea>
+      <div class="new-acao-actions">
+        <button class="new-acao-cancel" onclick="cancelNewAcao('${s.id}')">Cancelar</button>
+        <button class="new-acao-save" onclick="saveNewAcao('${s.id}')">Salvar</button>
+      </div>
+    </div>`;
+
+  return`<tr data-id="${s.id}" data-cluster="${s.cluster}" data-lider="${s.lider}" data-cse="${s.cse}" data-consultor="${s.consultor}" data-acv="${s.acv}" data-etapa="${s.etapa}" data-status="${s.status}" ${trStyle}>
     <td class="move-cell"><button class="move-btn" onclick="toggleMenu(this,event)" title="Mover">⇄<div class="move-menu"><div class="move-menu-ti">Mover para</div>${menuOpts}</div></button></td>
     <td><div class="escola-name">${s.escola}</div><div class="resp">${chips}</div></td>
     <td class="acv">${s.acvL}</td>
-    <td>
-      <span class="badge ${s.etapaC}" onclick="toggleInlineEdit(this,'etapa')" title="Clique para editar">${s.etapa}</span>
-      <select class="inline-select" onchange="saveInlineEdit(this,'${s.id}','etapa')">${etapaOpts}</select>
-    </td>
-    <td>
-      <span class="status-chip ${s.statusC}" onclick="toggleInlineEdit(this,'status')" title="Clique para editar">${s.status}</span>
-      <select class="inline-select" onchange="saveInlineEdit(this,'${s.id}','status')">${statusOpts}</select>
-    </td>
+    <td><span class="badge ${s.etapaC}" onclick="toggleInlineEdit(this)" title="Clique para editar">${s.etapa}</span><select class="inline-select" onchange="saveInlineEdit(this,'${s.id}','etapa')">${etapaOpts}</select></td>
+    <td><span class="status-chip ${s.statusC}" onclick="toggleInlineEdit(this)" title="Clique para editar">${s.status}</span><select class="inline-select" onchange="saveInlineEdit(this,'${s.id}','status')">${statusOpts}</select></td>
     <td class="acao-cell">
-      <div class="acao-text ${s.acaoC||''}" id="at-${s.id}">${acao}</div>
-      <textarea class="acao-edit-ta" id="ae-${s.id}"></textarea>
+      <div class="acao-current-wrap">
+        <div class="acao-label">Ação atual</div>
+        <div class="acao-text ${s.acaoC||''}" id="at-${s.id}">${acao}</div>
+        <textarea class="acao-edit-ta" id="ae-${s.id}"></textarea>
+      </div>
       <div class="acao-btn-row">
         <button class="acao-edit-btn" onclick="editAcao('${s.id}')">✏️ editar</button>
         <button class="acao-save-btn" id="as-${s.id}" onclick="saveAcao('${s.id}')">Salvar</button>
-        <button class="hist-toggle" onclick="toggleHist(this)">▸ histórico</button>
+        ${histHtml?`<button class="hist-toggle" onclick="toggleHist(this)">▸ histórico</button>`:''}
+        <button class="plus-btn" onclick="openNewAcao('${s.id}')">+ nova ação</button>
       </div>
-      <div class="hist-block">
-        <div class="hist-row"><div class="hist-lbl">Status 08/06</div><div class="hist-txt">${s.h08||'—'}</div></div>
-        <div class="hist-row"><div class="hist-lbl">Status 15/06</div><div class="hist-txt">${s.h15||'—'}</div></div>
-        <div class="hist-row"><div class="hist-lbl">Ação 15/06</div><div class="hist-txt">${s.a15||'—'}</div></div>
-      </div>
+      ${histHtml?`<div class="hist-block">${histHtml}</div>`:''}
+      ${newAcaoHtml}
     </td>
   </tr>`;
 }
 
-/* ── FILTER LOGIC ── */
-function getRows(cluster) {
-  const f=filterState[cluster];
+/* ── NEW ACTION ── */
+function openNewAcao(id){
+  const block=document.getElementById('na-block-'+id);
+  if(block)block.classList.add('open');
+}
+function cancelNewAcao(id){
+  const block=document.getElementById('na-block-'+id);
+  if(block)block.classList.remove('open');
+}
+function saveNewAcao(id){
+  const colName=(document.getElementById('na-col-'+id)?.value||'').trim();
+  const text=(document.getElementById('na-ta-'+id)?.value||'').trim();
+  if(!colName){alert('Por favor, dê um nome à nova coluna (ex: [Atual] Ação 29/06)');return;}
+  newAcoes[id]={colName,text};
+  CLUSTERS.forEach(c=>renderCluster(c));
+}
+function updateNewAcao(id,val){if(newAcoes[id])newAcoes[id].text=val;}
+function removeNewAcao(id){delete newAcoes[id];CLUSTERS.forEach(c=>renderCluster(c));}
+
+/* ── FILTER ── */
+function getRows(cluster){
+  const f=filterState[cluster]||{};
   let rows=SCHOOLS.filter(s=>s.cluster===cluster);
-  if(f.lider.length)     rows=rows.filter(s=>f.lider.includes(s.lider));
-  if(f.cse.length)       rows=rows.filter(s=>f.cse.includes(s.cse));
-  if(f.consultor.length) rows=rows.filter(s=>f.consultor.includes(s.consultor));
-  if(f.etapa.length)     rows=rows.filter(s=>f.etapa.includes(s.etapa));
-  if(f.status.length)    rows=rows.filter(s=>f.status.includes(s.status));
-  if(sortState[cluster]) rows=[...rows].sort((a,b)=>sortState[cluster]==='asc'?a.acv-b.acv:b.acv-a.acv);
+  if(f.lider&&f.lider.length)rows=rows.filter(s=>f.lider.includes(s.lider));
+  if(f.cse&&f.cse.length)rows=rows.filter(s=>f.cse.includes(s.cse));
+  if(f.consultor&&f.consultor.length)rows=rows.filter(s=>f.consultor.includes(s.consultor));
+  if(f.etapa&&f.etapa.length)rows=rows.filter(s=>f.etapa.includes(s.etapa));
+  if(f.status&&f.status.length)rows=rows.filter(s=>f.status.includes(s.status));
+  if(sortState[cluster])rows=[...rows].sort((a,b)=>sortState[cluster]==='asc'?a.acv-b.acv:b.acv-a.acv);
   return rows;
 }
 
 /* ── RENDER CLUSTER ── */
-function renderCluster(cluster) {
-  const all  = SCHOOLS.filter(s=>s.cluster===cluster);
-  const rows = getRows(cluster);
-  const acvAll = all.reduce((s,r)=>s+r.acv,0);
-  const isFc  = cluster==='fc';
-
-  const headerCls = cluster;
-  const thAcao    = isFc?'Próxima ação':'Ação atual';
-
-  const activeFilters = Object.values(filterState[cluster]).some(v=>v.length>0)||sortState[cluster];
-  const countTxt = activeFilters ? `${rows.length} de ${all.length} escolas` : `${all.length} escola${all.length!==1?'s':''}`;
-
-  document.getElementById('cluster-'+cluster).innerHTML=`
-    <div class="cluster-header ${headerCls}">
-      <div class="temp-ind"></div>
-      <div class="cluster-lbl">${C_LABELS[cluster]}</div>
-      <div class="cluster-stats"><span>${fmtAcv(acvAll)}</span><span>${countTxt}</span></div>
-    </div>
+function renderCluster(cluster){
+  const all=SCHOOLS.filter(s=>s.cluster===cluster);
+  const rows=getRows(cluster);
+  const acvAll=all.reduce((s,r)=>s+r.acv,0);
+  const el=document.getElementById('cluster-'+cluster);if(!el)return;
+  const activeF=Object.values(filterState[cluster]||{}).some(v=>v&&v.length>0)||sortState[cluster];
+  const countTxt=activeF?`${rows.length} de ${all.length} escolas`:`${all.length} escola${all.length!==1?'s':''}`;
+  el.innerHTML=`
+    <div class="cluster-header ${cluster}"><div class="temp-ind"></div><div class="cluster-lbl">${C_LABELS[cluster]}</div><div class="cluster-stats"><span>${fmtAcv(acvAll)}</span><span>${countTxt}</span></div></div>
     <div class="filters-row" id="frow-${cluster}"></div>
     <div class="table-wrap">
-      <table id="tbl-${cluster}">
-        <thead><tr><th></th><th>Escola</th><th>ACV ↕</th><th>Etapa</th><th>Status</th><th>${thAcao}</th></tr></thead>
-        <tbody>${rows.map(renderRow).join('')}</tbody>
-      </table>
-      <div id="nores-${cluster}" style="font-size:12px;color:var(--tm);padding:14px;text-align:center;display:${rows.length===0?'block':'none'}">Nenhuma escola encontrada.</div>
+      <table><thead><tr><th></th><th>Escola</th><th>ACV ↕</th><th>Etapa</th><th>Status</th><th>Ação</th></tr></thead>
+      <tbody>${rows.map(renderRow).join('')}</tbody></table>
+      <div style="font-size:12px;color:var(--tm);padding:14px;text-align:center;display:${rows.length===0?'block':'none'}">Nenhuma escola encontrada.</div>
     </div>`;
   buildFilters(cluster);
 }
 
-/* ── BUILD MULTI-SELECT FILTERS ── */
-function buildFilters(cluster) {
-  const all = SCHOOLS.filter(s=>s.cluster===cluster);
-  const unique = key=>[...new Set(all.map(s=>s[key]))].sort();
-  const container=document.getElementById('frow-'+cluster);
-  if(!container) return;
-
-  const fields=[
-    {key:'lider',    label:'Líder CSE'},
-    {key:'cse',      label:'CSE'},
-    {key:'consultor',label:'Consultor'},
-    {key:'etapa',    label:'Etapa'},
-    {key:'status',   label:'Status'},
-  ];
-
+/* ── FILTERS ── */
+function buildFilters(cluster){
+  const all=SCHOOLS.filter(s=>s.cluster===cluster);
+  const unique=key=>[...new Set(all.map(s=>s[key]))].sort();
+  const container=document.getElementById('frow-'+cluster);if(!container)return;
+  const f=filterState[cluster]||{};
+  const fields=[{key:'lider',label:'Líder CSE'},{key:'cse',label:'CSE'},{key:'consultor',label:'Consultor'},{key:'etapa',label:'Etapa'},{key:'status',label:'Status'}];
   let html='';
   fields.forEach(({key,label})=>{
-    const opts=unique(key);
-    const sel=filterState[cluster][key];
-    const isActive=sel.length>0;
-    const btnLabel=isActive?`${label} (${sel.length})`:label;
+    const opts=unique(key);const sel=f[key]||[];const isActive=sel.length>0;
     html+=`<div class="filter-group" id="fg-${cluster}-${key}">
-      <button class="filter-btn${isActive?' active':''}" onclick="toggleDropdown('${cluster}','${key}',event)">
-        ${btnLabel} <span class="f-arrow">▾</span>
-      </button>
+      <button class="filter-btn${isActive?' active':''}" onclick="toggleDropdown('${cluster}','${key}',event)">${isActive?`${label} (${sel.length})`:label} <span class="f-arrow">▾</span></button>
       <div class="filter-dropdown" id="fd-${cluster}-${key}">
         <input class="filter-search" type="text" placeholder="Buscar..." oninput="filterSearch('${cluster}','${key}',this.value)">
-        <div id="fopts-${cluster}-${key}">
-          ${opts.map(o=>`<label class="filter-option"><input type="checkbox" value="${o}"${sel.includes(o)?' checked':''} onchange="filterCheck('${cluster}','${key}')"> ${o}</label>`).join('')}
-        </div>
-        <div class="filter-actions">
-          <button class="filter-clear" onclick="clearFilter('${cluster}','${key}')">Limpar</button>
-          <button class="filter-apply" onclick="applyFilter('${cluster}','${key}')">Aplicar</button>
-        </div>
+        <div id="fopts-${cluster}-${key}">${opts.map(o=>`<label class="filter-option"><input type="checkbox" value="${o.replace(/"/g,'&quot;')}"${sel.includes(o)?' checked':''}> ${o}</label>`).join('')}</div>
+        <div class="filter-actions"><button class="filter-clear" onclick="clearFilter('${cluster}','${key}')">Limpar</button><button class="filter-apply" onclick="applyFilter('${cluster}','${key}')">Aplicar</button></div>
       </div>
     </div>`;
   });
-
-  const asc  = `<button class="sort-btn${sortState[cluster]==='asc'?' active':''}" onclick="setSort('${cluster}','asc')">ACV ↑</button>`;
-  const desc = `<button class="sort-btn${sortState[cluster]==='desc'?' active':''}" onclick="setSort('${cluster}','desc')">ACV ↓</button>`;
-  const reset= `<button class="filter-reset-all" onclick="resetAll('${cluster}')">Limpar tudo</button>`;
-  html+=`<span style="display:flex;align-items:center;gap:5px">${asc}${desc}</span>${reset}`;
+  html+=`<span style="display:flex;align-items:center;gap:5px"><button class="sort-btn${sortState[cluster]==='asc'?' active':''}" onclick="setSort('${cluster}','asc')">ACV ↑</button><button class="sort-btn${sortState[cluster]==='desc'?' active':''}" onclick="setSort('${cluster}','desc')">ACV ↓</button></span>`;
+  html+=`<button class="filter-reset-all" onclick="resetAll('${cluster}')">Limpar tudo</button>`;
   container.innerHTML=html;
 }
-
-function toggleDropdown(cluster,key,e) {
-  e.stopPropagation();
-  const dd=document.getElementById(`fd-${cluster}-${key}`);
-  const btn=e.currentTarget;
-  const isOpen=dd.classList.contains('open');
-  closeAllDropdowns();
-  if(!isOpen){dd.classList.add('open');btn.classList.add('open');}
-}
-function closeAllDropdowns(){
-  document.querySelectorAll('.filter-dropdown.open').forEach(d=>{
-    d.classList.remove('open');
-    d.previousElementSibling?.classList.remove('open');
-  });
-}
+function toggleDropdown(cluster,key,e){e.stopPropagation();const dd=document.getElementById(`fd-${cluster}-${key}`);const btn=e.currentTarget;const isOpen=dd.classList.contains('open');closeAllDropdowns();if(!isOpen){dd.classList.add('open');btn.classList.add('open');}}
+function closeAllDropdowns(){document.querySelectorAll('.filter-dropdown.open').forEach(d=>{d.classList.remove('open');d.previousElementSibling?.classList.remove('open');});}
 document.addEventListener('click',closeAllDropdowns);
+function filterSearch(cluster,key,val){document.getElementById(`fopts-${cluster}-${key}`).querySelectorAll('.filter-option').forEach(o=>{o.style.display=o.textContent.toLowerCase().includes(val.toLowerCase())?'':'none';});}
+function applyFilter(cluster,key){const cont=document.getElementById(`fopts-${cluster}-${key}`);filterState[cluster][key]=[...cont.querySelectorAll('input:checked')].map(i=>i.value);closeAllDropdowns();renderCluster(cluster);recalcDashboard();}
+function clearFilter(cluster,key){filterState[cluster][key]=[];closeAllDropdowns();renderCluster(cluster);recalcDashboard();}
+function setSort(cluster,dir){sortState[cluster]=sortState[cluster]===dir?null:dir;renderCluster(cluster);}
+function resetAll(cluster){filterState[cluster]={lider:[],cse:[],consultor:[],etapa:[],status:[]};sortState[cluster]=null;renderCluster(cluster);recalcDashboard();}
 
-function filterSearch(cluster,key,val) {
-  const cont=document.getElementById(`fopts-${cluster}-${key}`);
-  cont.querySelectorAll('.filter-option').forEach(opt=>{
-    opt.style.display=opt.textContent.toLowerCase().includes(val.toLowerCase())?'':'none';
-  });
-}
-function filterCheck(cluster,key){ /* live preview without apply */ }
-function applyFilter(cluster,key) {
-  const cont=document.getElementById(`fopts-${cluster}-${key}`);
-  filterState[cluster][key]=[...cont.querySelectorAll('input:checked')].map(i=>i.value);
-  closeAllDropdowns();
-  renderCluster(cluster);
-  recalcDashboard();
-}
-function clearFilter(cluster,key) {
-  filterState[cluster][key]=[];
-  closeAllDropdowns();
-  renderCluster(cluster);
-  recalcDashboard();
-}
-function setSort(cluster,dir) {
-  sortState[cluster]=sortState[cluster]===dir?null:dir;
-  renderCluster(cluster);
-}
-function resetAll(cluster) {
-  filterState[cluster]={lider:[],cse:[],consultor:[],etapa:[],status:[]};
-  sortState[cluster]=null;
-  renderCluster(cluster);
-  recalcDashboard();
+/* ── MOVE ── */
+function initMove(id,toCluster){closeAllMenus();const s=SCHOOLS.find(x=>x.id===id);pendingMove={id,toCluster};document.getElementById('popupSub').textContent=`Movendo "${s.escola.substring(0,40)}" para ${C_LABELS[toCluster]}`;document.querySelectorAll('.status-opt').forEach(el=>el.classList.toggle('selected',el.dataset.status===s.status));openPopup('statusPopup');}
+function selectPopupStatus(el){document.querySelectorAll('.status-opt').forEach(e=>e.classList.remove('selected'));el.classList.add('selected');}
+function confirmMove(){
+  const{id,toCluster}=pendingMove;if(!id||!toCluster){closePopup('statusPopup');return;}
+  const s=SCHOOLS.find(x=>x.id===id);const sel=document.querySelector('.status-opt.selected');
+  s.cluster=toCluster;if(sel){s.status=sel.dataset.status;s.statusC=STATUS_CLASS[s.status]||'s-interno';}
+  closePopup('statusPopup');CLUSTERS.forEach(c=>renderCluster(c));recalcDashboard();
+  setTimeout(()=>{const row=document.querySelector(`tr[data-id="${id}"]`);if(row){row.classList.add('row-flash');row.scrollIntoView({behavior:'smooth',block:'nearest'});setTimeout(()=>row.classList.remove('row-flash'),700);}},60);
 }
 
-/* ── MOVE WITH POPUP ── */
-function initMove(id, toCluster) {
-  closeAllMenus();
-  const s = SCHOOLS.find(x=>x.id===id);
-  pendingMove = {id, toCluster};
-  document.getElementById('popupSub').textContent = `Movendo "${s.escola}" para ${C_LABELS[toCluster]}`;
-  /* pre-select current status */
-  document.querySelectorAll('.status-opt').forEach(el=>{
-    el.classList.toggle('selected', el.dataset.status===s.status);
-  });
-  document.getElementById('statusPopup').classList.add('open');
-}
-function selectPopupStatus(el) {
-  document.querySelectorAll('.status-opt').forEach(e=>e.classList.remove('selected'));
-  el.classList.add('selected');
-}
-function closePopup() {
-  document.getElementById('statusPopup').classList.remove('open');
-  pendingMove={id:null,toCluster:null};
-}
-function confirmMove() {
-  const {id,toCluster}=pendingMove;
-  if(!id||!toCluster){closePopup();return;}
-  const s=SCHOOLS.find(x=>x.id===id);
-  const selStatus=document.querySelector('.status-opt.selected');
-  const fromCluster=s.cluster;
-  s.cluster=toCluster;
-  if(selStatus){
-    s.status=selStatus.dataset.status;
-    s.statusC=STATUS_CLASSES[s.status]||'s-interno';
-  }
-  closePopup();
-  CLUSTERS.forEach(c=>renderCluster(c));
-  recalcDashboard();
-  setTimeout(()=>{
-    const row=document.querySelector(`tr[data-id="${id}"]`);
-    if(row){row.classList.add('row-flash');row.scrollIntoView({behavior:'smooth',block:'nearest'});setTimeout(()=>row.classList.remove('row-flash'),700);}
-  },60);
-}
+/* ── INLINE EDIT ── */
+function toggleInlineEdit(badge){const td=badge.closest('td');const sel=td.querySelector('.inline-select');badge.style.display='none';sel.style.display='inline-block';sel.focus();const close=e=>{if(!td.contains(e.target)){badge.style.display='';sel.style.display='none';document.removeEventListener('click',close);}};setTimeout(()=>document.addEventListener('click',close),10);}
+function saveInlineEdit(sel,id,field){const s=SCHOOLS.find(x=>x.id===id);if(!s)return;s[field]=sel.value;if(field==='status'){s.statusC=STATUS_CLASS[sel.value]||'s-interno';}if(field==='etapa'){s.etapaC=ETAPA_CLASS[sel.value]||'badge-neg';}CLUSTERS.forEach(c=>renderCluster(c));recalcDashboard();}
 
-/* ── INLINE EDIT ETAPA/STATUS ── */
-function toggleInlineEdit(badge,type) {
-  const td=badge.closest('td');
-  const sel=td.querySelector('.inline-select');
-  badge.style.display='none';
-  sel.style.display='inline-block';
-  sel.focus();
-  const close=e=>{if(!td.contains(e.target)){badge.style.display='';sel.style.display='none';document.removeEventListener('click',close);}};
-  setTimeout(()=>document.addEventListener('click',close),10);
-}
-function saveInlineEdit(sel,id,field) {
-  const s=SCHOOLS.find(x=>x.id===id);
-  if(!s) return;
-  s[field]=sel.value;
-  if(field==='status'){s.statusC=STATUS_CLASSES[sel.value]||'s-interno';}
-  if(field==='etapa'){
-    const map={'Negociação':'badge-neg','Elaboração de proposta':'badge-elab','Diagnóstico':'badge-diag','Fechado e perdido':'badge-lost'};
-    s.etapaC=map[sel.value]||'badge-neg';
-  }
-  CLUSTERS.forEach(c=>renderCluster(c));
-  recalcDashboard();
-}
+/* ── ACAO ── */
+function editAcao(id){const at=document.getElementById('at-'+id),ae=document.getElementById('ae-'+id),as=document.getElementById('as-'+id);ae.value=at.textContent.trim();at.style.display='none';ae.style.display='block';as.style.display='inline-block';ae.focus();}
+function saveAcao(id){const at=document.getElementById('at-'+id),ae=document.getElementById('ae-'+id),as=document.getElementById('as-'+id);acaoEdits[id]=ae.value;at.textContent=ae.value;at.style.display='block';ae.style.display='none';as.style.display='none';}
+function toggleHist(btn){const b=btn.closest('.acao-cell').querySelector('.hist-block');b.classList.toggle('open');btn.textContent=b.classList.contains('open')?'▾ histórico':'▸ histórico';}
 
-/* ── ACAO EDIT ── */
-function editAcao(id){
-  const at=document.getElementById('at-'+id);
-  const ae=document.getElementById('ae-'+id);
-  const as=document.getElementById('as-'+id);
-  ae.value=at.textContent.trim();
-  at.style.display='none';ae.style.display='block';as.style.display='inline-block';ae.focus();
-}
-function saveAcao(id){
-  const at=document.getElementById('at-'+id);
-  const ae=document.getElementById('ae-'+id);
-  const as=document.getElementById('as-'+id);
-  acaoEdits[id]=ae.value;at.textContent=ae.value;
-  at.style.display='block';ae.style.display='none';as.style.display='none';
-}
-
-/* ── HISTORY TOGGLE ── */
-function toggleHist(btn){
-  const block=btn.closest('.acao-cell').querySelector('.hist-block');
-  block.classList.toggle('open');
-  btn.textContent=block.classList.contains('open')?'▾ histórico':'▸ histórico';
-}
-
-/* ── MOVE MENU ── */
-function toggleMenu(btn,e){
-  e.stopPropagation();
-  const menu=btn.querySelector('.move-menu');
-  const isOpen=menu.classList.contains('open');
-  closeAllMenus();
-  if(!isOpen) menu.classList.add('open');
-}
+/* ── MENUS ── */
+function toggleMenu(btn,e){e.stopPropagation();const m=btn.querySelector('.move-menu');const o=m.classList.contains('open');closeAllMenus();if(!o)m.classList.add('open');}
 function closeAllMenus(){document.querySelectorAll('.move-menu.open').forEach(m=>m.classList.remove('open'));}
 document.addEventListener('click',closeAllMenus);
 
-/* ── INIT ── */
-CLUSTERS.forEach(c=>renderCluster(c));
-recalcDashboard();
+loadData();
 </script>
 </body>
 </html>
