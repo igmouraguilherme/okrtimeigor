@@ -82,7 +82,7 @@
     .chart-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--rmd);padding:14px}
     .chart-label{font-size:12px;color:var(--ts);margin-bottom:10px}
     .chart-cw{position:relative;width:100%;height:210px}
-    .etapa-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .etapa-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
     .etapa-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--rmd);padding:13px}
     .etapa-card-ti{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
     .etapa-card-v{font-size:19px;font-weight:700;font-family:var(--fd)}
@@ -97,24 +97,28 @@
     .cluster{margin-bottom:28px}
     .cluster-header{display:flex;align-items:center;gap:9px;padding:9px 14px;border-radius:var(--rm);margin-bottom:10px}
     .cluster-header.won {background:#FFF7E0;border:1px solid #F0D78C}
+    .cluster-header.lost{background:#FCEBEB;border:1px solid #F0B8B8}
     .cluster-header.fc  {background:var(--fc-bg);border:1px solid var(--fc-bd)}
     .cluster-header.hot {background:var(--hot-bg);border:1px solid var(--hot-bd)}
     .cluster-header.warm{background:var(--warm-bg);border:1px solid var(--warm-bd)}
     .cluster-header.cold{background:var(--cold-bg);border:1px solid var(--cold-bd)}
     .temp-ind{width:9px;height:9px;border-radius:50%;flex-shrink:0}
     .won  .temp-ind{background:#B8860B}
+    .lost .temp-ind{background:#C13333}
     .fc   .temp-ind{background:var(--fc)}
     .hot  .temp-ind{background:var(--hot)}
     .warm .temp-ind{background:var(--warm)}
     .cold .temp-ind{background:var(--cold)}
     .cluster-lbl{font-size:13px;font-weight:600}
     .won  .cluster-lbl{color:#8A6200}
+    .lost .cluster-lbl{color:#791F1F}
     .fc   .cluster-lbl{color:var(--fc)}
     .hot  .cluster-lbl{color:var(--hot)}
     .warm .cluster-lbl{color:var(--warm)}
     .cold .cluster-lbl{color:var(--cold)}
     .cluster-stats{margin-left:auto;font-size:12px;font-weight:500;display:flex;gap:14px}
     .won  .cluster-stats{color:#8A6200}
+    .lost .cluster-stats{color:#791F1F}
     .fc   .cluster-stats{color:var(--fc)}
     .hot  .cluster-stats{color:var(--hot)}
     .warm .cluster-stats{color:var(--warm)}
@@ -256,10 +260,14 @@
   <div class="popup">
     <div class="popup-ti">Mover escola</div>
     <div class="popup-sub" id="popupSub"></div>
-    <div class="status-options">
+    <div class="status-options" id="statusOptionsBlock">
       <div class="status-opt" data-status="Forecast da semana" onclick="selectPopupStatus(this)"><span class="status-opt-dot" style="background:#1D9E75"></span>Forecast da semana</div>
       <div class="status-opt" data-status="Aguardando ação interna" onclick="selectPopupStatus(this)"><span class="status-opt-dot" style="background:#534AB7"></span>Aguardando ação interna</div>
       <div class="status-opt" data-status="Aguardando retorno da escola" onclick="selectPopupStatus(this)"><span class="status-opt-dot" style="background:#EF9F27"></span>Aguardando retorno da escola</div>
+    </div>
+    <div class="status-options" id="etapaOptionsBlock" style="display:none">
+      <div class="status-opt" data-etapa="Fechado e ganho" onclick="selectPopupEtapa(this)"><span class="status-opt-dot" style="background:#B8860B"></span>Marcar etapa como "Fechado e ganho"</div>
+      <div class="status-opt" data-etapa="Fechado e perdido" onclick="selectPopupEtapa(this)"><span class="status-opt-dot" style="background:#C13333"></span>Marcar etapa como "Fechado e perdido"</div>
     </div>
     <div class="popup-actions">
       <button class="popup-cancel" onclick="closePopup('statusPopup')">Cancelar</button>
@@ -372,6 +380,7 @@
   <div id="cluster-hot"  class="cluster"></div>
   <div id="cluster-warm" class="cluster"></div>
   <div id="cluster-cold" class="cluster"></div>
+  <div id="cluster-lost" class="cluster"></div>
 
   <div class="footer">
     <span>OKR 1 — Renovação de Faturamento Prioritário · Arco Educação</span>
@@ -383,9 +392,9 @@
 const SHEET_ID  = '1ZgCd-S4F3yNgMh2y7asnts6jJ_-bEB1o6bbiX6Q99YE';
 const SHEET_GID = '0';
 
-const CLUSTERS     = ['won','fc','hot','warm','cold'];
-const C_LABELS     = {won:'Fechado e Ganho',fc:'Forecast da semana',hot:'Quente',warm:'Morna',cold:'Fria'};
-const C_COLORS     = {won:'#B8860B',fc:'#1D9E75',hot:'#C94A22',warm:'#A06000',cold:'#1A5FA8'};
+const CLUSTERS     = ['won','fc','hot','warm','cold','lost'];
+const C_LABELS     = {won:'Fechado e Ganho',fc:'Forecast da semana',hot:'Quente',warm:'Morna',cold:'Fria',lost:'Fechado e Perdido'};
+const C_COLORS     = {won:'#B8860B',fc:'#1D9E75',hot:'#C94A22',warm:'#A06000',cold:'#1A5FA8',lost:'#C13333'};
 const TEMP_MAP     = {'Quente':'hot','Morna':'warm','Fria':'cold'};
 const STATUS_CLASS = {'Forecast da semana':'s-forecast','Aguardando ação interna':'s-interno','Aguardando retorno da escola':'s-escola','Bloqueada por caso crítico':'s-bloqueada'};
 const ETAPA_CLASS  = {'Negociação':'badge-neg','Elaboração de proposta':'badge-elab','Diagnóstico':'badge-diag','Fechado e perdido':'badge-lost','Fechado e ganho':'badge-won'};
@@ -474,6 +483,7 @@ function parseSheetData(json){
     let cluster=TEMP_MAP[temp]||'cold';
     if(status==='Forecast da semana')cluster='fc';
     if(etapa==='Fechado e ganho')cluster='won';
+    if(etapa==='Fechado e perdido')cluster='lost';
 
     const acaoAtual=atualCols.length>0?cellVal(row,atualCols[atualCols.length-1].i):'';
     const histToShow=histCols.filter(h=>!h.label.includes('[Atual]')).map(h=>({label:h.label.replace(/\[Histórico\]\s*/,''),value:cellVal(row,h.i)}));
@@ -593,12 +603,16 @@ function recalcDashboard(){
   const etapas=['Negociação','Elaboração de proposta','Diagnóstico'];
   const etapaColors={Negociação:'#185FA5','Elaboração de proposta':'#534AB7',Diagnóstico:'#888780'};
   const etapaTitleColors={Negociação:'#0C447C','Elaboração de proposta':'#3C3489',Diagnóstico:'#444441'};
-  document.getElementById('etapaCards').innerHTML=etapas.map(et=>{
+  let etapaCardsHtml=etapas.map(et=>{
     const rows=SCHOOLS.filter(s=>s.etapa===et);const etAcv=acvSum(rows);
     const byStatus={};rows.forEach(r=>{byStatus[r.status]=(byStatus[r.status]||0)+r.acv;});
     const statusRows=Object.entries(byStatus).sort((a,b)=>b[1]-a[1]).map(([st,av])=>`<div class="etapa-sr"><span class="etapa-sl"><span class="etapa-sd" style="background:${statusColor(st)}"></span>${st} (${rows.filter(s=>s.status===st).length})</span><span class="etapa-sv">${fmtAcv(av)}</span></div>`).join('');
     return`<div class="etapa-card"><div class="etapa-card-ti" style="color:${etapaTitleColors[et]}">${et}</div><div class="etapa-card-v" style="color:${etapaColors[et]}">${fmtAcv(etAcv)}</div><div class="etapa-card-s">${rows.length} escolas · ${Math.round(total?etAcv/total*100:0)}% do ACV total</div><div class="etapa-card-d">${statusRows}</div></div>`;
   }).join('');
+  const lostRows=SCHOOLS.filter(s=>s.etapa==='Fechado e perdido');
+  const lostAcv=acvSum(lostRows);
+  etapaCardsHtml+=`<div class="etapa-card" style="border-color:#F0B8B8"><div class="etapa-card-ti" style="color:#791F1F">Fechado e perdido</div><div class="etapa-card-v" style="color:#C13333">${fmtAcv(lostAcv)}</div><div class="etapa-card-s">${lostRows.length} escola${lostRows.length!==1?'s':''} · ${Math.round(total?lostAcv/total*100:0)}% do ACV total</div></div>`;
+  document.getElementById('etapaCards').innerHTML=etapaCardsHtml;
   updateCharts();
 }
 
@@ -766,12 +780,39 @@ function setSort(cluster,dir){sortState[cluster]=sortState[cluster]===dir?null:d
 function resetAll(cluster){filterState[cluster]={lider:[],cse:[],consultor:[],etapa:[],status:[]};sortState[cluster]=null;renderCluster(cluster);recalcDashboard();}
 
 /* ── MOVE ── */
-function initMove(id,toCluster){closeAllMenus();const s=SCHOOLS.find(x=>x.id===id);pendingMove={id,toCluster};document.getElementById('popupSub').textContent=`Movendo "${s.escola.substring(0,40)}" para ${C_LABELS[toCluster]}`;document.querySelectorAll('.status-opt').forEach(el=>el.classList.toggle('selected',el.dataset.status===s.status));openPopup('statusPopup');}
-function selectPopupStatus(el){document.querySelectorAll('.status-opt').forEach(e=>e.classList.remove('selected'));el.classList.add('selected');}
+function initMove(id,toCluster){
+  closeAllMenus();
+  const s=SCHOOLS.find(x=>x.id===id);
+  pendingMove={id,toCluster};
+  document.getElementById('popupSub').textContent=`Movendo "${s.escola.substring(0,40)}" para ${C_LABELS[toCluster]}`;
+  const isWonOrLost = toCluster==='won'||toCluster==='lost';
+  document.getElementById('statusOptionsBlock').style.display = isWonOrLost?'none':'flex';
+  document.getElementById('etapaOptionsBlock').style.display = isWonOrLost?'flex':'none';
+  if(isWonOrLost){
+    const targetEtapa = toCluster==='won'?'Fechado e ganho':'Fechado e perdido';
+    document.querySelectorAll('#etapaOptionsBlock .status-opt').forEach(el=>el.classList.toggle('selected',el.dataset.etapa===targetEtapa));
+  }else{
+    document.querySelectorAll('#statusOptionsBlock .status-opt').forEach(el=>el.classList.toggle('selected',el.dataset.status===s.status));
+  }
+  openPopup('statusPopup');
+}
+function selectPopupStatus(el){document.querySelectorAll('#statusOptionsBlock .status-opt').forEach(e=>e.classList.remove('selected'));el.classList.add('selected');}
+function selectPopupEtapa(el){document.querySelectorAll('#etapaOptionsBlock .status-opt').forEach(e=>e.classList.remove('selected'));el.classList.add('selected');}
 function confirmMove(){
   const{id,toCluster}=pendingMove;if(!id||!toCluster){closePopup('statusPopup');return;}
-  const s=SCHOOLS.find(x=>x.id===id);const sel=document.querySelector('.status-opt.selected');
-  s.cluster=toCluster;if(sel){s.status=sel.dataset.status;s.statusC=STATUS_CLASS[s.status]||'s-interno';}
+  const s=SCHOOLS.find(x=>x.id===id);
+  const isWonOrLost = toCluster==='won'||toCluster==='lost';
+  if(isWonOrLost){
+    const sel=document.querySelector('#etapaOptionsBlock .status-opt.selected');
+    s.cluster=toCluster;
+    if(sel){s.etapa=sel.dataset.etapa;s.etapaC=ETAPA_CLASS[s.etapa]||'badge-neg';}
+  }else{
+    const sel=document.querySelector('#statusOptionsBlock .status-opt.selected');
+    s.cluster=toCluster;
+    if(sel){s.status=sel.dataset.status;s.statusC=STATUS_CLASS[s.status]||'s-interno';}
+    // If moving away from won/lost into a temperature/forecast cluster, reset etapa if it was Fechado e ganho/perdido
+    if(s.etapa==='Fechado e ganho'||s.etapa==='Fechado e perdido'){s.etapa='Negociação';s.etapaC='badge-neg';}
+  }
   closePopup('statusPopup');CLUSTERS.forEach(c=>renderCluster(c));recalcDashboard();
   setTimeout(()=>{const row=document.querySelector(`tr[data-id="${id}"]`);if(row){row.classList.add('row-flash');row.scrollIntoView({behavior:'smooth',block:'nearest'});setTimeout(()=>row.classList.remove('row-flash'),700);}},60);
 }
