@@ -369,7 +369,7 @@ async function loadData(){
   document.getElementById('loadingScreen').style.display='flex';
   document.getElementById('mainContent').style.display='none';
   try{
-    const url=`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&gid=${SHEET_GID}`;
+    const url=`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&gid=${SHEET_GID}&headers=1`;
     const res=await fetch(url);
     if(!res.ok){throw new Error('HTTP '+res.status+' — '+(res.status===404?'planilha ou aba não encontrada':res.status===403?'sem permissão de acesso':'erro de servidor'));}
     const text=await res.text();
@@ -397,8 +397,18 @@ async function loadData(){
 
 /* ── PARSE ── */
 function parseSheetData(json){
-  const cols=json.table.cols.map(c=>c.label||'');
+  let cols=json.table.cols.map(c=>c.label||'');
+  let rows=json.table.rows;
+
+  // Fallback: if headers look empty/generic (A, B, C...) try first row as header
+  const looksGeneric = cols.every(c=>!c||/^[A-Z]{1,2}$/.test(c));
+  if(looksGeneric && rows.length>0){
+    cols = rows[0].c.map(c=>c&&c.v!==null&&c.v!==undefined?String(c.v).trim():'');
+    rows = rows.slice(1);
+  }
   RAW_HEADERS=[...cols];
+  console.log('Colunas detectadas:', cols);
+  console.log('Total de linhas:', rows.length);
 
   const idx=name=>cols.findIndex(c=>c.trim().toLowerCase()===name.trim().toLowerCase());
   const iEscola=idx('escola'),iConsult=idx('consultor'),iLider=idx('líder cse'),iCSE=idx('cse');
@@ -417,7 +427,7 @@ function parseSheetData(json){
   function parseAcv(raw){if(typeof raw==='number')return raw;return parseFloat(String(raw).replace(/[R$\s.]/g,'').replace(',','.'))||0;}
 
   SCHOOLS=[];RAW_ROWS=[];
-  json.table.rows.forEach((row,ri)=>{
+  rows.forEach((row,ri)=>{
     const escola=cellVal(row,iEscola);
     if(!escola)return;
     const acv=parseAcv(cellVal(row,iACV));
