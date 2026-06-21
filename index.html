@@ -239,6 +239,71 @@
     @keyframes flash{0%{background:#FFFDE0}100%{background:transparent}}
     .row-flash{animation:flash .6s ease}
     .footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--border);font-size:11px;color:var(--tm);display:flex;justify-content:space-between}
+
+    /* PRESENTATION MODE */
+    body.presentation .header-actions .hdr-btn:not(#presBtn){display:none}
+    body.presentation .filters-row{display:none}
+    body.presentation .move-cell{display:none}
+    body.presentation .acao-edit-btn,body.presentation .acao-save-btn{display:none}
+    body.presentation .badge,body.presentation .status-chip{cursor:default;pointer-events:none}
+    body.presentation #presBtn{background:#185FA5;color:#fff;border-color:#185FA5}
+    body.presentation .consultor-link-btn{display:none}
+
+    /* SUMMARY POPUP */
+    .summary-popup{min-width:520px;max-width:620px}
+    .summary-loading{display:flex;flex-direction:column;align-items:center;gap:12px;padding:30px 10px}
+    .summary-spinner{width:28px;height:28px;border:3px solid var(--border);border-top-color:#185FA5;border-radius:50%;animation:spin .8s linear infinite}
+    .summary-text{font-size:13.5px;color:var(--tp);line-height:1.7;white-space:pre-line}
+    .summary-text strong{color:NAVY}
+    .summary-copy-btn{font-size:12px;font-family:var(--fb);color:#fff;background:#185FA5;border:none;border-radius:6px;padding:7px 16px;cursor:pointer;margin-top:4px}
+    .summary-copy-btn:hover{background:#0C447C}
+    .summary-copied{font-size:11px;color:#1A7F37;margin-left:8px}
+
+    /* PERSON VIEW POPUP */
+    .person-popup{min-width:780px;max-width:920px;max-height:80vh;overflow-y:auto}
+    .person-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:14px}
+    .person-card{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:13px}
+    .person-card-name{font-size:13px;font-weight:600;color:var(--tp);margin-bottom:2px}
+    .person-card-role{font-size:10px;color:var(--tm);text-transform:uppercase;letter-spacing:.04em;margin-bottom:10px}
+    .person-card-stat{display:flex;justify-content:space-between;font-size:11.5px;margin-bottom:5px}
+    .person-card-stat span:first-child{color:var(--ts)}
+    .person-card-stat span:last-child{font-weight:600;color:var(--tp)}
+    .person-card-acv{font-size:18px;font-weight:700;font-family:var(--fd);color:#185FA5;margin:8px 0}
+    .person-link-btn{width:100%;margin-top:10px;font-size:11px;font-family:var(--fb);color:#185FA5;background:#fff;border:1px solid #B3D0F0;border-radius:6px;padding:6px 10px;cursor:pointer}
+    .person-link-btn:hover{background:#EEF5FD}
+    .person-tabs{display:flex;gap:6px;margin-bottom:6px}
+    .person-tab{font-size:11.5px;font-family:var(--fb);color:var(--ts);background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:5px 12px;cursor:pointer}
+    .person-tab.active{background:#185FA5;color:#fff;border-color:#185FA5}
+
+    /* CONSULTANT LINK BANNER (shown when ?consultor= param present) */
+    .consultor-banner{background:#EEF5FD;border:1px solid #B3D0F0;border-radius:var(--rmd);padding:12px 18px;margin:20px 0;display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .consultor-banner-text{font-size:12.5px;color:#0C447C}
+    .consultor-banner-clear{font-size:11px;font-family:var(--fb);color:#0C447C;background:#fff;border:1px solid #B3D0F0;border-radius:6px;padding:5px 10px;cursor:pointer}
+
+    /* ROUND MODE */
+    .round-overlay{display:none;position:fixed;inset:0;background:var(--bg);z-index:600;flex-direction:column}
+    .round-overlay.open{display:flex}
+    .round-header{display:flex;align-items:center;justify-content:space-between;padding:18px 28px;border-bottom:1px solid var(--border);background:var(--surface)}
+    .round-progress{font-size:12.5px;color:var(--ts)}
+    .round-close{font-size:13px;font-family:var(--fb);color:var(--ts);background:none;border:1px solid var(--border);border-radius:6px;padding:6px 14px;cursor:pointer}
+    .round-body{flex:1;display:flex;align-items:center;justify-content:center;padding:30px}
+    .round-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:36px 44px;max-width:780px;width:100%;box-shadow:0 8px 32px rgba(0,0,0,.08)}
+    .round-escola{font-family:var(--fd);font-size:26px;font-weight:700;color:var(--tp);margin-bottom:6px}
+    .round-resp{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap}
+    .round-resp-chip{background:var(--bg);border-radius:5px;padding:4px 10px;font-size:11.5px;color:var(--ts)}
+    .round-meta{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}
+    .round-acv-big{font-size:22px;font-weight:700;color:#185FA5;font-family:var(--fd)}
+    .round-section-lbl{font-size:11px;font-weight:600;color:var(--tm);text-transform:uppercase;letter-spacing:.05em;margin:16px 0 5px}
+    .round-acao-text{font-size:14.5px;color:var(--tp);line-height:1.5}
+    .round-nav{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;border-top:1px solid var(--border);background:var(--surface)}
+    .round-nav-btn{font-size:13px;font-family:var(--fb);color:#fff;background:#185FA5;border:none;border-radius:8px;padding:9px 22px;cursor:pointer}
+    .round-nav-btn:hover{background:#0C447C}
+    .round-nav-btn:disabled{background:#D1D9E0;cursor:not-allowed}
+    .round-nav-btn.secondary{background:var(--surface);color:var(--ts);border:1px solid var(--border)}
+    .round-nav-btn.secondary:hover{background:var(--bg)}
+    .round-dots{display:flex;gap:5px;flex-wrap:wrap;max-width:300px;justify-content:center}
+    .round-dot{width:7px;height:7px;border-radius:50%;background:var(--border);cursor:pointer}
+    .round-dot.active{background:#185FA5;width:18px;border-radius:4px}
     @media(max-width:700px){
       .header{padding:18px}.container{padding:0 16px}
       .metrics-grid{grid-template-columns:repeat(2,1fr)}
@@ -295,6 +360,53 @@
   </div>
 </div>
 
+<!-- SUMMARY POPUP -->
+<div class="overlay" id="summaryPopup">
+  <div class="popup summary-popup">
+    <div class="popup-ti">📝 Resumo da semana</div>
+    <div class="popup-sub">Gerado a partir dos dados atuais do painel</div>
+    <div id="summaryContent"></div>
+    <div class="popup-actions" style="margin-top:14px;">
+      <button class="popup-cancel" onclick="closePopup('summaryPopup')">Fechar</button>
+      <button class="summary-copy-btn" onclick="copySummary()">Copiar texto</button>
+      <span class="summary-copied" id="summaryCopiedMsg" style="display:none">✓ Copiado!</span>
+    </div>
+  </div>
+</div>
+
+<!-- PERSON VIEW POPUP -->
+<div class="overlay" id="personPopup">
+  <div class="popup person-popup">
+    <div class="popup-ti">👥 Carteira por pessoa</div>
+    <div class="popup-sub">Distribuição de escolas e ACV por Líder CSE, CSE e Consultor</div>
+    <div class="person-tabs">
+      <button class="person-tab active" data-role="lider" onclick="switchPersonTab(this,'lider')">Líder CSE</button>
+      <button class="person-tab" data-role="cse" onclick="switchPersonTab(this,'cse')">CSE</button>
+      <button class="person-tab" data-role="consultor" onclick="switchPersonTab(this,'consultor')">Consultor</button>
+    </div>
+    <div class="person-grid" id="personGrid"></div>
+    <div class="popup-actions" style="margin-top:16px;">
+      <button class="popup-cancel" onclick="closePopup('personPopup')">Fechar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ROUND MODE OVERLAY -->
+<div class="round-overlay" id="roundOverlay">
+  <div class="round-header">
+    <div class="round-progress" id="roundProgress">Escola 1 de 1</div>
+    <button class="round-close" onclick="closeRound()">✕ Fechar modo ronda</button>
+  </div>
+  <div class="round-body">
+    <div class="round-card" id="roundCard"></div>
+  </div>
+  <div class="round-nav">
+    <button class="round-nav-btn secondary" id="roundPrevBtn" onclick="roundNav(-1)">← Anterior</button>
+    <div class="round-dots" id="roundDots"></div>
+    <button class="round-nav-btn" id="roundNextBtn" onclick="roundNav(1)">Próxima →</button>
+  </div>
+</div>
+
 <div class="header">
   <div class="container">
     <div class="header-inner">
@@ -307,6 +419,9 @@
         </div>
         <div class="header-actions">
           <button class="hdr-btn" onclick="loadData()">↻ Atualizar</button>
+          <button class="hdr-btn" onclick="openSummary()">📝 Resumo da semana</button>
+          <button class="hdr-btn" onclick="openPersonView()">👥 Por pessoa</button>
+          <button class="hdr-btn" onclick="togglePresentationMode()" id="presBtn">🖥️ Modo apresentação</button>
           <button class="hdr-btn primary" onclick="openPopup('exportPopup')">📥 Exportar planilha</button>
         </div>
       </div>
@@ -318,6 +433,11 @@
 </div>
 
 <div class="container" id="mainContent" style="display:none">
+
+  <div class="consultor-banner" id="consultorBanner" style="display:none">
+    <div class="consultor-banner-text" id="consultorBannerText"></div>
+    <button class="consultor-banner-clear" onclick="clearConsultorLock()">Ver tudo</button>
+  </div>
 
   <div class="won-banner">
     <div class="won-banner-top">
@@ -406,10 +526,14 @@ let RAW_HEADERS = []; // original column headers from sheet
 let RAW_ROWS = [];    // original raw rows
 const acaoEdits  = {}; // id -> current acao text
 const newAcoes   = {}; // id -> {colName, text} new action added via +
-const sortState  = {fc:null,hot:null,warm:null,cold:null};
-const filterState= {fc:{},hot:{},warm:{},cold:{}};
+const sortState  = {won:null,fc:null,hot:null,warm:null,cold:null,lost:null};
+const filterState= {won:{},fc:{},hot:{},warm:{},cold:{},lost:{}};
 let pendingMove  = {id:null,toCluster:null};
 let chartFunil=null,chartStatus=null;
+let presentationMode=false;
+let isFirstLoad=true;
+const urlParams = new URLSearchParams(window.location.search);
+const lockedConsultor = urlParams.get('consultor');
 
 /* ── LOAD ── */
 async function loadData(){
@@ -428,7 +552,18 @@ async function loadData(){
     document.getElementById('totalCount').textContent=SCHOOLS.length;
     document.getElementById('loadingScreen').style.display='none';
     document.getElementById('mainContent').style.display='block';
-    CLUSTERS.forEach(c=>{filterState[c]={lider:[],cse:[],consultor:[],etapa:[],status:[]};renderCluster(c);});
+    if(isFirstLoad){
+      CLUSTERS.forEach(c=>{
+        filterState[c]={lider:[],cse:[],consultor:[],etapa:[],status:[]};
+        if(lockedConsultor){
+          const match=SCHOOLS.find(s=>s.consultor===lockedConsultor || s.consultor.toLowerCase()===lockedConsultor.toLowerCase());
+          if(match) filterState[c].consultor=[match.consultor];
+        }
+      });
+      isFirstLoad=false;
+      if(lockedConsultor) applyConsultorLockUI();
+    }
+    CLUSTERS.forEach(c=>renderCluster(c));
     recalcDashboard();
   }catch(e){
     document.getElementById('loadingScreen').innerHTML=`
@@ -737,7 +872,7 @@ function renderCluster(cluster){
   const activeF=Object.values(filterState[cluster]||{}).some(v=>v&&v.length>0)||sortState[cluster];
   const countTxt=activeF?`${rows.length} de ${all.length} escolas`:`${all.length} escola${all.length!==1?'s':''}`;
   el.innerHTML=`
-    <div class="cluster-header ${cluster}"><div class="temp-ind"></div><div class="cluster-lbl">${C_LABELS[cluster]}</div><div class="cluster-stats"><span>${fmtAcv(acvAll)}</span><span>${countTxt}</span></div></div>
+    <div class="cluster-header ${cluster}"><div class="temp-ind"></div><div class="cluster-lbl">${C_LABELS[cluster]}</div><div class="cluster-stats"><span>${fmtAcv(acvAll)}</span><span>${countTxt}</span>${all.length>0?`<button class="consultor-link-btn" style="font-size:10px;font-family:var(--fb);background:rgba(255,255,255,.6);border:none;border-radius:10px;padding:3px 9px;cursor:pointer;color:inherit;" onclick="openRoundMode('${cluster}')">▶ Modo ronda</button>`:''}</div></div>
     <div class="filters-row" id="frow-${cluster}"></div>
     <div class="table-wrap">
       <table><thead><tr><th></th><th>Escola</th><th>ACV ↕</th><th>Etapa</th><th>Status</th><th>Ação</th></tr></thead>
@@ -830,6 +965,194 @@ function toggleHist(btn){const b=btn.closest('.acao-cell').querySelector('.hist-
 function toggleMenu(btn,e){e.stopPropagation();const m=btn.querySelector('.move-menu');const o=m.classList.contains('open');closeAllMenus();if(!o)m.classList.add('open');}
 function closeAllMenus(){document.querySelectorAll('.move-menu.open').forEach(m=>m.classList.remove('open'));}
 document.addEventListener('click',closeAllMenus);
+
+/* ── PRESENTATION MODE ── */
+function togglePresentationMode(){
+  presentationMode=!presentationMode;
+  document.body.classList.toggle('presentation',presentationMode);
+  document.getElementById('presBtn').textContent = presentationMode ? '✕ Sair da apresentação' : '🖥️ Modo apresentação';
+}
+
+/* ── CONSULTANT LINK LOCK ── */
+function applyConsultorLockUI(){
+  const banner=document.getElementById('consultorBanner');
+  const text=document.getElementById('consultorBannerText');
+  const match=SCHOOLS.find(s=>s.consultor.toLowerCase()===lockedConsultor.toLowerCase());
+  const name = match ? match.consultor : lockedConsultor;
+  text.innerHTML = `👤 Mostrando apenas a carteira de <strong>${name}</strong>`;
+  banner.style.display='flex';
+}
+function clearConsultorLock(){
+  CLUSTERS.forEach(c=>{filterState[c].consultor=[];});
+  document.getElementById('consultorBanner').style.display='none';
+  const url=new URL(window.location);
+  url.searchParams.delete('consultor');
+  window.history.replaceState({},'',url);
+  CLUSTERS.forEach(c=>renderCluster(c));
+  recalcDashboard();
+}
+function generateConsultorLink(consultorName){
+  const url=new URL(window.location.href.split('?')[0]);
+  url.searchParams.set('consultor',consultorName);
+  return url.toString();
+}
+function copyConsultorLink(consultorName,btn){
+  const link=generateConsultorLink(consultorName);
+  navigator.clipboard.writeText(link).then(()=>{
+    const original=btn.textContent;
+    btn.textContent='✓ Link copiado!';
+    setTimeout(()=>{btn.textContent=original;},1800);
+  }).catch(()=>{
+    prompt('Copie o link abaixo:',link);
+  });
+}
+
+/* ── SUMMARY ── */
+function openSummary(){
+  openPopup('summaryPopup');
+  const content=document.getElementById('summaryContent');
+  content.innerHTML=`<div class="summary-loading"><div class="summary-spinner"></div><div style="font-size:12.5px;color:var(--ts)">Analisando dados do painel...</div></div>`;
+  document.getElementById('summaryCopiedMsg').style.display='none';
+  setTimeout(()=>{ content.innerHTML=`<div class="summary-text">${buildSummaryText()}</div>`; }, 450);
+}
+function fmtAcvFull(v){ return v>=1e6 ? 'R$ '+(v/1e6).toFixed(1)+'M' : 'R$ '+(v/1e3).toFixed(0)+'K'; }
+function buildSummaryText(){
+  const total=SCHOOLS.reduce((s,r)=>s+r.acv,0);
+  const byC=c=>SCHOOLS.filter(s=>s.cluster===c);
+  const acvSum=arr=>arr.reduce((s,r)=>s+r.acv,0);
+  const fcS=byC('fc'),hotS=byC('hot'),warmS=byC('warm'),coldS=byC('cold'),wonS=byC('won'),lostS=byC('lost');
+
+  const riskAcv = acvSum(coldS)+acvSum(warmS);
+  const riskPct = total ? Math.round(riskAcv/total*100) : 0;
+  const blocked = SCHOOLS.filter(s=>s.status==='Bloqueada por caso crítico');
+  const noOwner = SCHOOLS.filter(s=>(s.lider==='Sem líder'||s.cse==='Sem CSE') && s.cluster!=='won' && s.cluster!=='lost');
+
+  const topRisk = [...coldS,...warmS].sort((a,b)=>b.acv-a.acv).slice(0,3);
+  const topForecast = [...fcS].sort((a,b)=>b.acv-a.acv).slice(0,3);
+
+  let lines=[];
+
+  lines.push(`<strong>1. Visão geral</strong>`);
+  lines.push(`ACV total monitorado: ${fmtAcvFull(total)} em ${SCHOOLS.length} oportunidades. Forecast da semana: ${fmtAcvFull(acvSum(fcS))} (${fcS.length} escolas). ${wonS.length>0?`Fechado e ganho: ${fmtAcvFull(acvSum(wonS))}. `:''}${lostS.length>0?`Fechado e perdido: ${fmtAcvFull(acvSum(lostS))}.`:''}`);
+  lines.push('');
+
+  lines.push(`<strong>2. Ponto de atenção</strong>`);
+  if(blocked.length>0){
+    lines.push(`${blocked.length} escola${blocked.length>1?'s estão':' está'} bloqueada${blocked.length>1?'s':''} por caso crítico, somando ${fmtAcvFull(acvSum(blocked))}: ${blocked.slice(0,3).map(s=>s.escola).join(', ')}${blocked.length>3?` e mais ${blocked.length-3}`:''}.`);
+  } else if(topRisk.length>0){
+    lines.push(`${riskPct}% do ACV (${fmtAcvFull(riskAcv)}) está em temperatura morna ou fria. As maiores oportunidades nessa faixa são: ${topRisk.map(s=>`${s.escola} (${s.acvL})`).join(', ')}.`);
+  } else {
+    lines.push('Sem bloqueios críticos identificados nesta semana.');
+  }
+  lines.push('');
+
+  lines.push(`<strong>3. Próximos passos</strong>`);
+  if(topForecast.length>0){
+    lines.push(`Prioridade da semana: fechar ${topForecast.map(s=>s.escola).join(', ')}, que juntas somam ${fmtAcvFull(acvSum(topForecast))} em forecast.`);
+  }
+  if(noOwner.length>0){
+    lines.push(`${noOwner.length} escola${noOwner.length>1?'s estão':' está'} sem líder ou CSE atribuído — vale revisar a responsabilidade antes da próxima reunião.`);
+  }
+  if(topForecast.length===0 && noOwner.length===0){
+    lines.push('Nenhuma ação crítica pendente identificada — manter o ritmo atual de acompanhamento.');
+  }
+
+  return lines.join('<br>');
+}
+function copySummary(){
+  const text=document.getElementById('summaryContent').innerText;
+  navigator.clipboard.writeText(text).then(()=>{
+    document.getElementById('summaryCopiedMsg').style.display='inline';
+    setTimeout(()=>{document.getElementById('summaryCopiedMsg').style.display='none';},2000);
+  });
+}
+
+/* ── PERSON VIEW ── */
+function openPersonView(){
+  openPopup('personPopup');
+  renderPersonGrid('lider');
+}
+function switchPersonTab(btn,role){
+  document.querySelectorAll('.person-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  renderPersonGrid(role);
+}
+function renderPersonGrid(role){
+  const roleLabel={lider:'Líder CSE',cse:'CSE',consultor:'Consultor'}[role];
+  const active=SCHOOLS.filter(s=>s.cluster!=='won' && s.cluster!=='lost');
+  const groups={};
+  active.forEach(s=>{
+    const key=s[role]||'Sem atribuição';
+    if(key==='Sem líder'||key==='Sem CSE')return;
+    if(!groups[key])groups[key]=[];
+    groups[key].push(s);
+  });
+  const entries=Object.entries(groups).sort((a,b)=>{
+    const acvA=a[1].reduce((s,r)=>s+r.acv,0), acvB=b[1].reduce((s,r)=>s+r.acv,0);
+    return acvB-acvA;
+  });
+  const grid=document.getElementById('personGrid');
+  if(entries.length===0){ grid.innerHTML='<div style="font-size:12px;color:var(--tm);padding:20px;text-align:center;grid-column:1/-1">Nenhum dado disponível para esse agrupamento.</div>'; return; }
+  grid.innerHTML=entries.map(([name,schools])=>{
+    const acv=schools.reduce((s,r)=>s+r.acv,0);
+    const hot=schools.filter(s=>s.cluster==='hot').length;
+    const fc=schools.filter(s=>s.cluster==='fc').length;
+    const cold=schools.filter(s=>s.cluster==='cold').length;
+    const linkBtn = role==='consultor' ? `<button class="person-link-btn" onclick="copyConsultorLink('${name.replace(/'/g,"\\'")}',this)">🔗 Copiar link da carteira</button>` : '';
+    return `<div class="person-card">
+      <div class="person-card-name">${name}</div>
+      <div class="person-card-role">${roleLabel}</div>
+      <div class="person-card-acv">${fmtAcvFull(acv)}</div>
+      <div class="person-card-stat"><span>Escolas</span><span>${schools.length}</span></div>
+      <div class="person-card-stat"><span>Forecast</span><span>${fc}</span></div>
+      <div class="person-card-stat"><span>Quente</span><span>${hot}</span></div>
+      <div class="person-card-stat"><span>Fria</span><span>${cold}</span></div>
+      ${linkBtn}
+    </div>`;
+  }).join('');
+}
+
+/* ── ROUND MODE ── */
+let roundList=[];
+let roundIndex=0;
+function openRoundMode(cluster){
+  roundList = cluster ? SCHOOLS.filter(s=>s.cluster===cluster) : SCHOOLS.filter(s=>s.cluster!=='won'&&s.cluster!=='lost');
+  if(roundList.length===0){ alert('Nenhuma escola disponível para o modo ronda.'); return; }
+  roundIndex=0;
+  document.getElementById('roundOverlay').classList.add('open');
+  renderRoundCard();
+}
+function closeRound(){ document.getElementById('roundOverlay').classList.remove('open'); }
+function roundNav(dir){
+  roundIndex=Math.max(0,Math.min(roundList.length-1,roundIndex+dir));
+  renderRoundCard();
+}
+function goToRoundIndex(i){ roundIndex=i; renderRoundCard(); }
+function renderRoundCard(){
+  const s=roundList[roundIndex];
+  const acao=acaoEdits[s.id]!==undefined?acaoEdits[s.id]:s.acaoAtual;
+  document.getElementById('roundProgress').textContent=`Escola ${roundIndex+1} de ${roundList.length}`;
+  document.getElementById('roundCard').innerHTML=`
+    <div class="round-escola">${s.escola}</div>
+    <div class="round-resp">
+      <span class="round-resp-chip">Líder: ${s.lider}</span>
+      <span class="round-resp-chip">CSE: ${s.cse}</span>
+      <span class="round-resp-chip">Consultor: ${s.consultor}</span>
+    </div>
+    <div class="round-meta">
+      <span class="round-acv-big">${s.acvL}</span>
+      <span class="badge ${s.etapaC}" style="align-self:center;">${s.etapa}</span>
+      <span class="status-chip ${s.statusC}" style="align-self:center;">${s.status}</span>
+    </div>
+    <div class="round-section-lbl">Ação atual</div>
+    <div class="round-acao-text">${acao}</div>
+  `;
+  document.getElementById('roundPrevBtn').disabled = roundIndex===0;
+  document.getElementById('roundNextBtn').textContent = roundIndex===roundList.length-1 ? 'Concluir ✓' : 'Próxima →';
+  document.getElementById('roundNextBtn').onclick = roundIndex===roundList.length-1 ? closeRound : ()=>roundNav(1);
+  const dotsWrap=document.getElementById('roundDots');
+  dotsWrap.innerHTML = roundList.map((_,i)=>`<span class="round-dot${i===roundIndex?' active':''}" onclick="goToRoundIndex(${i})"></span>`).join('');
+}
 
 loadData();
 </script>
